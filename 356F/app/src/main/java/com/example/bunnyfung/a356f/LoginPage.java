@@ -92,18 +92,64 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
             }
         });
 
+        Button mEmailSignUpButton = (Button) findViewById(R.id.btnReg);
+        mEmailSignUpButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                attemptReg();
+            }
+        });
+
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
+    private void attemptReg(){
+
+        // Reset errors.
+        mEmailView.setError(null);
+        mPasswordView.setError(null);
+
+        // Store values at the time of the login attempt.
+        String email = mEmailView.getText().toString();
+        String password = mPasswordView.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+        if (TextUtils.isEmpty(email)) {
+            mEmailView.setError(getString(R.string.error_field_required));
+            focusView = mEmailView;
+            cancel = true;
+        } else if (!isEmailValid(email)) {
+            mEmailView.setError(getString(R.string.error_invalid_email));
+            focusView = mEmailView;
+            cancel = true;
+        } else if (!emailExsitCheck(email)){
+            //NOTE: Check email exist
+            mEmailView.setError("Email is not exist");
+            focusView = mEmailView;
+            cancel = true;
+        }
+
+        // NOTE: Check for a valid password, if the user entered one.
+        if (TextUtils.isEmpty(password)) {
+            mPasswordView.setError(getString(R.string.error_invalid_password));
+            focusView = mPasswordView;
+            cancel = true;
+        }
+
+        if (cancel) {
+            focusView.requestFocus();
+        } else {
+            userName = email;
+            passWord = password;
+            Intent intent = new Intent(this, MainPage.class);
+            //intent.putExtra("email",email);
+            startActivity(intent);
+        }
+    }
 
 
-
-
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
     private void attemptLogin() {
 
         // Reset errors.
@@ -145,11 +191,10 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
         }
 
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
             focusView.requestFocus();
         } else {
             Intent intent = new Intent(this, MainPage.class);
+            intent.putExtra("email",email);
             startActivity(intent);
         }
     }

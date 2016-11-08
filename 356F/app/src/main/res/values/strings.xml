@@ -20,4 +20,5 @@
         completions."
     </string>
     <string name="title_activity_login_page">Sign in</string>
+    <string name="title_activity_main_page">MainPage</string>
 </resources>

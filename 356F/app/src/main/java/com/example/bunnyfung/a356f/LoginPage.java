@@ -30,11 +30,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.bunnyfung.a356f.Object.Account;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -66,7 +63,6 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
     private View mLoginFormView;
     private String userName = "tomfpy@gmail.com";
     private String passWord = "1234";
-    private Vector<Account> accounts = new Vector<Account>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +124,11 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
+        } else if (!emailExsitCheck(email)){
+            //NOTE: Check email exist
+            mEmailView.setError("Email is not exist");
+            focusView = mEmailView;
+            cancel = true;
         }
 
         // NOTE: Check for a valid password, if the user entered one.
@@ -142,10 +143,6 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
         } else {
             userName = email;
             passWord = password;
-            Account account = new Account(email,password);
-            accounts.add(account);
-
-            //TODO: Call Server method send Account to SQL
             Intent intent = new Intent(this, MainPage.class);
             //intent.putExtra("email",email);
             startActivity(intent);

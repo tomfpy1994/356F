@@ -27,6 +27,7 @@
             android:name=".MainPage"
             android:label="@string/title_activity_main_page"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".newPostPage"></activity>
     </application>
 
 </manifest>

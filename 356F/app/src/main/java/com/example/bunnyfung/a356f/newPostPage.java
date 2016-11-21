@@ -3,7 +3,7 @@ package com.example.bunnyfung.a356f;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class newPostPage extends AppCompatActivity {
+public class NewPostPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -14,11 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-<<<<<<< HEAD
             android:name=".NewPostPage"
-=======
-            android:name=".newPostPage"
->>>>>>> origin/master
             android:label="@string/title_activity_login_page"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -31,12 +27,8 @@
             android:name=".MainPage"
             android:label="@string/title_activity_main_page"
             android:theme="@style/AppTheme.NoActionBar" />
-<<<<<<< HEAD
         <activity android:name=".LoginPage">
         </activity>
-=======
-
->>>>>>> origin/master
     </application>
 
 </manifest>

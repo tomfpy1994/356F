@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ProductDetailPage"
+            android:name=".OfferPage"
             android:label="@string/title_activity_login_page"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -29,7 +29,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".LoginPage" />
         <activity android:name=".profile_page" />
-        <activity android:name=".NewPostPage"></activity>
+        <activity android:name=".NewPostPage" />
+        <activity android:name=".ProductDetailPage"></activity>
     </application>
 
 </manifest>

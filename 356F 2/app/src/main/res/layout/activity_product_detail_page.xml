@@ -143,7 +143,7 @@
                         android:text="ACBD12344"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView19"
+                        android:id="@+id/tvName"
                         android:layout_weight="1"
                         android:textColor="@android:color/background_dark" />
                 </LinearLayout>
@@ -165,7 +165,7 @@
                         android:text="Nike"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView22"
+                        android:id="@+id/tvBrand"
                         android:layout_weight="1"
                         android:textColor="@android:color/background_dark" />
                 </LinearLayout>
@@ -187,7 +187,7 @@
                         android:text="Run boots"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView24"
+                        android:id="@+id/tvType"
                         android:layout_weight="1"
                         android:textColor="@android:color/background_dark" />
                 </LinearLayout>
@@ -208,7 +208,7 @@
                     <TextView
                         android:text="US 5"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView26"
+                        android:id="@+id/tvSiez"
                         android:textColor="@android:color/background_dark"
                         android:gravity="left"
                         android:layout_gravity="left"

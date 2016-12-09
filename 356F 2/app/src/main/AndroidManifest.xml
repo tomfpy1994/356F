@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".NewPostPage"
+            android:name=".OfferPage"
             android:label="@string/title_activity_login_page"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -27,8 +27,21 @@
             android:name=".MainPage"
             android:label="@string/title_activity_main_page"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LoginPage"></activity>
-        <activity android:name=".profile_page"></activity>
+        <activity android:name=".LoginPage" />
+        <activity android:name=".profile_page" />
+<<<<<<< HEAD
+        <activity android:name=".ProfileEditPage" />
+        <activity android:name=".ProfileHistoryPage" />
+        <activity android:name=".MyScorePage" />
+        <activity android:name=".WishListPage" />
+        <activity android:name=".MyPostPage" />
+        <activity android:name=".SecurityCodePage" />
+        <activity android:name=".TransactionPage"></activity>
+=======
+        <activity android:name=".NewPostPage" />
+        <activity android:name=".DealPage" />
+        <activity android:name=".ProductDetailPage"></activity>
+>>>>>>> origin/master
     </application>
 
 </manifest>

@@ -19,8 +19,8 @@
         android:id="@+id/tvBrand"
         android:paddingLeft="15dip"
         android:paddingRight="15dip"
-        android:layout_below="@+id/tvName"
-        android:layout_alignEnd="@+id/tvName"
+        android:layout_below="@+id/tvNameID"
+        android:layout_alignEnd="@+id/tvNameID"
         android:paddingBottom="5dip" />
 
     <TextView
@@ -83,7 +83,7 @@
         android:paddingTop="3dip"
         android:textSize = "14sp"
         android:layout_above="@+id/tvBrand"
-        android:layout_toEndOf="@+id/tvName" />
+        android:layout_toEndOf="@+id/tvNameID" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -99,20 +99,6 @@
         android:layout_alignBaseline="@+id/tvBrand"
         android:layout_alignBottom="@+id/tvBrand"
         android:layout_toEndOf="@+id/tvBrand" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="ssss"
-        android:ems="10"
-        android:id="@+id/tfType"
-        android:width="100dp"
-        android:paddingBottom="3dip"
-        android:paddingTop="3dip"
-        android:textSize = "14sp"
-        android:layout_above="@+id/tvSize"
-        android:layout_toEndOf="@+id/tvType" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -149,7 +135,7 @@
         android:text="I am a boy"
         android:ems="10"
         android:id="@+id/tfDescription"
-        android:paddingBottom="80dip"
+        android:paddingBottom="20dip"
         android:paddingTop="3dip"
         android:layout_alignBaseline="@+id/tvDescription"
         android:layout_alignBottom="@+id/tvDescription"
@@ -161,7 +147,7 @@
         android:text="Name:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvName"
+        android:id="@+id/tvNameID"
         android:layout_marginStart="54dp"
         android:paddingLeft="15dip"
         android:paddingRight="15dip"
@@ -234,7 +220,7 @@
     <Button
         android:text="Submit"
         android:textSize="13sp"
-        android:id="@+id/bPostSubmit"
+        android:id="@+id/btnPostSubmit"
         android:layout_below="@+id/tfDescription"
         android:layout_alignEnd="@+id/cbSize"
         android:layout_width="100dp"
@@ -248,4 +234,18 @@
         android:id="@+id/bPostCancel"
         android:layout_below="@+id/tfDescription"
         android:layout_alignEnd="@+id/tfDescription" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="ssss"
+        android:ems="10"
+        android:id="@+id/tfType"
+        android:width="100dp"
+        android:paddingBottom="3dip"
+        android:paddingTop="3dip"
+        android:textSize = "14sp"
+        android:layout_above="@+id/tvSize"
+        android:layout_toEndOf="@+id/tvType" />
 </RelativeLayout>

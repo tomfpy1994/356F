@@ -5,7 +5,10 @@ import android.os.Bundle;
 
 public class OfferPage extends AppCompatActivity {
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

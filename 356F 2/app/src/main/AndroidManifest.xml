@@ -30,6 +30,7 @@
         <activity android:name=".LoginPage" />
         <activity android:name=".profile_page" />
 <<<<<<< HEAD
+<<<<<<< HEAD
         <activity android:name=".ProfileEditPage" />
         <activity android:name=".ProfileHistoryPage" />
         <activity android:name=".MyScorePage" />
@@ -37,6 +38,11 @@
         <activity android:name=".MyPostPage" />
         <activity android:name=".SecurityCodePage" />
         <activity android:name=".TransactionPage"></activity>
+=======
+        <activity android:name=".NewPostPage" />
+        <activity android:name=".DealPage" />
+        <activity android:name=".ProductDetailPage"></activity>
+>>>>>>> origin/master
 =======
         <activity android:name=".NewPostPage" />
         <activity android:name=".DealPage" />

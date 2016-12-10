@@ -14,40 +14,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".OfferPage"
-            android:label="@string/title_activity_login_page"
+            android:name=".LoginPage"
+            android:label="@string/title_activity_main_page"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainPage"
-            android:label="@string/title_activity_main_page"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LoginPage" />
+
+        <activity android:name=".MainPage" />
+        <activity android:name=".MyScorePage" />
         <activity android:name=".profile_page" />
-<<<<<<< HEAD
-<<<<<<< HEAD
         <activity android:name=".ProfileEditPage" />
         <activity android:name=".ProfileHistoryPage" />
-        <activity android:name=".MyScorePage" />
         <activity android:name=".WishListPage" />
         <activity android:name=".MyPostPage" />
         <activity android:name=".SecurityCodePage" />
-        <activity android:name=".TransactionPage"></activity>
-=======
+        <activity android:name=".TransactionPage" />
         <activity android:name=".NewPostPage" />
         <activity android:name=".DealPage" />
-        <activity android:name=".ProductDetailPage"></activity>
->>>>>>> origin/master
-=======
-        <activity android:name=".NewPostPage" />
-        <activity android:name=".DealPage" />
-        <activity android:name=".ProductDetailPage"></activity>
->>>>>>> origin/master
+        <activity android:name=".ProductDetailPage" />
+        <activity android:name=".OfferPage"></activity>
     </application>
 
 </manifest>

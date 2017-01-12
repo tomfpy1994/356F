@@ -60,7 +60,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         ivMsgIcon.setVisibility(View.INVISIBLE);
         btnLoginPage.setVisibility(View.INVISIBLE);
 
-
+        btnLoginPage.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -76,44 +76,53 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                 password = etPw.getText().toString();
                 email = etEmail.getText().toString();
 
-                tvStatu.setText(userid + "," + password + "," + email);
-                JSONObject jsonObj = new JSONObject();
-                try {
-                    jsonObj.put("userid", userid);
-                    jsonObj.put("pw", password);
-                    jsonObj.put("email", email);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                Log.i("jsonObj Value", jsonObj.toString());
-                doLogin(jsonObj);
-                while (stu==""){
+
+                System.out.println(userid + "," + password + "," + email);
+
+                if (!userid.equals("") && !password.equals("") && !email.equals("")){
+                    JSONObject jsonObj = new JSONObject();
                     try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-
+                        jsonObj.put("userid", userid);
+                        jsonObj.put("pw", password);
+                        jsonObj.put("email", email);
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                }
+                    Log.i("jsonObj Value", jsonObj.toString());
+                    doLogin(jsonObj);
+                    while (stu == "") {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
 
-                switch (stu){
-                    case "createac success":
-                        ivMsgIcon.setVisibility(View.VISIBLE);
-                        ivMsgIcon.setImageResource(R.drawable.pass);
-                        tvStatu.setText("Registion Success! \n Click the Login to start your experience");
-                        tvStatu.setTextColor(Color.BLUE);
-                        btnLoginPage.setVisibility(View.VISIBLE);
-                        stu = "";
-//                        Intent intent = new Intent(this, MainPage.class);
-//                        startActivity(intent);
-                        break;
-                    case "402":
-                        ivMsgIcon.setVisibility(View.VISIBLE);
-                        ivMsgIcon.setImageResource(R.drawable.warning);
-                        tvStatu.setText("Registion Failed! \n User ID or Email is used");
-                        tvStatu.setTextColor(Color.RED);
-                        stu = "";
+                        }
+                    }
+                    switch (stu) {
+                        case "createac success":
+                            ivMsgIcon.setVisibility(View.VISIBLE);
+                            ivMsgIcon.setImageResource(R.drawable.pass);
+                            tvStatu.setText("Registion Success! \n Click the Login to start your experience");
+                            tvStatu.setTextColor(Color.BLUE);
+                            btnLoginPage.setVisibility(View.VISIBLE);
+                            stu = "";
+                            break;
+                        case "402":
+                            ivMsgIcon.setVisibility(View.VISIBLE);
+                            ivMsgIcon.setImageResource(R.drawable.warning);
+                            tvStatu.setText("Registion Failed! \n User ID or Email is used");
+                            tvStatu.setTextColor(Color.RED);
+                            stu = "";
+                    }
+                }else {
+                    ivMsgIcon.setVisibility(View.VISIBLE);
+                    ivMsgIcon.setImageResource(R.drawable.warning);
+                    tvStatu.setText("Registion Failed! \n please fill all the bland");
+                    tvStatu.setTextColor(Color.RED);
                 }
                 break;
+            case R.id.btnLoginPage:
+                Intent intent = new Intent(this, LoginPage.class);
+                startActivity(intent);
         }
 
     }

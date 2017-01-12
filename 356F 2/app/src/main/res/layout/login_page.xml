@@ -11,6 +11,16 @@
     tools:context="com.example.bunnyfung.a356f.LoginPage">
 
     <!-- Login progress -->
+
+    <TextView
+        android:text="Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView7"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:layout_margin="10dp" />
+
     <ProgressBar
         android:id="@+id/login_progress"
         style="?android:attr/progressBarStyleLarge"
@@ -75,7 +85,7 @@
                 android:id="@+id/btnReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sign UP"
+                android:text="Sign Up"
                 style="@android:style/Widget.DeviceDefault.Button.Borderless"
                 android:elevation="0dp"
                 android:textColor="@color/colorPrimary" />

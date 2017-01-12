@@ -15,7 +15,7 @@
     android:weightSum="1">
 
     <TextView
-        android:text="Login"
+        android:text="Registration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView5"

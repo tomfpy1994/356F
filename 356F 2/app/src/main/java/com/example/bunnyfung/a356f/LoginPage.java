@@ -31,7 +31,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.bunnyfung.a356f.Object.Account;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -64,9 +75,13 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private String userName = "tomfpy@gmail.com";
-    private String passWord = "1234";
     private Vector<Account> accounts = new Vector<Account>();
+    static String stu;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,12 +121,15 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    private void attemptReg(){
-            //TODO: Call Server method send Account to SQL
-            Intent intent = new Intent(this, RegisterPage.class);
-            startActivity(intent);
+    private void attemptReg() {
+        //TODO: Call Server method send Account to SQL
+        Intent intent = new Intent(this, RegisterPage.class);
+        startActivity(intent);
     }
 
 
@@ -138,10 +156,6 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
-        } else if (!emailExsitCheck(email)){
-            mEmailView.setError("Email is not exist");
-            focusView = mEmailView;
-            cancel = true;
         }
 
         // NOTE: Check for a valid password, if the user entered one.
@@ -149,17 +163,14 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
-        } else if (!passwordCheck(password)){
-            mPasswordView.setError("Password wrong");
-            focusView = mPasswordView;
-            cancel = true;
         }
-
         if (cancel) {
             focusView.requestFocus();
         } else {
+            doLogin(email, password);
+
             Intent intent = new Intent(this, MainPage.class);
-            intent.putExtra("email",email);
+            intent.putExtra("email", email);
             startActivity(intent);
         }
     }
@@ -167,18 +178,6 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
     private boolean isEmailValid(String email) {
         //NOTE: Email format must have "@"
         return email.contains("@");
-    }
-
-
-    private  boolean emailExsitCheck(String email){
-        if (email.equals(userName))
-            return true;
-        return false;
-    }
-    private  boolean passwordCheck(String password){
-        if (password.equals(passWord))
-            return true;
-        return false;
     }
 
 
@@ -226,6 +225,42 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
         mEmailView.setAdapter(adapter);
     }
 
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("LoginPage Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
+    }
+
 
     private interface ProfileQuery {
         String[] PROJECTION = {
@@ -235,6 +270,71 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
 
         int ADDRESS = 0;
         int IS_PRIMARY = 1;
+    }
+
+    public void doLogin(final String email, final String pw) {
+
+        Thread thread = new Thread() {
+            public void run() {
+                StringBuilder sb = new StringBuilder();
+                HttpURLConnection connection = null;
+                JSONObject acc = new JSONObject();
+
+                try {
+                    acc.put("email",email);
+                    acc.put("pw",pw);
+
+                    System.out.println(acc.toString());
+
+//                    URL url = new URL("http://s356fproject.mybluemix.net/api/createac");
+//                    connection = (HttpURLConnection) url.openConnection();
+//                    connection.setDoOutput(true);
+//                    connection.setDoInput(true);
+//                    connection.setRequestMethod("POST");
+//                    connection.setUseCaches(false);
+//                    connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+//                    connection.setConnectTimeout(10000);
+//                    connection.setReadTimeout(10000);
+//
+//
+//                    //Testing Log
+//                    System.out.println("URL:" + url.toString());
+//                    String strJsonobj = acc.toString();
+//                    System.out.println("doLogin Method jsonObj: " + strJsonobj);
+//
+//                    OutputStream os = connection.getOutputStream();
+//                    os.write(acc.toString().getBytes("UTF-8"));
+//                    os.close();
+//
+//                    int HttpResult = connection.getResponseCode();
+//                    System.out.println("resopnseCode: " + HttpResult);
+//
+//                    if (HttpResult == 200) {
+//                        BufferedReader br = new BufferedReader(new InputStreamReader(
+//                                connection.getInputStream()));
+//                        String line = null;
+//                        while ((line = br.readLine()) != null) {
+//                            sb.append(line + "\n");
+//                        }
+//                        br.close();
+//                        System.out.println("" + sb.toString());
+//
+//                        JSONObject resultObject = new JSONObject(sb.toString());
+//                        stu = resultObject.getString("status");
+//                        System.out.println("responesStatud: " + stu);
+//
+//                    } else if (HttpResult == 402) {
+//                        stu = "402";
+//                    }
+
+                    connection.disconnect();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
     }
 
 }

@@ -6,26 +6,20 @@ package com.example.bunnyfung.a356f.Object;
 
 public class Account {
     private String email;
-    private String userName;
+    private String userid;
     private String password;
 
-    public Account(String email, String userName, String password){
+    public Account(String userid, String email, String password){
         this.email = email;
-        this.userName = userName;
+        this.userid = userid;
         this.password = password;
-    }
-    public Account(String email, String password){
-        this.email = email;
-        this.password = password;
-        String[] parts = email.split("@");
-        this.userName = parts[0];
     }
 
     public void setEmail (String email){this.email = email;}
-    public void setUserName (String userName){this.userName = userName;}
+    public void setUserid (String userid){this.userid = userid;}
     public void setPassword (String password){this.password = password;}
 
     public String getEmail(){return email;}
-    public String getUserName(){return userName;}
+    public String getUserid(){return userid;}
     public String getPassword(){return password;}
 }

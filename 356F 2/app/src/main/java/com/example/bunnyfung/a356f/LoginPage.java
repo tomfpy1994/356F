@@ -49,38 +49,15 @@ import java.util.Vector;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
-/**
- * A login screen that offers login via email/password.
- */
 public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Cursor> {
-
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private Vector<Account> accounts = new Vector<Account>();
-    static String stu;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
+    public static Account acc;
+    static JSONObject resultObject;
+
     private GoogleApiClient client;
 
     @Override
@@ -88,9 +65,7 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-
-
+        mEmailView = (AutoCompleteTextView) findViewById(R.id.mUserid);
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -119,41 +94,39 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
             }
         });
 
+        Button btnAutofill = (Button) findViewById(R.id.btnAutofill);
+        btnAutofill.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mEmailView.setText("bunny");
+                mPasswordView.setText("123");
+            }
+        });
+
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
+
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     private void attemptReg() {
-        //TODO: Call Server method send Account to SQL
         Intent intent = new Intent(this, RegisterPage.class);
         startActivity(intent);
     }
 
-
     private void attemptLogin() {
 
-        // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
-        // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
-
-        // NOTE: Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
         }
@@ -164,22 +137,42 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
             focusView = mPasswordView;
             cancel = true;
         }
+
+        doLogin(email, password);
+        while (resultObject==null){
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("LoginPage resultObject: "+resultObject.toString());
+        if (resultObject.has("status")){
+            mEmailView.setError("User id may worng");
+            mPasswordView.setError("Password may worng");
+            focusView = mPasswordView;
+            cancel=true;
+        }else {
+            try{
+                String userid_t = resultObject.getString("userid");
+                String email_t = resultObject.getString("email");
+                String pw_t = resultObject.getString("pw");
+
+                acc = new Account(userid_t, email_t, pw_t);
+                System.out.println(acc.getUserid() + "," + acc.getEmail() + "," + acc.getPassword());
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        resultObject=null;
+
         if (cancel) {
             focusView.requestFocus();
         } else {
-            doLogin(email, password);
-
             Intent intent = new Intent(this, MainPage.class);
-            intent.putExtra("email", email);
             startActivity(intent);
         }
     }
-
-    private boolean isEmailValid(String email) {
-        //NOTE: Email format must have "@"
-        return email.contains("@");
-    }
-
 
 
     @Override
@@ -245,8 +238,6 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
     public void onStart() {
         super.onStart();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
         AppIndex.AppIndexApi.start(client, getIndexApiAction());
     }
@@ -255,8 +246,6 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
     public void onStop() {
         super.onStop();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }
@@ -281,51 +270,46 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
                 JSONObject acc = new JSONObject();
 
                 try {
-                    acc.put("email",email);
+                    acc.put("userid",email);
                     acc.put("pw",pw);
 
-                    System.out.println(acc.toString());
+                    System.out.println("acc JsonObject: "+acc.toString());
 
-//                    URL url = new URL("http://s356fproject.mybluemix.net/api/createac");
-//                    connection = (HttpURLConnection) url.openConnection();
-//                    connection.setDoOutput(true);
-//                    connection.setDoInput(true);
-//                    connection.setRequestMethod("POST");
-//                    connection.setUseCaches(false);
-//                    connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-//                    connection.setConnectTimeout(10000);
-//                    connection.setReadTimeout(10000);
-//
-//
-//                    //Testing Log
-//                    System.out.println("URL:" + url.toString());
-//                    String strJsonobj = acc.toString();
-//                    System.out.println("doLogin Method jsonObj: " + strJsonobj);
-//
-//                    OutputStream os = connection.getOutputStream();
-//                    os.write(acc.toString().getBytes("UTF-8"));
-//                    os.close();
-//
-//                    int HttpResult = connection.getResponseCode();
-//                    System.out.println("resopnseCode: " + HttpResult);
-//
-//                    if (HttpResult == 200) {
-//                        BufferedReader br = new BufferedReader(new InputStreamReader(
-//                                connection.getInputStream()));
-//                        String line = null;
-//                        while ((line = br.readLine()) != null) {
-//                            sb.append(line + "\n");
-//                        }
-//                        br.close();
-//                        System.out.println("" + sb.toString());
-//
-//                        JSONObject resultObject = new JSONObject(sb.toString());
-//                        stu = resultObject.getString("status");
-//                        System.out.println("responesStatud: " + stu);
-//
-//                    } else if (HttpResult == 402) {
-//                        stu = "402";
-//                    }
+                    URL url = new URL("http://s356fproject.mybluemix.net/api/login");
+                    connection = (HttpURLConnection) url.openConnection();
+                    connection.setDoOutput(true);
+                    connection.setDoInput(true);
+                    connection.setRequestMethod("POST");
+                    connection.setUseCaches(false);
+                    connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                    connection.setConnectTimeout(10000);
+                    connection.setReadTimeout(10000);
+
+
+                    //Testing Log
+                    System.out.println("URL:" + url.toString());
+                    String strJsonobj = acc.toString();
+                    System.out.println("doLogin Method jsonObj: " + strJsonobj);
+
+                    OutputStream os = connection.getOutputStream();
+                    os.write(acc.toString().getBytes("UTF-8"));
+                    os.close();
+
+                    int HttpResult = connection.getResponseCode();
+                    System.out.println("resopnseCode: " + HttpResult);
+
+                    if (HttpResult == 200) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader(
+                                connection.getInputStream()));
+                        String line = null;
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line + "\n");
+                        }
+                        br.close();
+                        System.out.println("" + sb.toString());
+                        resultObject = new JSONObject(sb.toString());
+                        System.out.println("responesJsonObject"+resultObject);
+                    }
 
                     connection.disconnect();
 

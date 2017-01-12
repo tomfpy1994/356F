@@ -107,49 +107,11 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
+
     private void attemptReg(){
-
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-
-        // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
-
-        boolean cancel = false;
-        View focusView = null;
-
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-
-        // NOTE: Check for a valid password, if the user entered one.
-        if (TextUtils.isEmpty(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        if (cancel) {
-            focusView.requestFocus();
-        } else {
-            userName = email;
-            passWord = password;
-            Account account = new Account(email,password);
-            accounts.add(account);
-
             //TODO: Call Server method send Account to SQL
-            Intent intent = new Intent(this, MainPage.class);
-            //intent.putExtra("email",email);
+            Intent intent = new Intent(this, RegisterPage.class);
             startActivity(intent);
-        }
     }
 
 

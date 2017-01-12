@@ -25,7 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainPage" />
         <activity android:name=".MyScorePage" />
         <activity android:name=".profile_page" />
         <activity android:name=".ProfileEditPage" />
@@ -41,7 +40,16 @@
         <activity
             android:name=".RegisterPage"
             android:label="@string/title_activity_register_page"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".MainPage"></activity>
     </application>
 
 </manifest>

@@ -12,7 +12,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.bunnyfung.a356f.RegisterPage"
-    tools:showIn="@layout/activity_register_page">
+    android:weightSum="1">
+
+    <TextView
+        android:text="Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:layout_margin="10dp" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -76,19 +85,38 @@
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/etEmail"
-            android:layout_weight="0.82" />
+            android:layout_weight="0.94" />
 
     </LinearLayout>
 
     <Button
-        android:text="Button"
+        android:text="Regist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnLogin" />
 
+    <ImageView
+        android:layout_width="match_parent"
+        app:srcCompat="@drawable/pass"
+        android:id="@+id/ivMsgIcon"
+        android:layout_gravity="center"
+        android:layout_height="70dp"
+        android:layout_marginTop="40dp" />
+
     <TextView
-        android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvStatu" />
+        android:id="@+id/tvStatu"
+        android:textAlignment="center"
+        android:layout_weight="0.02"
+        android:layout_marginTop="5dp"
+        android:textSize="18sp"
+        android:textColor="@android:color/holo_red_light" />
+
+    <Button
+        android:text="Login"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLoginPage"
+        android:layout_gravity="center" />
 </LinearLayout>

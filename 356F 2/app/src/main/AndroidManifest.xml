@@ -21,35 +21,41 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyScorePage" />
-        <activity android:name=".profile_page" />
-        <activity android:name=".ProfileEditPage" />
-        <activity android:name=".ProfileHistoryPage" />
-        <activity android:name=".WishListPage" />
-        <activity android:name=".MyPostPage" />
-        <activity android:name=".SecurityCodePage" />
-        <activity android:name=".TransactionPage" />
-        <activity android:name=".NewPostPage" />
-        <activity android:name=".DealPage" />
-        <activity android:name=".ProductDetailPage" />
-        <activity android:name=".OfferPage" />
-        <activity
-            android:name=".RegisterPage"
-            android:label="@string/title_activity_register_page"
+        <activity android:name=".MyScorePage"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".profile_page"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ProfileEditPage"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ProfileHistoryPage"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".WishListPage"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MyPostPage"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".SecurityCodePage"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".TransactionPage"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".NewPostPage"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".DealPage"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ProductDetailPage"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".OfferPage"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".RegisterPage"
             android:theme="@style/AppTheme.NoActionBar" />
-        <!--
- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-        -->
+        <activity android:name=".MainPage"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
-        <activity android:name=".MainPage"></activity>
     </application>
 
 </manifest>

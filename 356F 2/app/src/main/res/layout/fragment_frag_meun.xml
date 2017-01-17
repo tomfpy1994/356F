@@ -1,0 +1,132 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.example.franky.fragmenttest1.FragMeun">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:weightSum="5"
+            android:layout_height="30dp">
+
+            <ImageButton
+                android:layout_height="wrap_content"
+                android:id="@+id/ibHome"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:background="#ffffff"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="3dp"
+                app:srcCompat="@drawable/meun_home" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/meun_product"
+                android:id="@+id/ibMyProduct"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:background="#ffffff"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="3dp" />
+
+            <ImageButton
+                android:layout_width="match_parent"
+                app:srcCompat="@drawable/meun_add"
+                android:id="@+id/ibAdd"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:background="#ffffff"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/meun_offer"
+                android:id="@+id/ibOffer"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:background="#ffffff"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="3dp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/meun_profile"
+                android:id="@+id/ibProfile"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="3dp"
+                android:background="#ffffff"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="5">
+
+            <TextView
+                android:text="Home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvHome"
+                android:layout_weight="1"
+                android:gravity="top|center_horizontal"
+                android:layout_gravity="top|center_horizontal" />
+
+            <TextView
+                android:text="My Product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvProduct"
+                android:layout_weight="1"
+                android:gravity="top|center_horizontal"
+                android:layout_gravity="top|center_horizontal" />
+
+            <TextView
+                android:text="New Post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvAdd"
+                android:layout_weight="1"
+                android:gravity="top|center_horizontal"
+                android:layout_gravity="top|center_horizontal" />
+
+            <TextView
+                android:text="Offer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvOffer"
+                android:layout_weight="1"
+                android:gravity="top|center_horizontal"
+                android:layout_gravity="top|center_horizontal" />
+
+            <TextView
+                android:text="Profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvProfile"
+                android:layout_weight="1"
+                android:gravity="top|center_horizontal"
+                android:layout_gravity="top|center_horizontal" />
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

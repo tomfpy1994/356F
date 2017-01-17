@@ -26,27 +26,19 @@
         </activity>
         <activity android:name=".MyScorePage"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".profile_page"
-            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ProfileEditPage"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ProfileHistoryPage"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".WishListPage"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".MyPostPage"
-            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".SecurityCodePage"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".TransactionPage"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".NewPostPage"
-            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".DealPage"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ProductDetailPage"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".OfferPage"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".RegisterPage"
             android:theme="@style/AppTheme.NoActionBar" />

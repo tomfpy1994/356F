@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main_page"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.bunnyfung.a356f.MainPage"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:layout_weight="2">
 
-    <fragment
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="android.support.v4.app.ListFragment"
-        android:id="@+id/fmMain"
-        android:layout_weight="0.88" />
+        android:id="@+id/container"
+        android:background="#ffffff"
+        android:layout_weight="0.22"
+        android:layout_gravity="top">
 
-    <fragment
+    </FrameLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:name="android.support.v4.app.ListFragment"
-        android:id="@+id/fmMenu"
-        android:layout_height="50dp" />
+        android:id="@+id/meunContainer"
+        android:background="#ffffff"
+        android:layout_gravity="bottom"
+        android:layout_height="50dp">
+    </FrameLayout>
 </LinearLayout>

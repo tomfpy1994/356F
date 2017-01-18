@@ -11,13 +11,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class FragMeun extends Fragment {
+import com.example.bunnyfung.a356f.Object.Account;
 
+public class FragMeun extends Fragment {
+    private Account acc;
     Fragment frag;
     FragmentTransaction fragTransaction;
 
     public FragMeun() {
         // Required empty public constructor
+    }
+    public FragMeun(Account acc){
+        this.acc = acc;
     }
 
 
@@ -76,7 +81,7 @@ public class FragMeun extends Fragment {
         ibProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frag = new FragProfile();
+                frag = new FragProfile(acc);
                 fragTransaction = getFragmentManager().beginTransaction().replace(R.id.container, frag);
                 fragTransaction.commit();
             }

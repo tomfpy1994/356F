@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.franky.fragmenttest1.FragOffer">
+    tools:context="com.example.bunnyfung.a356f.FragOffer">
 
     <LinearLayout
         android:orientation="vertical"

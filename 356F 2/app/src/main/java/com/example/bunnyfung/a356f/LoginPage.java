@@ -36,11 +36,13 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -71,7 +73,11 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    try {
+                        attemptLogin();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     return true;
                 }
                 return false;
@@ -82,7 +88,11 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                try {
+                    attemptLogin();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -114,7 +124,7 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
         startActivity(intent);
     }
 
-    private void attemptLogin() {
+    private void attemptLogin() throws JSONException {
 
         mEmailView.setError(null);
         mPasswordView.setError(null);
@@ -170,6 +180,7 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
             focusView.requestFocus();
         } else {
             Intent intent = new Intent(this, MainPage.class);
+            intent.putExtra("acc",acc.passToJsonObjectStr());
             startActivity(intent);
         }
     }

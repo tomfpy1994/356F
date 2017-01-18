@@ -95,7 +95,7 @@
                         android:text="UtrlBoot"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tvName"
+                        android:id="@+id/textView2"
                         android:textColor="@android:color/black"
                         android:layout_marginTop="2dp"
                         android:layout_marginBottom="2dp" />

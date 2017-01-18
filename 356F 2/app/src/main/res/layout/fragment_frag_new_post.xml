@@ -18,8 +18,8 @@
             android:id="@+id/tvBrand"
             android:paddingLeft="15dip"
             android:paddingRight="15dip"
-            android:layout_below="@+id/tvNameID"
-            android:layout_alignEnd="@+id/tvNameID"
+            android:layout_below="@+id/textview_2"
+            android:layout_alignEnd="@+id/textview_2"
             android:paddingBottom="5dip" />
 
         <TextView
@@ -76,13 +76,13 @@
             android:inputType="textPersonName"
             android:text="ABC123"
             android:ems="10"
-            android:id="@+id/tfName"
+            android:id="@+id/edtName"
             android:width="100dp"
             android:paddingBottom="3dip"
             android:paddingTop="3dip"
             android:textSize = "14sp"
             android:layout_above="@+id/tvBrand"
-            android:layout_toEndOf="@+id/tvNameID" />
+            android:layout_toEndOf="@+id/textview_2" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -146,7 +146,7 @@
             android:text="Name:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvNameID"
+            android:id="@+id/textview_2"
             android:layout_marginStart="54dp"
             android:paddingLeft="15dip"
             android:paddingRight="15dip"

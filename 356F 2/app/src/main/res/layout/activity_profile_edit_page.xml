@@ -25,7 +25,7 @@
         android:text="user ID :"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvUserIDDisplay"
+        android:id="@+id/textView1"
         android:layout_below="@+id/ivIcon"
         android:layout_alignStart="@+id/ivIcon"
         android:layout_marginStart="25dp"
@@ -35,9 +35,9 @@
         android:text="name :"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvName"
-        android:layout_below="@+id/tvUserIDDisplay"
-        android:layout_alignStart="@+id/tvUserIDDisplay"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView1"
+        android:layout_alignStart="@+id/textView1"
         android:layout_marginTop="23dp" />
 
     <TextView
@@ -45,18 +45,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:id="@+id/tvPhoneNumber"
-        android:layout_below="@+id/tvName"
-        android:layout_alignStart="@+id/tvName" />
-
-    <TextView
-        android:text="xxxxxxx"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tvUserIDDisplay"
-        android:layout_toEndOf="@+id/tvUserIDDisplay"
-        android:layout_marginStart="29dp"
-        android:id="@+id/tvUserID" />
+        android:id="@+id/textview3"
+        android:layout_below="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -64,67 +55,80 @@
         android:inputType="textPersonName"
         android:text="xxxx"
         android:ems="10"
-        android:id="@+id/tfName"
+        android:id="@+id/edtName"
         android:width="100dp"
         android:paddingBottom="3dip"
         android:paddingTop="3dip"
         android:textSize="14sp"
-        android:layout_alignBaseline="@+id/tvName"
-        android:layout_alignBottom="@+id/tvName"
-        android:layout_toEndOf="@+id/tvUserIDDisplay" />
-
-    <TextView
-        android:text="sex :"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:id="@+id/tvSex"
-        android:layout_below="@+id/tfPhoneNumber"
-        android:layout_alignStart="@+id/tvPhoneNumber" />
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_toEndOf="@+id/textView1" />
 
     <EditText
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/tfPhoneNumber"
+        android:id="@+id/edtPhoneNum"
         android:layout_width="100dp"
         android:text="999"
-        android:layout_alignBaseline="@+id/tvPhoneNumber"
-        android:layout_alignBottom="@+id/tvPhoneNumber"
-        android:layout_toEndOf="@+id/tvUserID"
-        android:layout_height="40dp" />
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/ivIcon" />
+
+    <Button
+        android:text="Submit"
+        android:textSize="13sp"
+        android:id="@+id/tvUserID"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/rbF"
+        android:layout_toStartOf="@+id/edtPhoneNum"
+        android:layout_marginTop="66dp" />
+
+    <TextView
+        android:text="xxxxxxx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvUserid"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignEnd="@+id/rbF"
+        android:layout_marginEnd="18dp" />
+
+    <Button
+        android:text="cancel"
+        android:textSize="13sp"
+        android:id="@+id/btnWishList"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/tvUserID"
+        android:layout_toEndOf="@+id/rbF" />
+
+    <RadioButton
+        android:text="M"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rbM"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_toStartOf="@+id/edtPhoneNum" />
 
     <RadioButton
         android:text="F"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rbF"
-        android:layout_alignTop="@+id/tvSex"
-        android:layout_toEndOf="@+id/tvName" />
+        android:layout_alignBaseline="@+id/rbM"
+        android:layout_alignBottom="@+id/rbM"
+        android:layout_toEndOf="@+id/rbM"
+        android:layout_marginStart="16dp" />
 
-    <RadioButton
-        android:text="M"
+    <TextView
+        android:text="sex :"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/rbF"
-        android:layout_toEndOf="@+id/tvPhoneNumber"
-        android:id="@+id/rbM" />
-
-    <Button
-        android:text="cancel"
-        android:textSize="13sp"
-        android:id="@+id/button4"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/rbM"
-        android:layout_toEndOf="@+id/tfName" />
-
-    <Button
-        android:text="Submit"
-        android:textSize="13sp"
-        android:id="@+id/btuSubmit"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/rbF"
-        android:layout_toStartOf="@+id/tfPhoneNumber" />
+        android:layout_marginTop="12dp"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/edtPhoneNum"
+        android:layout_alignStart="@+id/textview3" />
 
 </RelativeLayout>

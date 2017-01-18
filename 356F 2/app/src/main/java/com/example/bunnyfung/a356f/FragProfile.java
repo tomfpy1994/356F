@@ -8,7 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
 import com.example.bunnyfung.a356f.Object.Account;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -16,9 +20,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class FragProfile extends Fragment {
-    private Account acc;
-    private Button btnLogout;
+    private Account acc = null;
+    private Button btnLogout, btnEdit;
     private boolean logout = false;
+    private TextView tvUserid, tvName, tvEmail;
 
     public FragProfile(Account acc) {
         this.acc = acc;
@@ -29,9 +34,25 @@ public class FragProfile extends Fragment {
                              final Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_frag_profile, null);
-        System.out.println("FragProfile: "+acc.getUserid() + "," + acc.getEmail() + "," + acc.getPassword());
+        try {
+            System.out.println("FragProfile: "+acc.passToJsonObjectStr());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
+        btnEdit = (Button) rootView.findViewById(R.id.btnEdit);
+
+        tvUserid = (TextView) rootView.findViewById(R.id.tvUserid);
+        tvName = (TextView) rootView.findViewById(R.id.tvName);
+        tvEmail = (TextView) rootView.findViewById(R.id.tvEmail);
+
+        if (acc!=null){
+            tvUserid.setText(acc.getUserid());
+            tvEmail.setText(acc.getEmail());
+            tvName.setText(acc.getName());
+        }
+
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +74,20 @@ public class FragProfile extends Fragment {
             }
         });
 
-        return rootView;
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ProfileEditPage.class);
+                try {
+                    intent.putExtra("acc",acc.passToJsonObjectStr());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                startActivity(intent);
+            }
+        });
 
+        return rootView;
     }
 
     public void doLogout() {

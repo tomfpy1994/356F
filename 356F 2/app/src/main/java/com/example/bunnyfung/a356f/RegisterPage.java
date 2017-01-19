@@ -1,6 +1,8 @@
 package com.example.bunnyfung.a356f;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.Image;
 import android.net.Uri;
@@ -16,11 +18,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.bunnyfung.a356f.Object.Account;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -80,12 +84,13 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                 System.out.println(userid + "," + password + "," + email);
 
                 if (!userid.equals("") && !password.equals("") && !email.equals("")){
-                    JSONObject jsonObj = new JSONObject();
+                    //JSONObject jsonObj = new JSONObject();
+                    Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
+                    Account acc = new Account(userid,email,password,icon);
+                    JSONObject jsonObj = null;
                     try {
-                        jsonObj.put("userid", userid);
-                        jsonObj.put("pw", password);
-                        jsonObj.put("email", email);
-                    } catch (Exception e) {
+                        jsonObj = new JSONObject(acc.passToJsonObjectStr());
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     Log.i("jsonObj Value", jsonObj.toString());
@@ -107,6 +112,13 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                             stu = "";
                             break;
                         case "402":
+                            ivMsgIcon.setVisibility(View.VISIBLE);
+                            ivMsgIcon.setImageResource(R.drawable.warning);
+                            tvStatu.setText("Registion Failed! \n User ID or Email is used");
+                            tvStatu.setTextColor(Color.RED);
+                            stu = "";
+                            break;
+                        case "401":
                             ivMsgIcon.setVisibility(View.VISIBLE);
                             ivMsgIcon.setImageResource(R.drawable.warning);
                             tvStatu.setText("Registion Failed! \n User ID or Email is used");

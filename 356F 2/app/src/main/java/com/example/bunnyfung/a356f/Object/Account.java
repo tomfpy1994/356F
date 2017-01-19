@@ -1,7 +1,14 @@
 package com.example.bunnyfung.a356f.Object;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 
 /**
  * Created by BunnyFung on 10/11/2016.
@@ -10,36 +17,39 @@ import org.json.JSONObject;
 public class Account {
     private String email;
     private String userid;
-    private String password;
+    private String pw;
     private String name;
     private String phoneNo;
     private String sex;
+    private Bitmap icon;
 
     public Account(JSONObject jsonObj){
         try {
             this.email = jsonObj.getString("email");
             this.userid = jsonObj.getString("userid");
-            this.password = jsonObj.getString("password");
+            this.pw = jsonObj.getString("pw");
             this.name = jsonObj.getString("name");
             this.phoneNo = jsonObj.getString("phoneNo");
             this.sex = jsonObj.getString("sex");
+            this.icon = base64ToBitmap(jsonObj.getString("icon"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    public Account(String userid, String email, String password){
+    public Account(String userid, String email, String password, Bitmap icon){
         this.email = email;
         this.userid = userid;
-        this.password = password;
+        this.pw = password;
         this.name = "";
         this.phoneNo = "";
         this.sex = "";
+        this.icon = icon;
     }
 
     public void setEmail (String email){this.email = email;}
     public void setUserid (String userid){this.userid = userid;}
-    public void setPassword (String password){this.password = password;}
+    public void setPassword (String password){this.pw = password;}
     public void setName (String name){this.name = name;}
     public void setPhoneNo (String number){this.phoneNo = number;}
     public void setSex (String sex){
@@ -47,24 +57,45 @@ public class Account {
             this.sex = sex;
         }
     }
-
+    public void setIcon(Bitmap icon){this.icon = icon;}
 
     public String getEmail(){return email;}
     public String getUserid(){return userid;}
-    public String getPassword(){return password;}
+    public String getPassword(){return pw;}
     public String getName(){return name;}
     public String getPhoneNo(){return phoneNo;}
     public String getSex(){return sex;}
+    public Bitmap getIcon(){return icon;}
 
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("email",getEmail());
         jsonObj.put("userid",getUserid());
-        jsonObj.put("password",getPassword());
+        jsonObj.put("pw",getPassword());
         jsonObj.put("name",getName());
         jsonObj.put("phoneNo",getPhoneNo());
         jsonObj.put("sex",getSex());
+        jsonObj.put("icon",bitmapToBase64(icon));
         return jsonObj.toString();
     }
-    public String toString(){return  "Acc:"+getUserid()+","+getEmail()+","+getPassword()+","+getName()+","+getPhoneNo()+","+getSex();}
+
+    public String toString(){
+        return  "Acc:"+getUserid()+","+getEmail()+","+getPassword()+","+
+            getName()+","+getPhoneNo()+","+getSex();
+    }
+
+    private String bitmapToBase64(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream .toByteArray();
+
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
+    }
+
+    private Bitmap base64ToBitmap(String iconStr){
+        InputStream stream = new ByteArrayInputStream(Base64.decode(iconStr.getBytes(), Base64.DEFAULT));
+        Bitmap bitmap = BitmapFactory.decodeStream(stream);
+
+        return bitmap;
+    }
 }

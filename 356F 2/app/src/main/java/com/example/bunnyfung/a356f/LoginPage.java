@@ -164,11 +164,13 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
             cancel=true;
         }else {
             try{
-                String userid_t = resultObject.getString("userid");
-                String email_t = resultObject.getString("email");
-                String pw_t = resultObject.getString("pw");
+                JSONObject jsonObject = new JSONObject(resultObject.toString());
 
-                acc = new Account(userid_t, email_t, pw_t);
+//                String userid_t = resultObject.getString("userid");
+//                String email_t = resultObject.getString("email");
+//                String pw_t = resultObject.getString("pw");
+
+                acc = new Account(resultObject);
                 System.out.println(acc.getUserid() + "," + acc.getEmail() + "," + acc.getPassword());
             }catch (Exception e){
                 e.printStackTrace();

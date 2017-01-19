@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.bunnyfung.a356f.Object.Account;
@@ -24,6 +25,7 @@ public class FragProfile extends Fragment {
     private Button btnLogout, btnEdit;
     private boolean logout = false;
     private TextView tvUserid, tvName, tvEmail;
+    private ImageView ivIcon;
 
     public FragProfile(Account acc) {
         this.acc = acc;
@@ -46,11 +48,13 @@ public class FragProfile extends Fragment {
         tvUserid = (TextView) rootView.findViewById(R.id.tvUserid);
         tvName = (TextView) rootView.findViewById(R.id.tvName);
         tvEmail = (TextView) rootView.findViewById(R.id.tvEmail);
+        ivIcon = (ImageView) rootView.findViewById(R.id.ivIcon);
 
         if (acc!=null){
             tvUserid.setText(acc.getUserid());
             tvEmail.setText(acc.getEmail());
             tvName.setText(acc.getName());
+            ivIcon.setImageBitmap(acc.getIcon());
         }
 
 

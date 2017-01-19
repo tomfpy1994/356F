@@ -1,9 +1,13 @@
 package com.example.bunnyfung.a356f;
 
+import android.content.Intent;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -17,6 +21,8 @@ public class ProfileEditPage extends AppCompatActivity {
     private TextView tvUserid;
     private EditText edtName, edtPhoneNum;
     private RadioButton rbM, rbF;
+    private ImageView ivIcon;
+    private Button btnCancel,btnSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +44,15 @@ public class ProfileEditPage extends AppCompatActivity {
         edtPhoneNum = (EditText) findViewById(R.id.edtPhoneNum);
         rbF = (RadioButton) findViewById(R.id.rbF);
         rbM = (RadioButton) findViewById(R.id.rbM);
+        ivIcon = (ImageView) findViewById(R.id.ivIcon);
+        btnCancel = (Button) findViewById(R.id.btnCancel);
+        btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
 
         edtName.setText(acc.getName());
         tvUserid.setText(acc.getUserid());
         edtPhoneNum.setText(acc.getPhoneNo());
+        ivIcon.setImageBitmap(acc.getIcon());
 
         if (!(acc.getSex().equals(""))){
             if (acc.getSex().equals("M")){
@@ -65,6 +75,38 @@ public class ProfileEditPage extends AppCompatActivity {
             public void onClick(View view) {
                 if (rbF.isChecked()){
                     rbF.setChecked(false);
+                }
+            }
+        });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               finish();
+            }
+        });
+
+        ivIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                acc.setName(edtName.getText().toString());
+                acc.setPhoneNo(edtPhoneNum.getText().toString());
+                if (rbF.isChecked()){
+                    acc.setSex("F");
+                }else if (rbM.isChecked()){
+                    acc.setSex("M");
+                }
+
+                try {
+                    System.out.println(acc.passToJsonObjectStr());
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
         });

@@ -19,7 +19,7 @@ public class Account {
     private String userid;
     private String pw;
     private String name;
-    private String phoneNo;
+    private String phone;
     private String sex;
     private Bitmap icon;
     private String _id;
@@ -30,7 +30,7 @@ public class Account {
             this.userid = jsonObj.getString("userid");
             this.pw = jsonObj.getString("pw");
             this.name = jsonObj.getString("name");
-            this.phoneNo = jsonObj.getString("phoneNo");
+            this.phone = jsonObj.getString("phone");
             this.sex = jsonObj.getString("sex");
             this.icon = base64ToBitmap(jsonObj.getString("icon"));
             this._id = jsonObj.getString("_id");
@@ -44,7 +44,7 @@ public class Account {
         this.userid = userid;
         this.pw = password;
         this.name = "";
-        this.phoneNo = "";
+        this.phone = "";
         this.sex = "";
         this.icon = icon;
 
@@ -54,9 +54,9 @@ public class Account {
     public void setUserid (String userid){this.userid = userid;}
     public void setPassword (String password){this.pw = password;}
     public void setName (String name){this.name = name;}
-    public void setPhoneNo (String number){this.phoneNo = number;}
+    public void setPhone (String number){this.phone = number;}
     public void setSex (String sex){
-        if (sex.equals("M") ||sex.equals("W")){
+        if (sex.equals("M") ||sex.equals("F")){
             this.sex = sex;
         }
     }
@@ -66,7 +66,7 @@ public class Account {
     public String getUserid(){return userid;}
     public String getPassword(){return pw;}
     public String getName(){return name;}
-    public String getPhoneNo(){return phoneNo;}
+    public String getPhone(){return phone;}
     public String getSex(){return sex;}
     public Bitmap getIcon(){return icon;}
     public String get_id(){return _id;}
@@ -80,7 +80,7 @@ public class Account {
         jsonObj.put("userid",getUserid());
         jsonObj.put("pw",getPassword());
         jsonObj.put("name",getName());
-        jsonObj.put("phoneNo",getPhoneNo());
+        jsonObj.put("phone",getPhone());
         jsonObj.put("sex",getSex());
         jsonObj.put("icon",bitmapToBase64(icon));
         return jsonObj.toString();
@@ -88,7 +88,7 @@ public class Account {
 
     public String toString(){
         return  "Acc:"+getUserid()+","+getEmail()+","+getPassword()+","+
-            getName()+","+getPhoneNo()+","+getSex()+","+get_id();
+            getName()+","+getPhone()+","+getSex()+","+get_id();
     }
 
     private String bitmapToBase64(Bitmap bitmap) {

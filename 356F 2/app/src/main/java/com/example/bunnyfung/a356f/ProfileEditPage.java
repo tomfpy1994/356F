@@ -58,7 +58,7 @@ public class ProfileEditPage extends AppCompatActivity {
 
         edtName.setText(acc.getName());
         tvUserid.setText(acc.getUserid());
-        edtPhoneNum.setText(acc.getPhoneNo());
+        edtPhoneNum.setText(acc.getPhone());
         ivIcon.setImageBitmap(acc.getIcon());
 
         if (!(acc.getSex().equals(""))){
@@ -103,7 +103,7 @@ public class ProfileEditPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 acc.setName(edtName.getText().toString());
-                acc.setPhoneNo(edtPhoneNum.getText().toString());
+                acc.setPhone(edtPhoneNum.getText().toString());
                 if (rbF.isChecked()){
                     acc.setSex("F");
                 }else if (rbM.isChecked()){

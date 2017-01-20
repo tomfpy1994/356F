@@ -22,7 +22,7 @@ import java.net.URL;
 
 public class FragProfile extends Fragment {
     private Account acc = null;
-    private Button btnLogout, btnEdit;
+    private Button btnLogout, btnEdit, btnSecurityCode;
     private boolean logout = false;
     private TextView tvUserid, tvName, tvEmail;
     private ImageView ivIcon;
@@ -42,6 +42,8 @@ public class FragProfile extends Fragment {
 
         btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
         btnEdit = (Button) rootView.findViewById(R.id.btnEdit);
+        btnSecurityCode = (Button) rootView.findViewById(R.id.btnSecurityCode);
+
 
         tvUserid = (TextView) rootView.findViewById(R.id.tvUserid);
         tvName = (TextView) rootView.findViewById(R.id.tvName);
@@ -80,6 +82,19 @@ public class FragProfile extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),ProfileEditPage.class);
+                try {
+                    intent.putExtra("acc",acc.passToJsonObjectStr());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                startActivity(intent);
+            }
+        });
+
+        btnSecurityCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),SecurityCodePage.class);
                 try {
                     intent.putExtra("acc",acc.passToJsonObjectStr());
                 } catch (JSONException e) {

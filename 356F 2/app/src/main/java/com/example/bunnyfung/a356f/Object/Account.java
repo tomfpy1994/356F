@@ -32,7 +32,7 @@ public class Account {
             this.name = jsonObj.getString("name");
             this.phone = jsonObj.getString("phone");
             this.sex = jsonObj.getString("sex");
-            this.icon = base64ToBitmap(jsonObj.getString("icon"));
+            this.icon = base64ToBitmap(jsonObj.getString("irondata"));
             this._id = jsonObj.getString("_id");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -82,7 +82,7 @@ public class Account {
         jsonObj.put("name",getName());
         jsonObj.put("phone",getPhone());
         jsonObj.put("sex",getSex());
-        jsonObj.put("icon",bitmapToBase64(icon));
+        jsonObj.put("irondata",bitmapToBase64(icon));
         return jsonObj.toString();
     }
 

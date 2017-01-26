@@ -225,9 +225,8 @@ public class ProfileEditPage extends AppCompatActivity {
                     cursor.close();
 
                     Bitmap selectedImag = BitmapFactory.decodeFile(filePath);
-                    Drawable d = new BitmapDrawable(selectedImag);
-
-                    ivIcon.setBackground(d);
+                    ivIcon.setImageBitmap(selectedImag);
+                    acc.setIcon(selectedImag);
                 }
         }
     }

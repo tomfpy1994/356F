@@ -78,8 +78,8 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="Banking Account:"
-                android:layout_width="158dp"
+                android:text="Credit Card:"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView10"
                 android:textSize="18sp"

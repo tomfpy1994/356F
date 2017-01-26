@@ -1,7 +1,14 @@
 package com.example.bunnyfung.a356f;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +37,7 @@ public class ProfileEditPage extends AppCompatActivity {
     private ImageView ivIcon;
     private Button btnCancel,btnSubmit;
     private String stu ="";
+    private static final int SELECTED_PICTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +103,8 @@ public class ProfileEditPage extends AppCompatActivity {
         ivIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, SELECTED_PICTURE);
             }
         });
 
@@ -196,5 +205,30 @@ public class ProfileEditPage extends AppCompatActivity {
             }
         };
         thread.start();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case SELECTED_PICTURE:
+                if (resultCode == RESULT_OK) {
+                    Uri uri = data.getData();
+                    String[] projection = {MediaStore.Images.Media.DATA};
+
+                    Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+                    cursor.moveToFirst();
+
+                    int columnIndex = cursor.getColumnIndex(projection[0]);
+                    String filePath = cursor.getString(columnIndex);
+                    cursor.close();
+
+                    Bitmap selectedImag = BitmapFactory.decodeFile(filePath);
+                    Drawable d = new BitmapDrawable(selectedImag);
+
+                    ivIcon.setBackground(d);
+                }
+        }
     }
 }

@@ -22,7 +22,11 @@ import java.net.URL;
 
 public class FragProfile extends Fragment {
     private Account acc = null;
+<<<<<<< HEAD
     private Button btnLogout, btnEdit, btnMyPost, btnMyScore, btnHistory, btnWishList, btnSecurityCode, btnTransaction;
+=======
+    private Button btnLogout, btnEdit, btnSecurityCode;
+>>>>>>> origin/master
     private boolean logout = false;
     private TextView tvUserid, tvName, tvEmail;
     private ImageView ivIcon;
@@ -42,12 +46,16 @@ public class FragProfile extends Fragment {
 
         btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
         btnEdit = (Button) rootView.findViewById(R.id.btnEdit);
+<<<<<<< HEAD
         btnMyPost = (Button) rootView.findViewById(R.id.btnMyPost);
         btnMyScore = (Button) rootView.findViewById(R.id.btnMyScore);
         btnHistory = (Button) rootView.findViewById(R.id.btnHistory);
         btnWishList = (Button) rootView.findViewById(R.id.btnWishList);
         btnSecurityCode = (Button) rootView.findViewById(R.id.btnSecurityCode);
         btnTransaction = (Button) rootView.findViewById(R.id.btnTransaction);
+=======
+        btnSecurityCode = (Button) rootView.findViewById(R.id.btnSecurityCode);
+>>>>>>> origin/master
 
 
         tvUserid = (TextView) rootView.findViewById(R.id.tvUserid);
@@ -97,6 +105,7 @@ public class FragProfile extends Fragment {
             }
         });
 
+<<<<<<< HEAD
         // go to my post page
         btnMyPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,6 +163,8 @@ public class FragProfile extends Fragment {
         });
 
         // go to security code page
+=======
+>>>>>>> origin/master
         btnSecurityCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -167,6 +178,7 @@ public class FragProfile extends Fragment {
             }
         });
 
+<<<<<<< HEAD
         // go to transaction page
         btnTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,6 +192,8 @@ public class FragProfile extends Fragment {
                 startActivity(intent);
             }
         });
+=======
+>>>>>>> origin/master
         return rootView;
     }
 

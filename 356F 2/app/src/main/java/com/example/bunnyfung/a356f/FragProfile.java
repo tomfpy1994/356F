@@ -22,12 +22,14 @@ import java.net.URL;
 
 public class FragProfile extends Fragment {
     private Account acc = null;
-<<<<<<< HEAD
     private Button btnLogout, btnEdit, btnMyPost, btnMyScore, btnHistory, btnWishList, btnSecurityCode, btnTransaction;
+<<<<<<< HEAD
 
 =======
     private Button btnLogout, btnEdit;
 >>>>>>> parent of c7ae66e... 26/1
+=======
+>>>>>>> parent of 1b200b0... 26/1
     private boolean logout = false;
     private TextView tvUserid, tvName, tvEmail;
     private ImageView ivIcon;
@@ -50,15 +52,21 @@ public class FragProfile extends Fragment {
         btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
         btnEdit = (Button) rootView.findViewById(R.id.btnEdit);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 1b200b0... 26/1
         btnMyPost = (Button) rootView.findViewById(R.id.btnMyPost);
         btnMyScore = (Button) rootView.findViewById(R.id.btnMyScore);
         btnHistory = (Button) rootView.findViewById(R.id.btnHistory);
         btnWishList = (Button) rootView.findViewById(R.id.btnWishList);
         btnSecurityCode = (Button) rootView.findViewById(R.id.btnSecurityCode);
         btnTransaction = (Button) rootView.findViewById(R.id.btnTransaction);
+<<<<<<< HEAD
 
         btnSecurityCode = (Button) rootView.findViewById(R.id.btnSecurityCode);
+=======
+>>>>>>> parent of 1b200b0... 26/1
 
 =======
 >>>>>>> parent of c7ae66e... 26/1
@@ -110,6 +118,10 @@ public class FragProfile extends Fragment {
         });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        // go to my post page
+>>>>>>> parent of 1b200b0... 26/1
         btnMyPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,7 +177,11 @@ public class FragProfile extends Fragment {
             }
         });
 
+<<<<<<< HEAD
 
+=======
+        // go to security code page
+>>>>>>> parent of 1b200b0... 26/1
         btnSecurityCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -192,9 +208,12 @@ public class FragProfile extends Fragment {
                 startActivity(intent);
             }
         });
+<<<<<<< HEAD
 
 =======
 >>>>>>> parent of c7ae66e... 26/1
+=======
+>>>>>>> parent of 1b200b0... 26/1
         return rootView;
     }
 

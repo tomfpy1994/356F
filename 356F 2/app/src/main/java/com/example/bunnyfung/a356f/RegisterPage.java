@@ -106,7 +106,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                         case "createac success":
                             ivMsgIcon.setVisibility(View.VISIBLE);
                             ivMsgIcon.setImageResource(R.drawable.pass);
-                            tvStatu.setText("Registration Success! \n Click the Login to start your experience");
+                            tvStatu.setText("Registion Success! \n Click the Login to start your experience");
                             tvStatu.setTextColor(Color.BLUE);
                             btnLoginPage.setVisibility(View.VISIBLE);
                             stu = "";
@@ -114,21 +114,21 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                         case "402":
                             ivMsgIcon.setVisibility(View.VISIBLE);
                             ivMsgIcon.setImageResource(R.drawable.warning);
-                            tvStatu.setText("Registration Failed! \n User ID or Email is used");
+                            tvStatu.setText("Registion Failed! \n User ID or Email is used");
                             tvStatu.setTextColor(Color.RED);
                             stu = "";
                             break;
                         case "401":
                             ivMsgIcon.setVisibility(View.VISIBLE);
                             ivMsgIcon.setImageResource(R.drawable.warning);
-                            tvStatu.setText("Registration Failed! \n User ID or Email is used");
+                            tvStatu.setText("Registion Failed! \n User ID or Email is used");
                             tvStatu.setTextColor(Color.RED);
                             stu = "";
                     }
                 }else {
                     ivMsgIcon.setVisibility(View.VISIBLE);
                     ivMsgIcon.setImageResource(R.drawable.warning);
-                    tvStatu.setText("Registration Failed! \n please fill all the bland");
+                    tvStatu.setText("Registion Failed! \n please fill all the bland");
                     tvStatu.setTextColor(Color.RED);
                 }
                 break;

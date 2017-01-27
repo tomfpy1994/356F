@@ -1,14 +1,7 @@
 package com.example.bunnyfung.a356f;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.media.Image;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,9 +25,12 @@ public class ProfileEditPage extends AppCompatActivity {
     private Button btnCancel,btnSubmit;
 <<<<<<< HEAD
     private String stu ="";
+<<<<<<< HEAD
     private static final int SELECTED_PICTURE = 1;
 =======
 >>>>>>> parent of 55bf23c... ProfileEditPage work
+=======
+>>>>>>> parent of 1b200b0... 26/1
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +59,7 @@ public class ProfileEditPage extends AppCompatActivity {
 
         edtName.setText(acc.getName());
         tvUserid.setText(acc.getUserid());
-        edtPhoneNum.setText(acc.getPhone());
+        edtPhoneNum.setText(acc.getPhoneNo());
         ivIcon.setImageBitmap(acc.getIcon());
 
         if (!(acc.getSex().equals(""))){
@@ -100,8 +96,7 @@ public class ProfileEditPage extends AppCompatActivity {
         ivIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(i, SELECTED_PICTURE);
+
             }
         });
 
@@ -109,7 +104,7 @@ public class ProfileEditPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 acc.setName(edtName.getText().toString());
-                acc.setPhone(edtPhoneNum.getText().toString());
+                acc.setPhoneNo(edtPhoneNum.getText().toString());
                 if (rbF.isChecked()){
                     acc.setSex("F");
                 }else if (rbM.isChecked()){
@@ -129,29 +124,5 @@ public class ProfileEditPage extends AppCompatActivity {
 
 
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode) {
-            case SELECTED_PICTURE:
-                if (resultCode == RESULT_OK) {
-                    Uri uri = data.getData();
-                    String[] projection = {MediaStore.Images.Media.DATA};
-
-                    Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-                    cursor.moveToFirst();
-
-                    int columnIndex = cursor.getColumnIndex(projection[0]);
-                    String filePath = cursor.getString(columnIndex);
-                    cursor.close();
-
-                    Bitmap selectedImag = BitmapFactory.decodeFile(filePath);
-                    ivIcon.setImageBitmap(selectedImag);
-                    acc.setIcon(selectedImag);
-                }
-        }
     }
 }

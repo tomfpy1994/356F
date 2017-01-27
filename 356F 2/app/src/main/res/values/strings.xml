@@ -22,5 +22,4 @@
     <string name="title_activity_login_page">Sign in</string>
     <string name="title_activity_main_page">MainPage</string>
     <string name="title_activity_register_page">RegisterPage</string>
-    <string name="title_activity_make_offer_page">MakeOfferPage</string>
 </resources>

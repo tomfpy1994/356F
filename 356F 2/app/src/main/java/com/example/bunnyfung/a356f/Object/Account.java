@@ -19,7 +19,7 @@ public class Account {
     private String userid;
     private String pw;
     private String name;
-    private String phone;
+    private String phoneNo;
     private String sex;
     private Bitmap icon;
 
@@ -29,10 +29,14 @@ public class Account {
             this.userid = jsonObj.getString("userid");
             this.pw = jsonObj.getString("pw");
             this.name = jsonObj.getString("name");
-            this.phone = jsonObj.getString("phone");
+            this.phoneNo = jsonObj.getString("phoneNo");
             this.sex = jsonObj.getString("sex");
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.icon = base64ToBitmap(jsonObj.getString("irondata"));
+=======
+            this.icon = base64ToBitmap(jsonObj.getString("icon"));
+>>>>>>> parent of 1b200b0... 26/1
             this._id = jsonObj.getString("_id");
 =======
             this.icon = base64ToBitmap(jsonObj.getString("icon"));
@@ -47,7 +51,7 @@ public class Account {
         this.userid = userid;
         this.pw = password;
         this.name = "";
-        this.phone = "";
+        this.phoneNo = "";
         this.sex = "";
         this.icon = icon;
     }
@@ -56,9 +60,9 @@ public class Account {
     public void setUserid (String userid){this.userid = userid;}
     public void setPassword (String password){this.pw = password;}
     public void setName (String name){this.name = name;}
-    public void setPhone (String number){this.phone = number;}
+    public void setPhoneNo (String number){this.phoneNo = number;}
     public void setSex (String sex){
-        if (sex.equals("M") ||sex.equals("F")){
+        if (sex.equals("M") ||sex.equals("W")){
             this.sex = sex;
         }
     }
@@ -68,7 +72,7 @@ public class Account {
     public String getUserid(){return userid;}
     public String getPassword(){return pw;}
     public String getName(){return name;}
-    public String getPhone(){return phone;}
+    public String getPhoneNo(){return phoneNo;}
     public String getSex(){return sex;}
     public Bitmap getIcon(){return icon;}
 
@@ -78,19 +82,23 @@ public class Account {
         jsonObj.put("userid",getUserid());
         jsonObj.put("pw",getPassword());
         jsonObj.put("name",getName());
-        jsonObj.put("phone",getPhone());
+        jsonObj.put("phoneNo",getPhoneNo());
         jsonObj.put("sex",getSex());
-        jsonObj.put("irondata",bitmapToBase64(icon));
+        jsonObj.put("icon",bitmapToBase64(icon));
         return jsonObj.toString();
     }
 
     public String toString(){
         return  "Acc:"+getUserid()+","+getEmail()+","+getPassword()+","+
 <<<<<<< HEAD
+<<<<<<< HEAD
             getName()+","+getPhone()+","+getSex()+","+get_id();
 =======
             getName()+","+getPhoneNo()+","+getSex();
 >>>>>>> parent of 55bf23c... ProfileEditPage work
+=======
+            getName()+","+getPhoneNo()+","+getSex()+","+get_id();
+>>>>>>> parent of 1b200b0... 26/1
     }
 
     private String bitmapToBase64(Bitmap bitmap) {

@@ -142,6 +142,16 @@
             android:id="@+id/textview2" />
 
         <Button
+            android:text="wish list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignEnd="@+id/ivIcon"
+            android:id="@+id/btnWishList" />
+
+        <Button
             android:text="edit"
             android:layout_width="55dp"
             android:layout_height="50dp"

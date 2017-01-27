@@ -8,8 +8,6 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -53,8 +51,8 @@
             android:value="@integer/google_play_services_version" />
 <<<<<<< HEAD
 
-<<<<<<< HEAD
         <activity android:name=".MyPostPage" />
+<<<<<<< HEAD
 =======
         <activity
             android:name=".MakeOfferPage"
@@ -63,6 +61,8 @@
 >>>>>>> origin/master
 =======
 >>>>>>> parent of c7ae66e... 26/1
+=======
+>>>>>>> parent of 1b200b0... 26/1
     </application>
 
 </manifest>

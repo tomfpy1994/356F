@@ -24,17 +24,14 @@
             android:id="@+id/textView4"
             android:textStyle="normal|bold"
             android:textAllCaps="true"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:layout_marginBottom="40dp"
-            android:layout_marginTop="20dp" />
+            android:textAlignment="center" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/edtCurPw"
+            android:id="@+id/password"
             android:singleLine="true"
             android:hint="@string/prompt_password" />
 
@@ -43,7 +40,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/edtNewPw"
+            android:id="@+id/newPassword"
             android:hint="new password"
             android:singleLine="true" />
 
@@ -52,28 +49,27 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/edtConfirmNewPw"
+            android:id="@+id/confirmNewPassword"
             android:singleLine="true"
             android:hint="confirm new password" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="40dp">
-
-            <Button
-                android:text="submit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnSubmit"
-                android:layout_weight="1" />
+            android:layout_height="50dp">
 
             <Button
                 android:text="cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnCancel"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnSubmit"
                 android:layout_weight="1" />
         </LinearLayout>
 

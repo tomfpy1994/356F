@@ -37,9 +37,11 @@ public class FragProfile extends Fragment {
                              final Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_frag_profile, null);
-        //Testing Log
-        System.out.println("FragProfile_"+acc.toString());
-
+        try {
+            System.out.println("FragProfile: "+acc.passToJsonObjectStr());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
         btnEdit = (Button) rootView.findViewById(R.id.btnEdit);
@@ -208,8 +210,6 @@ public class FragProfile extends Fragment {
 
 
                     int HttpResult = connection.getResponseCode();
-
-                    //Testing Log
                     System.out.println("resopnseCode: " + HttpResult);
 
                     if (HttpResult == 200) {
@@ -220,12 +220,10 @@ public class FragProfile extends Fragment {
                             sb.append(line + "\n");
                         }
                         br.close();
-                        //Testing Log
                         System.out.println(sb.toString());
 
                         JSONObject jsonObject = new JSONObject(sb.toString());
                         if (jsonObject.getString("status").equals("logout success")){
-                            //Testing Log
                             System.out.println("resultJsonObject: "+jsonObject.toString());
                             logout = true;
                         }

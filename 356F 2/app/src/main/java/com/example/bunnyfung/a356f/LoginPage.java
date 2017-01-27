@@ -171,9 +171,7 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
 //                String pw_t = resultObject.getString("pw");
 
                 acc = new Account(resultObject);
-
-                //Testing Log
-                System.out.println(acc.toString());
+                System.out.println(acc.getUserid() + "," + acc.getEmail() + "," + acc.getPassword());
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -288,7 +286,6 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
                     acc.put("userid",email);
                     acc.put("pw",pw);
 
-                    //Testing Log
                     System.out.println("acc JsonObject: "+acc.toString());
 
                     URL url = new URL("http://s356fproject.mybluemix.net/api/login");
@@ -305,8 +302,6 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
                     //Testing Log
                     System.out.println("URL:" + url.toString());
                     String strJsonobj = acc.toString();
-
-                    //Testing Log
                     System.out.println("doLogin Method jsonObj: " + strJsonobj);
 
                     OutputStream os = connection.getOutputStream();
@@ -314,8 +309,6 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
                     os.close();
 
                     int HttpResult = connection.getResponseCode();
-
-                    //Testing Log
                     System.out.println("resopnseCode: " + HttpResult);
 
                     if (HttpResult == 200) {
@@ -326,12 +319,8 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
                             sb.append(line + "\n");
                         }
                         br.close();
-
-                        //Testing Log
                         System.out.println("" + sb.toString());
                         resultObject = new JSONObject(sb.toString());
-
-                        //Testing Log
                         System.out.println("responesJsonObject"+resultObject);
                     }
 

@@ -22,7 +22,6 @@ public class Account {
     private String phone;
     private String sex;
     private Bitmap icon;
-    private String _id;
 
     public Account(JSONObject jsonObj){
         try {
@@ -32,8 +31,12 @@ public class Account {
             this.name = jsonObj.getString("name");
             this.phone = jsonObj.getString("phone");
             this.sex = jsonObj.getString("sex");
+<<<<<<< HEAD
             this.icon = base64ToBitmap(jsonObj.getString("irondata"));
             this._id = jsonObj.getString("_id");
+=======
+            this.icon = base64ToBitmap(jsonObj.getString("icon"));
+>>>>>>> parent of 55bf23c... ProfileEditPage work
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -47,7 +50,6 @@ public class Account {
         this.phone = "";
         this.sex = "";
         this.icon = icon;
-
     }
 
     public void setEmail (String email){this.email = email;}
@@ -69,13 +71,9 @@ public class Account {
     public String getPhone(){return phone;}
     public String getSex(){return sex;}
     public Bitmap getIcon(){return icon;}
-    public String get_id(){return _id;}
 
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
-        if (_id!=null){
-            jsonObj.put("_id",get_id());
-        }
         jsonObj.put("email",getEmail());
         jsonObj.put("userid",getUserid());
         jsonObj.put("pw",getPassword());
@@ -88,7 +86,11 @@ public class Account {
 
     public String toString(){
         return  "Acc:"+getUserid()+","+getEmail()+","+getPassword()+","+
+<<<<<<< HEAD
             getName()+","+getPhone()+","+getSex()+","+get_id();
+=======
+            getName()+","+getPhoneNo()+","+getSex();
+>>>>>>> parent of 55bf23c... ProfileEditPage work
     }
 
     private String bitmapToBase64(Bitmap bitmap) {

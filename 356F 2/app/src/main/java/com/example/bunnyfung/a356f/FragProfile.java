@@ -25,7 +25,7 @@ public class FragProfile extends Fragment {
     private Account acc = null;
     private Button btnLogout, btnEdit, btnMyPost, btnMyScore, btnHistory, btnWishList, btnSecurityCode, btnTransaction;
     private boolean logout = false;
-    private TextView tvUserid, tvName, tvEmail;
+    private TextView tvUserid, tvEmail;
     private ImageView ivIcon;
     Fragment frag;
     FragmentTransaction fragTransaction;

@@ -24,39 +24,49 @@
             android:id="@+id/textView4"
             android:textStyle="normal|bold"
             android:textAllCaps="true"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:layout_marginBottom="40dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/password"
+            android:id="@+id/edtOldPw"
             android:singleLine="true"
-            android:hint="@string/prompt_password" />
+            android:hint="Old Security Code" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/newPassword"
-            android:hint="new password"
-            android:singleLine="true" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/confirmNewPassword"
+            android:id="@+id/edtNewPw"
+            android:hint="New Security Code"
             android:singleLine="true"
-            android:hint="confirm new password" />
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/edtCNewPw"
+            android:singleLine="true"
+            android:hint="confirm Security Code" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp">
+
+            <Button
+                android:text="submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnSubmit"
+                android:layout_weight="1" />
 
             <Button
                 android:text="cancel"
@@ -65,12 +75,6 @@
                 android:id="@+id/btnCancel"
                 android:layout_weight="1" />
 
-            <Button
-                android:text="submit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnSubmit"
-                android:layout_weight="1" />
         </LinearLayout>
 
     </LinearLayout>

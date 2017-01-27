@@ -132,15 +132,6 @@
             android:layout_alignParentStart="true"
             android:scaleType="fitCenter" />
 
-        <TextView
-            android:text="name:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_below="@+id/textView1"
-            android:layout_alignStart="@+id/textView1"
-            android:id="@+id/textview2" />
-
         <Button
             android:text="edit"
             android:layout_width="55dp"
@@ -151,32 +142,23 @@
             android:layout_alignParentEnd="true" />
 
         <TextView
+            android:text="email:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview3"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/textView1"
+            android:layout_alignStart="@+id/textView1" />
+
+        <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvEmail"
             android:layout_alignBaseline="@+id/textview3"
             android:layout_alignBottom="@+id/textview3"
-            android:layout_alignStart="@+id/tvName" />
-
-        <TextView
-            android:text="email:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textview3"
-            android:layout_marginTop="17dp"
-            android:layout_below="@+id/textview2"
-            android:layout_alignEnd="@+id/textview2" />
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:id="@+id/tvName"
-            android:layout_alignBaseline="@+id/textview2"
-            android:layout_alignBottom="@+id/textview2"
             android:layout_toEndOf="@+id/textView1" />
+
     </RelativeLayout>
 
 

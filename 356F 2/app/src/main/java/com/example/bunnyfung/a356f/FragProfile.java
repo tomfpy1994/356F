@@ -59,14 +59,12 @@ public class FragProfile extends Fragment {
         btnSecurityCode = (Button) rootView.findViewById(R.id.btnSecurityCode);
 
         tvUserid = (TextView) rootView.findViewById(R.id.tvUserid);
-        tvName = (TextView) rootView.findViewById(R.id.tvName);
         tvEmail = (TextView) rootView.findViewById(R.id.tvEmail);
         ivIcon = (ImageView) rootView.findViewById(R.id.ivIcon);
 
         if (acc!=null){
             tvUserid.setText(acc.getUserid());
             tvEmail.setText(acc.getEmail());
-            tvName.setText(acc.getName());
             ivIcon.setImageBitmap(acc.getIcon());
         }
 

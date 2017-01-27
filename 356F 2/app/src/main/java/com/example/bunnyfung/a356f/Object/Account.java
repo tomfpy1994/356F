@@ -18,22 +18,22 @@ public class Account {
     private String email;
     private String userid;
     private String pw;
-    private String name;
     private String phone;
-    private String sex;
     private Bitmap icon;
     private String _id;
+    private int balance;
+    private String sCode;
 
     public Account(JSONObject jsonObj){
         try {
             this.email = jsonObj.getString("email");
             this.userid = jsonObj.getString("userid");
             this.pw = jsonObj.getString("pw");
-            this.name = jsonObj.getString("name");
             this.phone = jsonObj.getString("phone");
-            this.sex = jsonObj.getString("sex");
             this.icon = base64ToBitmap(jsonObj.getString("irondata"));
             this._id = jsonObj.getString("_id");
+            this.balance = jsonObj.getInt("balance");
+            this.sCode = jsonObj.getString("sCode");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -43,33 +43,31 @@ public class Account {
         this.email = email;
         this.userid = userid;
         this.pw = password;
-        this.name = "";
         this.phone = "";
-        this.sex = "";
         this.icon = icon;
+        this.balance = 0;
+        this.sCode = "";
 
     }
 
     public void setEmail (String email){this.email = email;}
     public void setUserid (String userid){this.userid = userid;}
     public void setPassword (String password){this.pw = password;}
-    public void setName (String name){this.name = name;}
-    public void setPhoneNo (String number){this.phone = number;}
-    public void setSex (String sex){
-        if (sex.equals("M") ||sex.equals("F")){
-            this.sex = sex;
-        }
-    }
+    public void setPhone (String number){this.phone = number;}
     public void setIcon(Bitmap icon){this.icon = icon;}
+    public void setBalance(int balance){this.balance = balance;}
+    public void setsCode(String sCode){this.sCode = sCode;}
+
+
 
     public String getEmail(){return email;}
     public String getUserid(){return userid;}
     public String getPassword(){return pw;}
-    public String getName(){return name;}
     public String getPhone(){return phone;}
-    public String getSex(){return sex;}
     public Bitmap getIcon(){return icon;}
     public String get_id(){return _id;}
+    public int getBalance(){return balance;}
+    public String getsCode(){return sCode;}
 
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
@@ -79,16 +77,17 @@ public class Account {
         jsonObj.put("email",getEmail());
         jsonObj.put("userid",getUserid());
         jsonObj.put("pw",getPassword());
-        jsonObj.put("name",getName());
         jsonObj.put("phone",getPhone());
-        jsonObj.put("sex",getSex());
         jsonObj.put("irondata",bitmapToBase64(icon));
+        jsonObj.put("balance",getBalance());
+        jsonObj.put("sCode", getsCode());
+
         return jsonObj.toString();
     }
 
     public String toString(){
         return  "Acc:"+getUserid()+","+getEmail()+","+getPassword()+","+
-            getName()+","+getPhone()+","+getSex()+","+get_id();
+            ","+getPhone()+","+","+get_id();
 
     }
 

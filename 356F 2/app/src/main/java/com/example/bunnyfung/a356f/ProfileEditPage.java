@@ -19,8 +19,7 @@ import org.json.JSONObject;
 public class ProfileEditPage extends AppCompatActivity {
     private Account acc;
     private TextView tvUserid;
-    private EditText edtName, edtPhoneNum;
-    private RadioButton rbM, rbF;
+    private EditText edtPhoneNum;
     private ImageView ivIcon;
     private Button btnCancel,btnSubmit;
     private String stu ="";
@@ -43,44 +42,17 @@ public class ProfileEditPage extends AppCompatActivity {
         }
 
         tvUserid = (TextView) findViewById(R.id.tvUserid);
-        edtName = (EditText) findViewById(R.id.edtName);
         edtPhoneNum = (EditText) findViewById(R.id.edtPhoneNum);
-        rbF = (RadioButton) findViewById(R.id.rbF);
-        rbM = (RadioButton) findViewById(R.id.rbM);
         ivIcon = (ImageView) findViewById(R.id.ivIcon);
         btnCancel = (Button) findViewById(R.id.btnCancel);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
 
-        edtName.setText(acc.getName());
         tvUserid.setText(acc.getUserid());
         edtPhoneNum.setText(acc.getPhone());
         ivIcon.setImageBitmap(acc.getIcon());
 
-        if (!(acc.getSex().equals(""))){
-            if (acc.getSex().equals("M")){
-                rbM.setChecked(true);
-            }else
-                rbF.setChecked(true);
-        }
 
-        rbF.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (rbM.isChecked()){
-                    rbM.setChecked(false);
-                }
-            }
-        });
-
-        rbM.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (rbF.isChecked()){
-                    rbF.setChecked(false);
-                }
-            }
-        });
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,14 +70,7 @@ public class ProfileEditPage extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                acc.setName(edtName.getText().toString());
-                acc.setPhoneNo(edtPhoneNum.getText().toString());
-                if (rbF.isChecked()){
-                    acc.setSex("F");
-                }else if (rbM.isChecked()){
-                    acc.setSex("M");
-                }
-
+                acc.setPhone(edtPhoneNum.getText().toString());
                 try {
                     System.out.println(acc.passToJsonObjectStr());
                 } catch (JSONException e) {

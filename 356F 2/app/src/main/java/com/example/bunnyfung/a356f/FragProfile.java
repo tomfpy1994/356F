@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +24,11 @@ import java.net.URL;
 public class FragProfile extends Fragment {
     private Account acc = null;
     private Button btnLogout, btnEdit, btnMyPost, btnMyScore, btnHistory, btnWishList, btnSecurityCode, btnTransaction;
-
     private boolean logout = false;
     private TextView tvUserid, tvName, tvEmail;
     private ImageView ivIcon;
+    Fragment frag;
+    FragmentTransaction fragTransaction;
 
     public FragProfile(Account acc) {
         this.acc = acc;
@@ -106,13 +108,9 @@ public class FragProfile extends Fragment {
         btnMyPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),FragMyProduct.class);
-                try {
-                    intent.putExtra("acc",acc.passToJsonObjectStr());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                startActivity(intent);
+                frag = new FragMyProduct();
+                fragTransaction = getFragmentManager().beginTransaction().replace(R.id.container, frag);
+                fragTransaction.commit();
             }
         });
 

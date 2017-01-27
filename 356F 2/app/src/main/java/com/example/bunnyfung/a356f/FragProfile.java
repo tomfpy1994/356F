@@ -104,13 +104,15 @@ public class FragProfile extends Fragment {
             }
         });
 
-
+        // go to my post page
         btnMyPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 frag = new FragMyProduct();
                 fragTransaction = getFragmentManager().beginTransaction().replace(R.id.container, frag);
                 fragTransaction.commit();
+
+
             }
         });
 

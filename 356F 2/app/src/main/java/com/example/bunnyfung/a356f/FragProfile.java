@@ -21,6 +21,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static android.app.Activity.RESULT_OK;
+
 public class FragProfile extends Fragment {
     private Account acc = null;
     private Button btnLogout, btnEdit, btnMyPost, btnMyScore, btnHistory, btnWishList, btnSecurityCode, btnTransaction;
@@ -98,7 +100,7 @@ public class FragProfile extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                startActivity(intent);
+                startActivityForResult(intent,1);
             }
         });
 
@@ -235,4 +237,24 @@ public class FragProfile extends Fragment {
         thread.start();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+                String str=data.getStringExtra("acc");
+                System.out.println("ActivityResult acc:"+str);
+                JSONObject jsonObject = null;
+
+                try {
+                    jsonObject = new JSONObject(str);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                acc = new Account(jsonObject);
+            }
+
+            ivIcon.setImageBitmap(acc.getIcon());
+        }
+    }
 }

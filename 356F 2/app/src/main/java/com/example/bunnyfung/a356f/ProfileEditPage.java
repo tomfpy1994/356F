@@ -25,6 +25,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.InterfaceAddress;
 import java.net.URL;
 
 public class ProfileEditPage extends AppCompatActivity {
@@ -74,7 +75,8 @@ public class ProfileEditPage extends AppCompatActivity {
         ivIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, SELECTED_PICTURE);
             }
         });
 
@@ -100,6 +102,14 @@ public class ProfileEditPage extends AppCompatActivity {
                     }
                 }
                 System.out.println(stu);
+
+                Intent intent = new Intent();
+                try {
+                    intent.putExtra("acc",acc.passToJsonObjectStr());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });

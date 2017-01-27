@@ -23,13 +23,7 @@ import java.net.URL;
 public class FragProfile extends Fragment {
     private Account acc = null;
     private Button btnLogout, btnEdit, btnMyPost, btnMyScore, btnHistory, btnWishList, btnSecurityCode, btnTransaction;
-<<<<<<< HEAD
 
-=======
-    private Button btnLogout, btnEdit;
->>>>>>> parent of c7ae66e... 26/1
-=======
->>>>>>> parent of 1b200b0... 26/1
     private boolean logout = false;
     private TextView tvUserid, tvName, tvEmail;
     private ImageView ivIcon;
@@ -43,31 +37,24 @@ public class FragProfile extends Fragment {
                              final Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_frag_profile, null);
-        //Testing Log
-        System.out.println("FragProfile_"+acc.toString());
-
+        try {
+            System.out.println("FragProfile: "+acc.passToJsonObjectStr());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
         btnEdit = (Button) rootView.findViewById(R.id.btnEdit);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 1b200b0... 26/1
+
         btnMyPost = (Button) rootView.findViewById(R.id.btnMyPost);
         btnMyScore = (Button) rootView.findViewById(R.id.btnMyScore);
         btnHistory = (Button) rootView.findViewById(R.id.btnHistory);
         btnWishList = (Button) rootView.findViewById(R.id.btnWishList);
         btnSecurityCode = (Button) rootView.findViewById(R.id.btnSecurityCode);
         btnTransaction = (Button) rootView.findViewById(R.id.btnTransaction);
-<<<<<<< HEAD
 
         btnSecurityCode = (Button) rootView.findViewById(R.id.btnSecurityCode);
-=======
->>>>>>> parent of 1b200b0... 26/1
-
-=======
->>>>>>> parent of c7ae66e... 26/1
 
         tvUserid = (TextView) rootView.findViewById(R.id.tvUserid);
         tvName = (TextView) rootView.findViewById(R.id.tvName);
@@ -115,15 +102,11 @@ public class FragProfile extends Fragment {
             }
         });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        // go to my post page
->>>>>>> parent of 1b200b0... 26/1
+
         btnMyPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),MyPostPage.class);
+                Intent intent = new Intent(getActivity(),FragMyProduct.class);
                 try {
                     intent.putExtra("acc",acc.passToJsonObjectStr());
                 } catch (JSONException e) {
@@ -175,11 +158,7 @@ public class FragProfile extends Fragment {
             }
         });
 
-<<<<<<< HEAD
 
-=======
-        // go to security code page
->>>>>>> parent of 1b200b0... 26/1
         btnSecurityCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -206,12 +185,7 @@ public class FragProfile extends Fragment {
                 startActivity(intent);
             }
         });
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of c7ae66e... 26/1
-=======
->>>>>>> parent of 1b200b0... 26/1
         return rootView;
     }
 
@@ -236,8 +210,6 @@ public class FragProfile extends Fragment {
 
 
                     int HttpResult = connection.getResponseCode();
-
-                    //Testing Log
                     System.out.println("resopnseCode: " + HttpResult);
 
                     if (HttpResult == 200) {
@@ -248,12 +220,10 @@ public class FragProfile extends Fragment {
                             sb.append(line + "\n");
                         }
                         br.close();
-                        //Testing Log
                         System.out.println(sb.toString());
 
                         JSONObject jsonObject = new JSONObject(sb.toString());
                         if (jsonObject.getString("status").equals("logout success")){
-                            //Testing Log
                             System.out.println("resultJsonObject: "+jsonObject.toString());
                             logout = true;
                         }

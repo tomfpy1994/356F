@@ -1,5 +1,6 @@
 package com.example.bunnyfung.a356f;
 
+import android.content.Intent;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -110,6 +111,14 @@ public class SecurityCodePage extends AppCompatActivity {
                         }
                     }
                     System.out.println(stu);
+
+                    Intent intent = new Intent();
+                    try {
+                        intent.putExtra("acc",acc.passToJsonObjectStr());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    setResult(RESULT_OK, intent);
                     finish();
                 }else {
                    focusView.requestFocus();

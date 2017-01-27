@@ -166,7 +166,7 @@ public class FragProfile extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                startActivity(intent);
+                startActivityForResult(intent,1);
             }
         });
 

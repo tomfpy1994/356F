@@ -115,7 +115,7 @@
                     android:text="deposit/withdraw"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btnTransaction"
+                    android:id="@+id/btnMoney"
                     android:layout_weight="1" />
             </LinearLayout>
 
@@ -149,6 +149,13 @@
             android:layout_marginEnd="13dp"
             android:layout_below="@+id/ivIcon"
             android:layout_alignParentEnd="true" />
+
+        <Button
+            android:text="my score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnEdit"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:text="TextView"

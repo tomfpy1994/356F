@@ -22,8 +22,12 @@ import java.net.URL;
 
 public class FragProfile extends Fragment {
     private Account acc = null;
+<<<<<<< HEAD
     private Button btnLogout, btnEdit, btnMyPost, btnMyScore, btnHistory, btnWishList, btnSecurityCode, btnTransaction;
 
+=======
+    private Button btnLogout, btnEdit;
+>>>>>>> parent of c7ae66e... 26/1
     private boolean logout = false;
     private TextView tvUserid, tvName, tvEmail;
     private ImageView ivIcon;
@@ -45,6 +49,7 @@ public class FragProfile extends Fragment {
 
         btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
         btnEdit = (Button) rootView.findViewById(R.id.btnEdit);
+<<<<<<< HEAD
 
         btnMyPost = (Button) rootView.findViewById(R.id.btnMyPost);
         btnMyScore = (Button) rootView.findViewById(R.id.btnMyScore);
@@ -55,6 +60,8 @@ public class FragProfile extends Fragment {
 
         btnSecurityCode = (Button) rootView.findViewById(R.id.btnSecurityCode);
 
+=======
+>>>>>>> parent of c7ae66e... 26/1
 
         tvUserid = (TextView) rootView.findViewById(R.id.tvUserid);
         tvName = (TextView) rootView.findViewById(R.id.tvName);
@@ -68,7 +75,7 @@ public class FragProfile extends Fragment {
             ivIcon.setImageBitmap(acc.getIcon());
         }
 
-        // go to logout
+
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,7 +96,6 @@ public class FragProfile extends Fragment {
             }
         });
 
-        // go to edit page
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +109,7 @@ public class FragProfile extends Fragment {
             }
         });
 
+<<<<<<< HEAD
         btnMyPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -186,6 +193,8 @@ public class FragProfile extends Fragment {
             }
         });
 
+=======
+>>>>>>> parent of c7ae66e... 26/1
         return rootView;
     }
 
@@ -238,8 +247,5 @@ public class FragProfile extends Fragment {
         };
         thread.start();
     }
-
-
-
 
 }

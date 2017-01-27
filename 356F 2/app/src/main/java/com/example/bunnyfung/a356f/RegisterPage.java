@@ -160,6 +160,8 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                     //Testing Log
                     System.out.println("URL:" + url.toString());
                     String strJsonobj = acc.toString();
+
+                    //Testing Log
                     System.out.println("doLogin Method jsonObj: " + strJsonobj);
 
                     OutputStream os = connection.getOutputStream();
@@ -167,6 +169,8 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                     os.close();
 
                     int HttpResult = connection.getResponseCode();
+
+                    //Testing Log
                     System.out.println("resopnseCode: " + HttpResult);
 
                     if (HttpResult == 200) {
@@ -177,10 +181,14 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                             sb.append(line + "\n");
                         }
                         br.close();
+
+                        //Testing Log
                         System.out.println("" + sb.toString());
 
                         JSONObject resultObject = new JSONObject(sb.toString());
                         stu = resultObject.getString("status");
+
+                        //Testing Log
                         System.out.println("responesStatud: "+stu);
 
                     } else if (HttpResult == 402) {

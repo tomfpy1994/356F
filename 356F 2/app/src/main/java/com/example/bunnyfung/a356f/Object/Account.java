@@ -22,6 +22,7 @@ public class Account {
     private String phoneNo;
     private String sex;
     private Bitmap icon;
+    private String _id;
 
     public Account(JSONObject jsonObj){
         try {
@@ -33,14 +34,14 @@ public class Account {
             this.sex = jsonObj.getString("sex");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 23e9674... bunny last sync
             this.icon = base64ToBitmap(jsonObj.getString("irondata"));
 =======
             this.icon = base64ToBitmap(jsonObj.getString("icon"));
 >>>>>>> parent of 1b200b0... 26/1
             this._id = jsonObj.getString("_id");
-=======
-            this.icon = base64ToBitmap(jsonObj.getString("icon"));
->>>>>>> parent of 55bf23c... ProfileEditPage work
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -54,6 +55,7 @@ public class Account {
         this.phoneNo = "";
         this.sex = "";
         this.icon = icon;
+
     }
 
     public void setEmail (String email){this.email = email;}
@@ -75,9 +77,13 @@ public class Account {
     public String getPhoneNo(){return phoneNo;}
     public String getSex(){return sex;}
     public Bitmap getIcon(){return icon;}
+    public String get_id(){return _id;}
 
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
+        if (_id!=null){
+            jsonObj.put("_id",get_id());
+        }
         jsonObj.put("email",getEmail());
         jsonObj.put("userid",getUserid());
         jsonObj.put("pw",getPassword());
@@ -92,6 +98,7 @@ public class Account {
         return  "Acc:"+getUserid()+","+getEmail()+","+getPassword()+","+
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             getName()+","+getPhone()+","+getSex()+","+get_id();
 =======
             getName()+","+getPhoneNo()+","+getSex();
@@ -99,6 +106,9 @@ public class Account {
 =======
             getName()+","+getPhoneNo()+","+getSex()+","+get_id();
 >>>>>>> parent of 1b200b0... 26/1
+=======
+            getName()+","+getPhone()+","+getSex()+","+get_id();
+>>>>>>> parent of 23e9674... bunny last sync
     }
 
     private String bitmapToBase64(Bitmap bitmap) {

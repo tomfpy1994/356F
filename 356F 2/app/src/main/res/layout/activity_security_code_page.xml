@@ -30,7 +30,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:inputType="numberPassword"
             android:ems="10"
             android:id="@+id/edtOldPw"
             android:singleLine="true"
@@ -39,17 +39,17 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/edtNewPw"
             android:hint="New Security Code"
             android:singleLine="true"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:inputType="numberPassword" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:inputType="numberPassword"
             android:ems="10"
             android:id="@+id/edtCNewPw"
             android:singleLine="true"

@@ -63,20 +63,29 @@ public class SecurityCodePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean setCode = true;
+                View focusView = null;
 
                 if (!acc.getsCode().equals("")){
                     if (!acc.getsCode().equals((edtOldPw.getText()).toString())){
                         setCode = false;
+                        edtOldPw.setError("Security Code wrong!");
+                        focusView = edtOldPw;
                     }
                 }
                 if (edtNewPw.equals("")){
                     setCode = false;
+                    edtNewPw.setError("Must be fill!");
+                    focusView = edtNewPw;
                 }
                 if (((edtNewPw.getText()).toString()).length()!=6){
                     setCode = false;
+                    edtNewPw.setError("Must be 6 digit number!");
+                    focusView = edtNewPw;
                 }
                 if (!((edtNewPw.getText()).toString()).equals((edtCNewPw.getText()).toString())){
                     setCode = false;
+                    edtCNewPw.setError("Security Code Not mathch!");
+                    focusView = edtCNewPw;
                 }
 
 
@@ -102,6 +111,8 @@ public class SecurityCodePage extends AppCompatActivity {
                     }
                     System.out.println(stu);
                     finish();
+                }else {
+                   focusView.requestFocus();
                 }
             }
         });

@@ -108,7 +108,7 @@ public class FragProfile extends Fragment {
         btnMyPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                frag = new FragMyProduct();
+                frag = new FragMyProduct(acc);
                 fragTransaction = getFragmentManager().beginTransaction().replace(R.id.container, frag);
                 fragTransaction.commit();
             }

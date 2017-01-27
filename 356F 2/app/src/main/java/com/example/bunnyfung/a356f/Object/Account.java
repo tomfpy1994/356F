@@ -2,6 +2,7 @@ package com.example.bunnyfung.a356f.Object;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.text.Editable;
 import android.util.Base64;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,7 +23,7 @@ public class Account {
     private Bitmap icon;
     private String _id;
     private int balance;
-    private String sCode;
+    private String scode;
 
     public Account(JSONObject jsonObj){
         try {
@@ -33,7 +34,7 @@ public class Account {
             this.icon = base64ToBitmap(jsonObj.getString("irondata"));
             this._id = jsonObj.getString("_id");
             this.balance = jsonObj.getInt("balance");
-            this.sCode = jsonObj.getString("sCode");
+            this.scode = jsonObj.getString("scode");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -46,7 +47,7 @@ public class Account {
         this.phone = "";
         this.icon = icon;
         this.balance = 0;
-        this.sCode = "";
+        this.scode = "";
 
     }
 
@@ -56,7 +57,7 @@ public class Account {
     public void setPhone (String number){this.phone = number;}
     public void setIcon(Bitmap icon){this.icon = icon;}
     public void setBalance(int balance){this.balance = balance;}
-    public void setsCode(String sCode){this.sCode = sCode;}
+    public void setsCode(String sCode){this.scode = sCode;}
 
 
 
@@ -67,7 +68,7 @@ public class Account {
     public Bitmap getIcon(){return icon;}
     public String get_id(){return _id;}
     public int getBalance(){return balance;}
-    public String getsCode(){return sCode;}
+    public String getsCode(){return scode;}
 
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
@@ -80,7 +81,7 @@ public class Account {
         jsonObj.put("phone",getPhone());
         jsonObj.put("irondata",bitmapToBase64(icon));
         jsonObj.put("balance",getBalance());
-        jsonObj.put("sCode", getsCode());
+        jsonObj.put("scode", getsCode());
 
         return jsonObj.toString();
     }

@@ -24,7 +24,7 @@ public class FragMyProduct extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_frag_my_product, null);
-
+        
         // testing of get user information
         try {
             System.out.println("FragMyProduct: "+acc.passToJsonObjectStr());

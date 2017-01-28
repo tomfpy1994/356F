@@ -117,6 +117,11 @@ public class TransactionPage extends AppCompatActivity {
                     focusView = edtScode;
                     submit = false;
                 }
+                if (!(edtScode.getText().toString().equals(acc.getsCode()))){
+                    edtScode.setError("Wrong Security Code!");
+                    focusView = edtScode;
+                    submit = false;
+                }
 
                 int tampBalance = Integer.parseInt((edtAmount.getText()).toString());
 

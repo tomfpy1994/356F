@@ -101,6 +101,7 @@ public class ProfileEditPage extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+
                 System.out.println(stu);
 
                 Intent intent = new Intent();
@@ -166,9 +167,10 @@ public class ProfileEditPage extends AppCompatActivity {
 
                         //Testing Log
                         System.out.println("responesStatud: "+stu);
-
                     } else if (HttpResult == 402) {
                         stu = "402";
+                    } else if(HttpResult == 413){
+                        stu = "413";
                     }
 
                     connection.disconnect();

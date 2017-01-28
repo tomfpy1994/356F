@@ -230,7 +230,7 @@
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:textSize="13sp"
-            android:id="@+id/bPostCancel"
+            android:id="@+id/btnPostCancel"
             android:layout_below="@+id/tfDescription"
             android:layout_alignEnd="@+id/tfDescription" />
 

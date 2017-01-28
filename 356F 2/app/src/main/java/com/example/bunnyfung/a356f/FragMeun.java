@@ -54,7 +54,7 @@ public class FragMeun extends Fragment {
         ibMyProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frag = new FragMyProduct();
+                frag = new FragMyProduct(acc);
                 fragTransaction = getFragmentManager().beginTransaction().replace(R.id.container, frag);
                 fragTransaction.commit();
             }
@@ -63,7 +63,7 @@ public class FragMeun extends Fragment {
         ibAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frag = new FragNewPost();
+                frag = new FragNewPost(acc);
                 fragTransaction = getFragmentManager().beginTransaction().replace(R.id.container, frag);
                 fragTransaction.commit();
             }

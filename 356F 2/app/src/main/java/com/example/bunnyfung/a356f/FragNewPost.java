@@ -1,16 +1,11 @@
 package com.example.bunnyfung.a356f;
 
 import com.example.bunnyfung.a356f.Object.Account;
-import com.example.bunnyfung.a356f.Object.AddPost;
+import com.example.bunnyfung.a356f.Object.Post;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -21,19 +16,11 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class FragNewPost extends Fragment {
     public Account acc;
-    public AddPost add;
+    public Post post;
     public ImageView photo;
     public TextView name, brand, type, size, price, description;
     public int sizeNum, priceNum;

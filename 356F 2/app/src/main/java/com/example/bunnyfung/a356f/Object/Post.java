@@ -15,14 +15,16 @@ import java.io.InputStream;
  * Created by Oliver on 29/1/2017.
  */
 
-public class AddPost {
-    private String name, brand, type, description;
+public class Post {
+    private String pId, name, brand, type, description;
     private int size, price;
     private String userID;
     private Bitmap photo;
+
     //constructor
-    public AddPost(JSONObject jsonObject){
+    public Post(JSONObject jsonObject){
         try{
+            this.pId = jsonObject.getString("_id");
             this.name = jsonObject.getString("pname");
             this.type = jsonObject.getString("ptype");
             this.brand = jsonObject.getString("brand");
@@ -35,7 +37,7 @@ public class AddPost {
         }
     }
     //constructor 2
-    public AddPost(String name,String brand,String type,int size,int price,String description,String userID){
+    public Post(String name,String brand,String type,int size,int price,String description,String userID){
         this.name = name;
         this.brand = brand;
         this.type = type;
@@ -52,13 +54,13 @@ public class AddPost {
     public int getPrice(){ return price; }
     public String getDescription(){ return description; }
     public String getUserID(){ return userID; }
+    public String getpId(){return pId;}
 
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
-        /*
         if (userID!=null){
-            jsonObj.put("_id",get_id());
-        }*/
+            jsonObj.put("_id",getpId());
+        }
         jsonObj.put("pname",getName());
         jsonObj.put("ptype",getType());
         jsonObj.put("brand",getBrand());
@@ -66,9 +68,9 @@ public class AddPost {
         jsonObj.put("price",getPrice());
         jsonObj.put("photo1data",bitmapToBase64(photo));
         jsonObj.put("user", getUserID());
-
         return jsonObj.toString();
     }
+
     // to string
     public String toString(){
         return "product detail and information: "+getName()+" "+getType()+" "+getBrand()+" "+getSize()+" "+getPrice()+" "+getUserID();

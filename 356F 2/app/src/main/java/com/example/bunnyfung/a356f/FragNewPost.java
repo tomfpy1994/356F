@@ -4,10 +4,13 @@ import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Post;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class FragNewPost extends Fragment {
     public Account acc;
@@ -111,7 +115,18 @@ public class FragNewPost extends Fragment {
                         priceNum = Integer.parseInt(sPrice);
 
                         System.out.println(sName+" "+sBand+" "+sType+" "+sizeNum+" "+priceNum+" "+sDescription);
+                        if(!sName.equals("")&&sBand.equals("")&&sType.equals("")&&sSize.equals("")&&sPrice.equals("")&&sDescription.equals("")){
+                            Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
+                            Post add = new Post(sName, sBand, sType, sizeNum, priceNum, sDescription, userID);
+                            JSONObject jsonObj = null;
+                            try {
+                                jsonObj = new JSONObject(acc.passToJsonObjectStr());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            Log.i("jsonObj Value", jsonObj.toString());
 
+                        }
 
 
                 }

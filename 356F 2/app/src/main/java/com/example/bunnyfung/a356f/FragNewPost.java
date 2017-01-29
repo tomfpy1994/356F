@@ -1,6 +1,8 @@
 package com.example.bunnyfung.a356f;
 
 import com.example.bunnyfung.a356f.Object.Account;
+import com.example.bunnyfung.a356f.Object.AddPost;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -31,8 +33,10 @@ import java.net.URL;
 
 public class FragNewPost extends Fragment {
     public Account acc;
+    public AddPost add;
     public ImageView photo;
-    public TextView name, band, type, size, price, description;
+    public TextView name, brand, type, size, price, description;
+    public int sizeNum, priceNum;
     public Button submit, cancel;
     public CheckBox halfSize;
     FragmentTransaction fragTransaction;
@@ -41,9 +45,14 @@ public class FragNewPost extends Fragment {
     public String sName, sBand, sType, sSize,sPrice, sDescription;
     private static final int SELECTED_PICTURE = 1;
     View rootView;
+    private String userID;
 
     // constructor
-    public FragNewPost(Account acc){this.acc=acc;}
+    public FragNewPost(Account acc){
+        this.acc=acc;
+        userID = acc.get_id();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,7 +68,7 @@ public class FragNewPost extends Fragment {
         // initialized the item in layout
         photo = (ImageView) rootView.findViewById(R.id.ivBigPhoto);
         name = (TextView) rootView.findViewById(R.id.edtName);
-        band = (TextView) rootView.findViewById(R.id.tfBrand);
+        brand = (TextView) rootView.findViewById(R.id.tfBrand);
         type = (TextView) rootView.findViewById(R.id.tfType);
         size = (TextView) rootView.findViewById(R.id.tfSize);
         price = (TextView) rootView.findViewById(R.id.tfPrice);
@@ -105,14 +114,16 @@ public class FragNewPost extends Fragment {
                     case R.id.btnPostSubmit:
                         //get user input
                         sName = name.getText().toString();
-                        sBand = band.getText().toString();
+                        sBand = brand.getText().toString();
                         sType = type.getText().toString();
                         sSize = size.getText().toString();
                         sPrice = price.getText().toString();
                         sDescription = description.getText().toString();
+                        //convert to integer
+                        sizeNum = Integer.parseInt(sSize);
+                        priceNum = Integer.parseInt(sPrice);
 
-
-                        System.out.println(sName+" "+sBand+" "+sType+" "+sSize+" "+sPrice+" "+sDescription);
+                        System.out.println(sName+" "+sBand+" "+sType+" "+sizeNum+" "+priceNum+" "+sDescription);
 
 
 

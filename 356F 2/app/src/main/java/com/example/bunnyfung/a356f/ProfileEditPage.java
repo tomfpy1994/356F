@@ -137,8 +137,6 @@ public class ProfileEditPage extends AppCompatActivity {
                     //Testing Log
                     System.out.println("URL:" + url.toString());
                     String strJsonobj = acc.toString();
-
-                    //Testing Log
                     System.out.println("doLogin Method jsonObj: " + strJsonobj);
 
                     OutputStream os = connection.getOutputStream();

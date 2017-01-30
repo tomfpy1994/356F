@@ -59,14 +59,12 @@ public class Post {
     public String getDescription(){ return description; }
     public String getUserID(){ return userID; }
     public String getpId(){return userID;}
+    public Bitmap getPhoto(){ return photo;}
     public String getPhoto1mimetype(){ return photo1mimetype;}
     public String getState(){ return state;}
 
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
-        if (userID!=null){
-            jsonObj.put("_id",getpId());
-        }
         jsonObj.put("pname",getName());
         jsonObj.put("ptype",getType());
         jsonObj.put("brand",getBrand());
@@ -76,15 +74,16 @@ public class Post {
         jsonObj.put("owner", getUserID());
         jsonObj.put("photo1mimetype", getPhoto1mimetype());
         jsonObj.put("state", getState());
+
         return jsonObj.toString();
     }
 
     // to string
     public String toString(){
-        return "product detail and information: "+getName()+" "+getType()+" "+getBrand()+" "+getSize()+" "+getPrice()+" "+getUserID();
+        return "product detail and information: "+getName()+","+getType()+","+getBrand()+","+getSize()+","+getPrice()+","+getUserID()+","+getDescription();
     }
 
-    private String bitmapToBase64(Bitmap bitmap) {
+    public static String bitmapToBase64(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream .toByteArray();
@@ -92,7 +91,7 @@ public class Post {
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
 
-    private Bitmap base64ToBitmap(String iconStr){
+    public Bitmap base64ToBitmap(String iconStr){
         InputStream stream = new ByteArrayInputStream(Base64.decode(iconStr.getBytes(), Base64.DEFAULT));
         Bitmap bitmap = BitmapFactory.decodeStream(stream);
 

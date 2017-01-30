@@ -46,9 +46,9 @@ public class FragNewPost extends Fragment {
     Fragment frag;
     public String stu ="";
     public String sName, sBand, sType, sSize,sPrice, sDescription;
-    private static final int SELECTED_PICTURE = 1;
+    public static final int SELECTED_PICTURE = 1;
     View rootView;
-    private String userID;
+    public String userID;
     private GoogleApiClient client;
 
     // constructor
@@ -68,6 +68,7 @@ public class FragNewPost extends Fragment {
         }catch(JSONException e){
             e.printStackTrace();
         }
+
 
         // initialized the item in layout
         photo = (ImageView) rootView.findViewById(R.id.ivBigPhoto);
@@ -133,14 +134,17 @@ public class FragNewPost extends Fragment {
                         if(!sName.equals("")&&!sBand.equals("")&&!sType.equals("")&&!sSize.equals("")&&!sPrice.equals("")&&!sDescription.equals("")){
                             Bitmap photo = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
                             post = new Post(sName, sBand, sType, sizeNum, priceNum, sDescription, userID, photo);
+                            //
+                            System.out.println(post.toString());
                             JSONObject jsonObj = null;
                             try {
                                 jsonObj = new JSONObject(post.passToJsonObjectStr());
+                                System.out.println("jsonOb value: "+jsonObj);
+                                doAddPost(jsonObj);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                            Log.i("jsonObj Value", jsonObj.toString());
-                            doAddPost(jsonObj);
+
                             while (stu == "") {
                                 try {
                                     Thread.sleep(1000);
@@ -179,7 +183,6 @@ public class FragNewPost extends Fragment {
     }
 
     public void doAddPost(final JSONObject j){
-        String stus = "";
         Thread thread = new Thread() {
             public void run() {
                 StringBuilder sb = new StringBuilder();
@@ -199,11 +202,11 @@ public class FragNewPost extends Fragment {
 
                     //Testing Log
                     System.out.println("URL:" + url.toString());
-                    String strJsonobj = post.toString();
+                    String strJsonobj = j.toString();
                     System.out.println("doAddPost Method jsonObj: " + strJsonobj);
 
                     OutputStream os = connection.getOutputStream();
-                    os.write(acc.toString().getBytes("UTF-8"));
+                    os.write(j.toString().getBytes("UTF-8"));
                     os.close();
 
                     int HttpResult = connection.getResponseCode();

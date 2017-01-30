@@ -2,10 +2,16 @@ package com.example.bunnyfung.a356f;
 
 import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Post;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
@@ -22,11 +28,17 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class FragNewPost extends Fragment {
     public Account acc;
     public Post post;
     public ImageView photo;
-    public TextView name, brand, type, size, price, description;
+    public TextView name, brand, type, size, price, description, statu;
     public int sizeNum, priceNum;
     public Button submit, cancel;
     public CheckBox halfSize;
@@ -37,6 +49,7 @@ public class FragNewPost extends Fragment {
     private static final int SELECTED_PICTURE = 1;
     View rootView;
     private String userID;
+    private GoogleApiClient client;
 
     // constructor
     public FragNewPost(Account acc){
@@ -67,6 +80,8 @@ public class FragNewPost extends Fragment {
         submit = (Button) rootView.findViewById(R.id.btnPostSubmit);
         cancel = (Button) rootView.findViewById(R.id.btnPostCancel);
         halfSize = (CheckBox) rootView.findViewById(R.id.cbSize);
+        statu = (TextView) rootView.findViewById(R.id.tvStatu);
+
 
 
 
@@ -111,34 +126,116 @@ public class FragNewPost extends Fragment {
                         sPrice = price.getText().toString();
                         sDescription = description.getText().toString();
                         //convert to integer
-                        sizeNum = Integer.parseInt(sSize);
-                        priceNum = Integer.parseInt(sPrice);
+                        sizeNum = Integer.valueOf(sSize);
+                        priceNum = Integer.valueOf(sPrice);
 
                         System.out.println(sName+" "+sBand+" "+sType+" "+sizeNum+" "+priceNum+" "+sDescription);
-                        if(!sName.equals("")&&sBand.equals("")&&sType.equals("")&&sSize.equals("")&&sPrice.equals("")&&sDescription.equals("")){
-                            Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
-                            Post add = new Post(sName, sBand, sType, sizeNum, priceNum, sDescription, userID);
+                        if(!sName.equals("")&&!sBand.equals("")&&!sType.equals("")&&!sSize.equals("")&&!sPrice.equals("")&&!sDescription.equals("")){
+                            Bitmap photo = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
+                            post = new Post(sName, sBand, sType, sizeNum, priceNum, sDescription, userID, photo);
                             JSONObject jsonObj = null;
                             try {
-                                jsonObj = new JSONObject(acc.passToJsonObjectStr());
+                                jsonObj = new JSONObject(post.passToJsonObjectStr());
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                             Log.i("jsonObj Value", jsonObj.toString());
+                            doAddPost(jsonObj);
+                            while (stu == "") {
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
 
+                                }
+                            }
+                            switch (stu) {
+                                case "add success":
+                                    statu.setText("Add post Success! ");
+                                    statu.setTextColor(Color.BLUE);
+                                    submit.setVisibility(View.VISIBLE);
+                                    stu = "";
+                                    break;
+                                case "500":
+                                    statu.setText("Add post fail! ");
+                                    statu.setTextColor(Color.RED);
+                                    submit.setVisibility(View.VISIBLE);
+                                    stu = "";
+                                    break;
+
+                            }
+
+                        }else{
+                            statu.setText("Add Post fail! You must fill all the bland");
+                            statu.setTextColor(Color.RED);
                         }
+                        break;
 
 
                 }
-
             }
         });
-
 
         return rootView;
     }
 
+    public void doAddPost(final JSONObject j){
+        String stus = "";
+        Thread thread = new Thread() {
+            public void run() {
+                StringBuilder sb = new StringBuilder();
+                HttpURLConnection connection = null;
+
+                try {
+                    URL url = new URL("http://s356fproject.mybluemix.net/api/addproduct");
+                    connection = (HttpURLConnection) url.openConnection();
+                    connection.setDoOutput(true);
+                    connection.setDoInput(true);
+                    connection.setRequestMethod("POST");
+                    connection.setUseCaches(false);
+                    connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                    connection.setConnectTimeout(10000);
+                    connection.setReadTimeout(10000);
 
 
+                    //Testing Log
+                    System.out.println("URL:" + url.toString());
+                    String strJsonobj = post.toString();
+                    System.out.println("doAddPost Method jsonObj: " + strJsonobj);
+
+                    OutputStream os = connection.getOutputStream();
+                    os.write(acc.toString().getBytes("UTF-8"));
+                    os.close();
+
+                    int HttpResult = connection.getResponseCode();
+                    System.out.println("resopnseCode: " + HttpResult);
+
+                    if (HttpResult == 200) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader(
+                                connection.getInputStream()));
+                        String line = null;
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line + "\n");
+                        }
+                        br.close();
+                        System.out.println("" + sb.toString());
+
+                        JSONObject resultObject = new JSONObject(sb.toString());
+                        stu = resultObject.getString("status");
+                        System.out.println("responesStatud: "+stu);
+
+                    } else if (HttpResult == 500) {
+                        stu = "500";
+                    }
+
+                    connection.disconnect();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
+    }
 
 }
+

@@ -1,7 +1,9 @@
 package com.example.bunnyfung.a356f;
+import com.example.bunnyfung.a356f.Adapter.MyProductAdapter;
 import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Post;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -27,8 +29,8 @@ public class FragMyProduct extends Fragment {
 
     private ListView listView;
     private Account acc = null;
-    private ArrayList<Post>  alPost;
-    static JSONArray jsonArray = null;
+    private ArrayList<Post>  alPost = new ArrayList<Post>();
+    private JSONArray jsonArray = null;
 
     // constructor
     public FragMyProduct() {}
@@ -40,6 +42,7 @@ public class FragMyProduct extends Fragment {
 
         // testing of get user information
         try {
+            //Testing Log
             System.out.println("FragMyProduct: "+acc.passToJsonObjectStr());
         } catch (JSONException e) {
             e.printStackTrace();
@@ -57,14 +60,28 @@ public class FragMyProduct extends Fragment {
             }
         }
         try {
-            System.out.println("FragMyProduct resultObject: "+jsonArray.getJSONObject(0));
+            //Testing Log
+            System.out.println("FragMyProduct resultObject: "+jsonArray.getJSONObject(0).getString("owner"));
+            if (jsonArray!=null) {
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    Post post = new Post(jsonArray.getJSONObject(i));
+                    alPost.add(post);
+                }
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+        //Testing Log
+        System.out.println(alPost.size());
+
 
         //arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, values);
         //listView.setAdapter(arrayAdapter);
+        MyProductAdapter adapter = new MyProductAdapter(getActivity(), R.layout.post_list_item, alPost);
+        listView.setAdapter(adapter);
+
+
 
         // function of click item in list view
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -124,4 +141,6 @@ public class FragMyProduct extends Fragment {
         };
         thread.start();
     }
+
+
 }

@@ -16,7 +16,7 @@ import java.io.InputStream;
  */
 
 public class Post {
-    private String userID, name, brand, type, description, photo1mimetype, state;
+    private String userID, name, brand, type, description, state;
     private int size, price;
     private Bitmap photo;
 
@@ -30,8 +30,7 @@ public class Post {
             this.size = jsonObject.getInt("size");
             this.price = jsonObject.getInt("price");
             this.photo = base64ToBitmap(jsonObject.getString("photo1data"));
-            this.userID = jsonObject.getString("user");
-            this.photo1mimetype = jsonObject.getString("photo1mimetype");
+            this.userID = jsonObject.getString("owner");
             this.state = jsonObject.getString("state");
         }catch (JSONException j){
             j.printStackTrace();
@@ -47,7 +46,6 @@ public class Post {
         this.description = description;
         this.userID = userID;
         this.photo = photo;
-        this.photo1mimetype = "";
         this.state = "";
     }
     //get method
@@ -60,7 +58,6 @@ public class Post {
     public String getUserID(){ return userID; }
     public String getpId(){return userID;}
     public Bitmap getPhoto(){ return photo;}
-    public String getPhoto1mimetype(){ return photo1mimetype;}
     public String getState(){ return state;}
 
     public String passToJsonObjectStr() throws JSONException {
@@ -72,7 +69,6 @@ public class Post {
         jsonObj.put("price",getPrice());
         jsonObj.put("photo1data",bitmapToBase64(photo));
         jsonObj.put("owner", getUserID());
-        jsonObj.put("photo1mimetype", getPhoto1mimetype());
         jsonObj.put("state", getState());
 
         return jsonObj.toString();

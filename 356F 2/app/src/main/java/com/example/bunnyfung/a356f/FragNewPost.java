@@ -54,7 +54,7 @@ public class FragNewPost extends Fragment {
     // constructor
     public FragNewPost(Account acc){
         this.acc=acc;
-        userID = acc.get_id();
+        userID = acc.getId();
     }
 
     @Override

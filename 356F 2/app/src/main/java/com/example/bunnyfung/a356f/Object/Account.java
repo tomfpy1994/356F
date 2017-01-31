@@ -66,14 +66,14 @@ public class Account {
     public String getPassword(){return pw;}
     public String getPhone(){return phone;}
     public Bitmap getIcon(){return icon;}
-    public String get_id(){return _id;}
+    public String getId(){return _id;}
     public int getBalance(){return balance;}
     public String getsCode(){return scode;}
 
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
         if (_id!=null){
-            jsonObj.put("_id",get_id());
+            jsonObj.put("_id",getId());
         }
         jsonObj.put("email",getEmail());
         jsonObj.put("userid",getUserid());
@@ -88,7 +88,7 @@ public class Account {
 
     public String toString(){
         return  "Acc:"+getUserid()+","+getEmail()+","+getPassword()+","+
-            ","+getPhone()+","+","+get_id();
+            ","+getPhone()+","+","+getId();
 
     }
 

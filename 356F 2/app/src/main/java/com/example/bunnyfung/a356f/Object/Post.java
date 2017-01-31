@@ -80,7 +80,8 @@ public class Post {
 
     // to string
     public String toString(){
-        return "product detail and information: "+getName()+","+getType()+","+getBrand()+","+getSize()+","+getPrice()+","+getUserID()+","+getDescription();
+        return "product detail and information: "+getName()+","+getType()+","+getBrand()+
+                ","+getSize()+","+getPrice()+","+getUserID()+","+getDescription();
     }
 
     public static String bitmapToBase64(Bitmap bitmap) {

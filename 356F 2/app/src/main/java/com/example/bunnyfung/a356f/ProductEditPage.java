@@ -62,6 +62,16 @@ public class ProductEditPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_edit_page);
 
+        String str = getIntent().getStringExtra("post");
+        try {
+            JSONObject jsonObject = new JSONObject(str);
+            post = new Post(jsonObject);
+
+            System.out.println("jsonObject value(in product edit page): "+post.passToJsonObjectStr());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         // initialized the item in layout
         photo = (ImageView) findViewById(R.id.ivBigPhoto);
         name = (TextView) findViewById(R.id.edtName);
@@ -75,9 +85,6 @@ public class ProductEditPage extends AppCompatActivity {
         halfSize = (CheckBox) findViewById(R.id.cbSize);
         statu = (TextView) findViewById(R.id.tvStatu);
 
-
-        /*
-        //set Post data to items
         name.setText(post.getName());
         brand.setText(post.getBrand());
         type.setText(post.getType());
@@ -85,7 +92,8 @@ public class ProductEditPage extends AppCompatActivity {
         price.setText(post.getPrice()+"");
         description.setText(post.getDescription());
         photo.setImageBitmap(post.getPhoto());
-        */
+
+
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +136,7 @@ public class ProductEditPage extends AppCompatActivity {
                         sSize = size.getText().toString();
                         sPrice = price.getText().toString();
                         sDescription = description.getText().toString();
+                        userID = post.getUserID();
                         //convert to integer
                         sizeNum = Integer.valueOf(sSize);
                         priceNum = Integer.valueOf(sPrice);
@@ -141,7 +150,7 @@ public class ProductEditPage extends AppCompatActivity {
                             JSONObject jsonObj = null;
                             try {
                                 jsonObj = new JSONObject(post.passToJsonObjectStr());
-                                System.out.println("jsonOb value: "+jsonObj);
+                                System.out.println("pass to do method"+jsonObj);
                                 doModifyPost(jsonObj);
                             } catch (JSONException e) {
                                 e.printStackTrace();

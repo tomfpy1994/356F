@@ -83,7 +83,7 @@ public class Post {
 
     // to string
     public String toString(){
-        return "product detail and information: "+getName()+","+getType()+","+getBrand()+
+        return "product detail and information: "+getUserID()+","+getName()+","+getType()+","+getBrand()+
                 ","+getSize()+","+getPrice()+","+getUserID()+","+getDescription();
     }
 

@@ -62,6 +62,7 @@ public class Post {
 
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
+        jsonObj.put("_id",getpId());
         jsonObj.put("pname",getName());
         jsonObj.put("ptype",getType());
         jsonObj.put("brand",getBrand());

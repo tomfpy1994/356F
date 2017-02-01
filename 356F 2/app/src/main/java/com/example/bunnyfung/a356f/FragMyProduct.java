@@ -4,6 +4,7 @@ import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Post;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -36,7 +37,7 @@ public class FragMyProduct extends Fragment {
     public FragMyProduct() {}
     public FragMyProduct(Account acc){this.acc = acc;}
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_frag_my_product, null);
 
@@ -81,15 +82,36 @@ public class FragMyProduct extends Fragment {
         MyProductAdapter adapter = new MyProductAdapter(getActivity(), R.layout.post_list_item, alPost);
         listView.setAdapter(adapter);
 
-
-
-        // function of click item in list view
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(),parent.getItemAtPosition(position)+ " is select",Toast.LENGTH_LONG).show();
+
+                try {
+                    Post clickedPost = alPost.get(position);
+                    String clickedPostStr = clickedPost.passToJsonObjectStr();
+
+                    //Testing Log
+                    System.out.println("MyProduct_Post:"+clickedPostStr);
+
+                    Intent intent = new Intent(getActivity(), ProductDetailPage.class);
+                    intent.putExtra("post", clickedPostStr);
+                    intent.putExtra("showType","edit");
+                    startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
+
+
+
+        // function of click item in list view
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(getContext(),parent.getItemAtPosition(position)+ " is select",Toast.LENGTH_LONG).show();
+//            }
+//        });
         return rootView;
     }
 

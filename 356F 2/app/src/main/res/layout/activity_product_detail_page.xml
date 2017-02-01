@@ -39,7 +39,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         app:srcCompat="@android:drawable/ic_menu_gallery"
-                        android:id="@+id/ivBigPhoto"
+                        android:id="@+id/ivPhoto1"
                         android:layout_weight="0.28"
                         android:layout_height="170dp" />
 
@@ -55,35 +55,26 @@
 
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="89dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="89dp"
+                    android:weightSum="2">
 
                     <ImageView
                         app:srcCompat="@android:drawable/ic_menu_gallery"
                         android:id="@+id/ivSPhoto1"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="right" />
 
                     <ImageView
-                        android:layout_width="90dp"
+                        android:layout_width="match_parent"
                         android:layout_height="90dp"
                         app:srcCompat="@android:drawable/ic_menu_gallery"
-                        android:id="@+id/ivSPhoto2"
-                        android:layout_weight="0.18" />
+                        android:id="@+id/ivPhoto3"
+                        android:layout_weight="1"
+                        android:layout_gravity="left" />
 
-                    <ImageView
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        app:srcCompat="@android:drawable/ic_menu_gallery"
-                        android:id="@+id/ivSPhoto3"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        app:srcCompat="@android:drawable/ic_menu_gallery"
-                        android:id="@+id/ivSPhoto4"
-                        android:layout_weight="1" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -145,7 +136,7 @@
                         android:text="ACBD12344"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView2"
+                        android:id="@+id/tvName"
                         android:layout_weight="1"
                         android:textColor="@android:color/background_dark" />
                 </LinearLayout>
@@ -210,7 +201,7 @@
                     <TextView
                         android:text="US 5"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tvSiez"
+                        android:id="@+id/tvSize"
                         android:textColor="@android:color/background_dark"
                         android:gravity="left"
                         android:layout_gravity="left"
@@ -234,7 +225,7 @@
                         android:text="fjaslkfjsdaklfjsdaklfjsdklfjsdklffjdsafjskalfjsalkfjsakfljsfskfjsakffksdkfsdjkfjewnfionasoivnwo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView18"
+                        android:id="@+id/tvDec"
                         android:layout_weight="1"
                         android:textColor="@android:color/background_dark" />
                 </LinearLayout>
@@ -243,7 +234,7 @@
                     android:text="Seller Details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView28"
+                    android:id="@+id/owner1"
                     android:layout_weight="0.28"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="14dp"
@@ -257,7 +248,8 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.28">
+                    android:layout_weight="0.28"
+                    android:id="@+id/owner2">
 
                     <ImageView
                         android:layout_width="140dp"
@@ -327,7 +319,7 @@
                     android:text="Make Offer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btnMakeOffer"
+                    android:id="@+id/btnSubmit"
                     android:layout_weight="0.28"
                     style="@style/Widget.AppCompat.Button.Colored" />
 

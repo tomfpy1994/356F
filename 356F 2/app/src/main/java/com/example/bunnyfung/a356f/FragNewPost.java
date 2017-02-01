@@ -84,9 +84,16 @@ public class FragNewPost extends Fragment {
         statu = (TextView) rootView.findViewById(R.id.tvStatu);
 
 
-
-
-
+        //get user input
+        sName = name.getText().toString();
+        sBand = brand.getText().toString();
+        sType = type.getText().toString();
+        sSize = size.getText().toString();
+        sPrice = price.getText().toString();
+        sDescription = description.getText().toString();
+        //convert to integer
+        sizeNum = Integer.valueOf(sSize);
+        priceNum = Integer.valueOf(sPrice);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,16 +126,7 @@ public class FragNewPost extends Fragment {
             public void onClick(View view) {
                 switch(view.getId()){
                     case R.id.btnPostSubmit:
-                        //get user input
-                        sName = name.getText().toString();
-                        sBand = brand.getText().toString();
-                        sType = type.getText().toString();
-                        sSize = size.getText().toString();
-                        sPrice = price.getText().toString();
-                        sDescription = description.getText().toString();
-                        //convert to integer
-                        sizeNum = Integer.valueOf(sSize);
-                        priceNum = Integer.valueOf(sPrice);
+
 
                         System.out.println(sName+" "+sBand+" "+sType+" "+sizeNum+" "+priceNum+" "+sDescription);
                         if(!sName.equals("")&&!sBand.equals("")&&!sType.equals("")&&!sSize.equals("")&&!sPrice.equals("")&&!sDescription.equals("")){

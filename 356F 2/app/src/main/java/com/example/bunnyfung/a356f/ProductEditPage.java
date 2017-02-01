@@ -50,6 +50,8 @@ public class ProductEditPage extends AppCompatActivity {
 
     //constructor
 
+    public ProductEditPage() {}
+
     public ProductEditPage(Post post){
         this.post = post;
         System.out.println("success get dat!! " + post.toString());

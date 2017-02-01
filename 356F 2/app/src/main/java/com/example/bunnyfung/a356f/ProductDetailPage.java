@@ -36,6 +36,7 @@ public class ProductDetailPage extends AppCompatActivity{
      */
     private GoogleApiClient client;
 
+    public ProductDetailPage() {}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,9 +88,13 @@ public class ProductDetailPage extends AppCompatActivity{
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProductDetailPage.this,ProfileEditPage.class);
-                intent.putExtra("post",post.passToJsonObjectStr());
-                startActivity(intent);
+                Intent intent1 = new Intent(getApplication(),ProductEditPage.class);
+                try {
+                    intent1.putExtra("post",post.passToJsonObjectStr());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                startActivity(intent1);
             }
         });
 

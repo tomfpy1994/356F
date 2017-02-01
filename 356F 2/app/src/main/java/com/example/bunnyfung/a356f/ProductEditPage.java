@@ -1,6 +1,11 @@
 package com.example.bunnyfung.a356f;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -17,33 +22,44 @@ import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Post;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class ProductEditPage extends AppCompatActivity {
     public Account acc;
     public Post post;
+    public JSONObject j;
     public ImageView photo;
     public TextView name, brand, type, size, price, description, statu;
     public int sizeNum, priceNum;
     public Button submit, cancel;
     public CheckBox halfSize;
+    public String stu ="";
+    public String sName, sBrand, sType, sSize, sPrice, sDescription;
+    public static final int SELECTED_PICTURE = 1;
     FragmentTransaction fragTransaction;
     Fragment frag;
-    public String stu ="";
-    public String sName, sBand, sType, sSize,sPrice, sDescription;
-    public static final int SELECTED_PICTURE = 1;
-    View rootView;
     public String userID;
     private GoogleApiClient client;
 
     //constructor
-    public ProductEditPage(Account acc,Post post){
-        this.acc=acc;
-        this.post=post;
-    }
 
+    public ProductEditPage(Post post){
+        this.post = post;
+        System.out.println("success get dat!! " + post.toString());
+    }
+    public ProductEditPage(JSONObject j){ this.j = j; }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_edit_page);
+
         // initialized the item in layout
         photo = (ImageView) findViewById(R.id.ivBigPhoto);
         name = (TextView) findViewById(R.id.edtName);
@@ -58,21 +74,21 @@ public class ProductEditPage extends AppCompatActivity {
         statu = (TextView) findViewById(R.id.tvStatu);
 
 
-        //get user input
-        sName = name.getText().toString();
-        sBand = brand.getText().toString();
-        sType = type.getText().toString();
-        sSize = size.getText().toString();
-        sPrice = price.getText().toString();
-        sDescription = description.getText().toString();
-        //convert to integer
-        sizeNum = Integer.valueOf(sSize);
-        priceNum = Integer.valueOf(sPrice);
+        /*
+        //set Post data to items
+        name.setText(post.getName());
+        brand.setText(post.getBrand());
+        type.setText(post.getType());
+        size.setText(post.getSize()+"");
+        price.setText(post.getPrice()+"");
+        description.setText(post.getDescription());
+        photo.setImageBitmap(post.getPhoto());
+        */
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                finish();;
             }
         });
 
@@ -97,5 +113,151 @@ public class ProductEditPage extends AppCompatActivity {
             }
 
         });
+
+        submit.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.btnPostSubmit:
+                        //get user input
+                        sName = name.getText().toString();
+                        sBrand = brand.getText().toString();
+                        sType = type.getText().toString();
+                        sSize = size.getText().toString();
+                        sPrice = price.getText().toString();
+                        sDescription = description.getText().toString();
+                        //convert to integer
+                        sizeNum = Integer.valueOf(sSize);
+                        priceNum = Integer.valueOf(sPrice);
+
+                        System.out.println(sName+" "+sBrand+" "+sType+" "+sizeNum+" "+priceNum+" "+sDescription);
+                        if(!sName.equals("")&&!sBrand.equals("")&&!sType.equals("")&&!sSize.equals("")&&!sPrice.equals("")&&!sDescription.equals("")){
+                            Bitmap photo = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
+                            post = new Post(sName, sBrand, sType, sizeNum, priceNum, sDescription, userID, photo);
+                            //
+                            System.out.println(post.toString());
+                            JSONObject jsonObj = null;
+                            try {
+                                jsonObj = new JSONObject(post.passToJsonObjectStr());
+                                System.out.println("jsonOb value: "+jsonObj);
+                                doModifyPost(jsonObj);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            while (stu == "") {
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+
+                                }
+                            }
+                            switch (stu) {
+                                case "add success":
+                                    statu.setText("modify post Success! ");
+                                    statu.setTextColor(Color.BLUE);
+                                    submit.setVisibility(View.VISIBLE);
+                                    stu = "";
+                                    break;
+                                case "500":
+                                    statu.setText("modify post fail! ");
+                                    statu.setTextColor(Color.RED);
+                                    submit.setVisibility(View.VISIBLE);
+                                    stu = "";
+                                    break;
+
+                            }
+
+                        }else{
+                            statu.setText("Add Post fail! You must fill all the bland");
+                            statu.setTextColor(Color.RED);
+                        }
+                        break;
+
+                }
+
+            }
+        });
+    }
+
+    public void doModifyPost(final JSONObject j){
+        Thread thread = new Thread() {
+            public void run() {
+                StringBuilder sb = new StringBuilder();
+                HttpURLConnection connection = null;
+
+                try {
+                    URL url = new URL("http://s356fproject.mybluemix.net/api/updateproduct");
+                    connection = (HttpURLConnection) url.openConnection();
+                    connection.setDoOutput(true);
+                    connection.setDoInput(true);
+                    connection.setRequestMethod("POST");
+                    connection.setUseCaches(false);
+                    connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                    connection.setConnectTimeout(10000);
+                    connection.setReadTimeout(10000);
+
+
+                    //Testing Log
+                    System.out.println("URL:" + url.toString());
+                    String strJsonobj = j.toString();
+                    System.out.println("doModifyPost Method jsonObj: " + strJsonobj);
+
+                    OutputStream os = connection.getOutputStream();
+                    os.write(j.toString().getBytes("UTF-8"));
+                    os.close();
+
+                    int HttpResult = connection.getResponseCode();
+                    System.out.println("resopnseCode: " + HttpResult);
+
+                    if (HttpResult == 200) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader(
+                                connection.getInputStream()));
+                        String line = null;
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line + "\n");
+                        }
+                        br.close();
+                        System.out.println("" + sb.toString());
+
+                        JSONObject resultObject = new JSONObject(sb.toString());
+                        stu = resultObject.getString("status");
+                        System.out.println("responesStatud: "+stu);
+
+                    } else if (HttpResult == 500) {
+                        stu = "500";
+                    }
+
+                    connection.disconnect();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case SELECTED_PICTURE:
+                if (resultCode == RESULT_OK) {
+                    Uri uri = data.getData();
+                    String[] projection = {MediaStore.Images.Media.DATA};
+
+                    Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+                    cursor.moveToFirst();
+
+                    int columnIndex = cursor.getColumnIndex(projection[0]);
+                    String filePath = cursor.getString(columnIndex);
+                    cursor.close();
+
+                    Bitmap selectedImag = BitmapFactory.decodeFile(filePath);
+                    photo.setImageBitmap(selectedImag);
+                    post.setPhoto(selectedImag);
+                }
+        }
     }
 }

@@ -60,8 +60,14 @@ public class Post {
     public Bitmap getPhoto(){ return photo;}
     public String getState(){ return state;}
 
+    //set method
+    public void setPhoto(Bitmap photo){this.photo = photo;}
+
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
+        if (userID!=null){
+            jsonObj.put("_id",getUserID());
+        }
         jsonObj.put("_id",getpId());
         jsonObj.put("pname",getName());
         jsonObj.put("ptype",getType());

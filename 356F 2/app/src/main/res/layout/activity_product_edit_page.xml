@@ -204,24 +204,6 @@
             android:layout_marginTop="160dp"
             android:layout_marginLeft="226dp" />
 
-        <Button
-            android:text="Submit"
-            android:textSize="13sp"
-            android:id="@+id/btnPostSubmit"
-            android:layout_below="@+id/tfDescription"
-            android:layout_alignEnd="@+id/cbSize"
-            android:layout_width="100dp"
-            android:layout_height="40dp" />
-
-        <Button
-            android:text="Cancel"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:textSize="13sp"
-            android:id="@+id/btnPostCancel"
-            android:layout_below="@+id/tfDescription"
-            android:layout_alignEnd="@+id/tfDescription" />
-
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -243,9 +225,26 @@
             android:id="@+id/tvStatu"
             android:layout_below="@+id/btnPostSubmit"
             android:layout_alignParentStart="true"
-            android:text="test"
             android:textAlignment="center"
             android:fontFamily="sans-serif" />
+
+        <Button
+            android:text="Submit"
+            android:textSize="13sp"
+            android:id="@+id/btnPostSubmit"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/tfDescription"
+            android:layout_alignStart="@+id/tfDescription" />
+
+        <Button
+            android:text="Cancel"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:textSize="13sp"
+            android:id="@+id/btnPostCancel"
+            android:layout_below="@+id/tfDescription"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
 

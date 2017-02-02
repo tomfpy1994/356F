@@ -179,6 +179,15 @@ public class ProductEditPage extends AppCompatActivity {
                                     statu.setTextColor(Color.BLUE);
                                     submit.setVisibility(View.VISIBLE);
                                     stu = "";
+
+                                    Intent intent = new Intent();
+                                    try {
+                                        intent.putExtra("post",post.passToJsonObjectStr());
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    setResult(RESULT_OK, intent);
+                                    finish();
                                     break;
                                 case "500":
                                     statu.setText("modify post fail! ");

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Post;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -86,19 +87,6 @@ public class ProductDetailPage extends AppCompatActivity{
         tvDec.setText(post.getDescription());
         tvTitle.setText(post.getBrand()+" "+post.getName()+" US"+post.getSize());
 
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent1 = new Intent(getApplication(),ProductEditPage.class);
-                try {
-                    intent1.putExtra("post",post.passToJsonObjectStr());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                startActivity(intent1);
-            }
-        });
-
         if (showType.equals("edit")) {
             owner1.setVisibility(View.GONE);
             owner2.setVisibility(LinearLayout.GONE);
@@ -108,6 +96,24 @@ public class ProductDetailPage extends AppCompatActivity{
             owner2.setVisibility(View.VISIBLE);
             btnSubmit.setText("Make Offer");
         }
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (showType.equals("edit")) {
+                    Intent intent1 = new Intent(getApplication(), ProductEditPage.class);
+                    try {
+                        intent1.putExtra("post", post.passToJsonObjectStr());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    startActivityForResult(intent1,1);
+                }else if (showType.equals("show")){
+
+                }
+            }
+        });
+
 
 
 
@@ -150,6 +156,34 @@ public class ProductDetailPage extends AppCompatActivity{
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+                String str=data.getStringExtra("post");
+                System.out.println("ActivityResult post:"+str);
+                JSONObject jsonObject = null;
+
+                try {
+                    jsonObject = new JSONObject(str);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                post = new Post(jsonObject);
+            }
+            ivPhoto1.setImageBitmap(post.getPhoto());
+            tvPrice.setText(doller + post.getPrice());
+            tvName.setText(post.getName());
+            tvBrand.setText(post.getBrand());
+            tvType.setText(post.getType());
+            tvSize.setText(sizeUnit + post.getSize());
+            tvDec.setText(post.getDescription());
+            tvTitle.setText(post.getBrand()+" "+post.getName()+" US"+post.getSize());
+
+        }
     }
 
 

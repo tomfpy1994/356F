@@ -62,12 +62,18 @@ public class Post {
 
     //set method
     public void setPhoto(Bitmap photo){this.photo = photo;}
+    public void setName(String name){this.name = name; }
+    public void setBrand(String brand){ this.brand = brand;}
+    public void setType(String type){ this.type = type;}
+    public void setSize(int size){ this.size = size;}
+    public void setPrice(int price){ this.price = price;}
+    public void setDescription(String description){ this.description = description;}
+    public void setOwner(String owner){ this.owner = owner;}
+    public void setState(String state){ this.state = state;}
 
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
-        if (productID!=null){
-            jsonObj.put("_id",getProductID());
-        }
+        jsonObj.put("_id",getProductID());
         jsonObj.put("pname",getName());
         jsonObj.put("ptype",getType());
         jsonObj.put("brand",getBrand());
@@ -82,7 +88,7 @@ public class Post {
 
     // to string
     public String toString(){
-        return "product detail and information: "+getName()+","+getType()+","+getBrand()+
+        return "product detail and information: "+getProductID()+","+getName()+","+getType()+","+getBrand()+
                 ","+getSize()+","+getPrice()+","+getOwner()+","+getDescription();
     }
 

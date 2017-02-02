@@ -141,10 +141,18 @@ public class ProductEditPage extends AppCompatActivity {
                         sizeNum = Integer.valueOf(sSize);
                         priceNum = Integer.valueOf(sPrice);
 
+                        // modify post data
+                        post.setName(sName);
+                        post.setBrand(sBrand);
+                        post.setType(sType);
+                        post.setSize(sizeNum);
+                        post.setPrice(priceNum);
+                        post.setDescription(sDescription);
+
                         System.out.println(sName+" "+sBrand+" "+sType+" "+sizeNum+" "+priceNum+" "+sDescription);
                         if(!sName.equals("")&&!sBrand.equals("")&&!sType.equals("")&&!sSize.equals("")&&!sPrice.equals("")){
                             Bitmap photo = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
-                            post = new Post(sName, sBrand, sType, sizeNum, priceNum, sDescription, post.getOwner(), photo);
+                            //post = new Post(sName, sBrand, sType, sizeNum, priceNum, sDescription, post.getOwner(), photo);
                             //
                             System.out.println(post.toString());
                             JSONObject jsonObj = null;

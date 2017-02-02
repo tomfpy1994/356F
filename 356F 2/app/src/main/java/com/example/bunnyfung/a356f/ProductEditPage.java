@@ -38,7 +38,7 @@ public class ProductEditPage extends AppCompatActivity {
     public ImageView photo;
     public TextView name, brand, type, size, price, description, statu;
     public int sizeNum, priceNum;
-    public Button submit, cancel;
+    public Button submit, cancel, delete;
     public CheckBox halfSize;
     public String stu ="";
     public String sName, sBrand, sType, sSize, sPrice, sDescription;
@@ -84,6 +84,7 @@ public class ProductEditPage extends AppCompatActivity {
         cancel = (Button) findViewById(R.id.btnPostCancel);
         halfSize = (CheckBox) findViewById(R.id.cbSize);
         statu = (TextView) findViewById(R.id.tvStatu);
+        delete = (Button) findViewById(R.id.btnDeletePost);
 
         name.setText(post.getName());
         brand.setText(post.getBrand());
@@ -150,7 +151,7 @@ public class ProductEditPage extends AppCompatActivity {
                         post.setDescription(sDescription);
 
                         System.out.println(sName+" "+sBrand+" "+sType+" "+sizeNum+" "+priceNum+" "+sDescription);
-                        if(!sName.equals("")&&!sBrand.equals("")&&!sType.equals("")&&!sSize.equals("")&&!sPrice.equals("")){
+                        if(!sName.equals("")&&!sBrand.equals("")&&!sType.equals("")&&!sSize.equals("")&&!sPrice.equals("")&&!sDescription.equals("")){
                             Bitmap photo = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
                             //post = new Post(sName, sBrand, sType, sizeNum, priceNum, sDescription, post.getOwner(), photo);
                             //
@@ -158,7 +159,7 @@ public class ProductEditPage extends AppCompatActivity {
                             JSONObject jsonObj = null;
                             try {
                                 jsonObj = new JSONObject(post.passToJsonObjectStr());
-                                System.out.println("pass to do method"+post.toString());
+                                System.out.println("pass to do method"+jsonObj);
                                 doModifyPost(jsonObj);
                                 System.out.println("doModifyPost was done!");
                             } catch (JSONException e) {
@@ -179,15 +180,6 @@ public class ProductEditPage extends AppCompatActivity {
                                     statu.setTextColor(Color.BLUE);
                                     submit.setVisibility(View.VISIBLE);
                                     stu = "";
-
-                                    Intent intent = new Intent();
-                                    try {
-                                        intent.putExtra("post",post.passToJsonObjectStr());
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                    setResult(RESULT_OK, intent);
-                                    finish();
                                     break;
                                 case "500":
                                     statu.setText("modify post fail! ");
@@ -195,11 +187,50 @@ public class ProductEditPage extends AppCompatActivity {
                                     submit.setVisibility(View.VISIBLE);
                                     stu = "";
                                     break;
+
                             }
+
                         }else{
                             statu.setText("Add Post fail! You must fill all the bland");
                             statu.setTextColor(Color.RED);
                         }
+                        break;
+
+                }
+
+            }
+        });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                post.setState("3");
+                try{
+                    JSONObject j = new JSONObject(post.passToJsonObjectStr());
+                    deletePost(j);
+                }catch(JSONException e){
+                    e.printStackTrace();
+                }
+
+                while (stu == "") {
+                    try {
+                        System.out.println("The program will sleep!!");
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+
+                    }
+                }
+                switch (stu) {
+                    case "update success":
+                        statu.setText("delete post Success! ");
+                        statu.setTextColor(Color.BLUE);
+                        submit.setVisibility(View.VISIBLE);
+                        stu = "";
+                        break;
+                    case "500":
+                        statu.setText("delete post fail! ");
+                        statu.setTextColor(Color.RED);
+                        submit.setVisibility(View.VISIBLE);
+                        stu = "";
                         break;
 
                 }
@@ -230,6 +261,64 @@ public class ProductEditPage extends AppCompatActivity {
                     System.out.println("URL:" + url.toString());
                     String strJsonobj = j.toString();
                     System.out.println("doModifyPost Method jsonObj: " + strJsonobj);
+
+                    OutputStream os = connection.getOutputStream();
+                    os.write(j.toString().getBytes("UTF-8"));
+                    os.close();
+
+                    int HttpResult = connection.getResponseCode();
+                    System.out.println("resopnseCode: " + HttpResult);
+
+                    if (HttpResult == 200) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader(
+                                connection.getInputStream()));
+                        String line = null;
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line + "\n");
+                        }
+                        br.close();
+                        System.out.println("" + sb.toString());
+
+                        JSONObject resultObject = new JSONObject(sb.toString());
+                        stu = resultObject.getString("status");
+                        System.out.println("responesStatud: "+stu);
+
+                    } else if (HttpResult == 500) {
+                        stu = "500";
+                    }
+
+                    connection.disconnect();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
+    }
+
+    public void deletePost(final JSONObject j){
+        Thread thread = new Thread() {
+            public void run() {
+                StringBuilder sb = new StringBuilder();
+                HttpURLConnection connection = null;
+
+                try {
+                    URL url = new URL("http://s356fproject.mybluemix.net/api/updateproduct");
+                    connection = (HttpURLConnection) url.openConnection();
+                    connection.setDoOutput(true);
+                    connection.setDoInput(true);
+                    connection.setRequestMethod("POST");
+                    connection.setUseCaches(false);
+                    connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                    connection.setConnectTimeout(10000);
+                    connection.setReadTimeout(10000);
+
+
+                    //Testing Log
+                    System.out.println("URL:" + url.toString());
+                    String strJsonobj = j.toString();
+                    System.out.println("deletePost Method jsonObj: " + strJsonobj);
 
                     OutputStream os = connection.getOutputStream();
                     os.write(j.toString().getBytes("UTF-8"));

@@ -245,6 +245,14 @@
             android:id="@+id/btnPostCancel"
             android:layout_below="@+id/tfDescription"
             android:layout_alignParentEnd="true" />
+
+        <Button
+            android:text="delete post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnDeletePost"
+            android:layout_below="@+id/tvStatu"
+            android:layout_marginTop="11dp" />
     </RelativeLayout>
 
 

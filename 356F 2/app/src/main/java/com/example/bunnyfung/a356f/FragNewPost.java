@@ -138,7 +138,7 @@ public class FragNewPost extends Fragment {
                             //Bitphoto = BitmapFactory.decodeResource(getResources(), R.id.ivBigPhoto);
                             Bitphoto = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
                             post = new Post(sName, sBand, sType, sizeNum, priceNum, sDescription, owner, Bitphoto);
-
+                            post.setState("1");
                             //Testing Log
                             System.out.println(post.toString());
                             JSONObject jsonObj = null;

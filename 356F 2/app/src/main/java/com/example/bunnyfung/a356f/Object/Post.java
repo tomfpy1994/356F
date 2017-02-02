@@ -95,7 +95,7 @@ public class Post {
                 ","+getSize()+","+getPrice()+","+getOwner()+","+getDescription();
     }
 
-    public static String bitmapToBase64(Bitmap bitmap) {
+    private String bitmapToBase64(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream .toByteArray();
@@ -103,7 +103,7 @@ public class Post {
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
 
-    public Bitmap base64ToBitmap(String iconStr){
+    private Bitmap base64ToBitmap(String iconStr){
         InputStream stream = new ByteArrayInputStream(Base64.decode(iconStr.getBytes(), Base64.DEFAULT));
         Bitmap bitmap = BitmapFactory.decodeStream(stream);
 

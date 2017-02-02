@@ -13,6 +13,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -104,7 +105,6 @@ public class FragNewPost extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, SELECTED_PICTURE);
-                Bitphoto = BitmapFactory.decodeResource(getResources(), R.id.ivBigPhoto);
             }
         });
 
@@ -136,9 +136,9 @@ public class FragNewPost extends Fragment {
                         System.out.println(sName+" "+sBand+" "+sType+" "+sizeNum+" "+priceNum+" "+sDescription);
                         if(!sName.equals("")&&!sBand.equals("")&&!sType.equals("")&&!sSize.equals("")&&!sPrice.equals("")&&!sDescription.equals("")){
                             //Bitphoto = BitmapFactory.decodeResource(getResources(), R.id.ivBigPhoto);
-                            Bitphoto = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
                             post = new Post(sName, sBand, sType, sizeNum, priceNum, sDescription, owner, Bitphoto);
                             post.setState("1");
+
                             //Testing Log
                             System.out.println(post.toString());
                             JSONObject jsonObj = null;
@@ -262,6 +262,7 @@ public class FragNewPost extends Fragment {
 
                     Bitmap selectedImag = BitmapFactory.decodeFile(filePath);
                     photo.setImageBitmap(selectedImag);
+                    Bitphoto = selectedImag;
                     //post.setPhoto(selectedImag);
                 }
         }

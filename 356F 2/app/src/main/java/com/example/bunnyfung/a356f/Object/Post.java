@@ -32,6 +32,7 @@ public class Post {
             this.owner = jsonObject.getString("owner");
             this.state = jsonObject.getString("state");
             this.photo = base64ToBitmap(jsonObject.getString("photo1data"));
+            this.description = jsonObject.getString("description");
         }catch (JSONException j){
             j.printStackTrace();
         }
@@ -60,6 +61,7 @@ public class Post {
     public String getState(){ return state;}
     public String getProductID(){ return productID; }
 
+
     //set method
     public void setPhoto(Bitmap photo){this.photo = photo;}
     public void setName(String name){this.name = name; }
@@ -82,6 +84,7 @@ public class Post {
         jsonObj.put("photo1data",bitmapToBase64(photo));
         jsonObj.put("owner", getOwner());
         jsonObj.put("state", getState());
+        jsonObj.put("description",getDescription());
 
         return jsonObj.toString();
     }

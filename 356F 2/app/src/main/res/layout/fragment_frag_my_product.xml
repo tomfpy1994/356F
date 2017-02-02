@@ -6,8 +6,26 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ListView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/myPostList" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="My Product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView15"
+            android:textStyle="normal|bold"
+            android:textAllCaps="true"
+            android:textAlignment="center"
+            android:layout_marginBottom="5dp"
+            android:textSize="28sp" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="476dp"
+            android:id="@+id/myPostList" />
+    </LinearLayout>
+
 </FrameLayout>

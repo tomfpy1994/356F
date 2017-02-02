@@ -202,17 +202,6 @@
             android:layout_toEndOf="@+id/tvType"
             android:hint="Product Type" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:id="@+id/tvStatu"
-            android:layout_below="@+id/btnPostSubmit"
-            android:layout_alignParentStart="true"
-            android:text="test"
-            android:textAlignment="center"
-            android:fontFamily="sans-serif" />
-
         <ImageView
             android:layout_height="55dp"
             android:layout_width="55dp"
@@ -237,6 +226,16 @@
             android:layout_alignBottom="@+id/tvBrand"
             android:layout_toEndOf="@+id/tvBrand"
             android:hint="Product Brand" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvStatu"
+            android:text="test"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
     </RelativeLayout>
 
 

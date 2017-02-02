@@ -85,7 +85,7 @@ public class SecurityCodePage extends AppCompatActivity {
                 }
                 if (!((edtNewPw.getText()).toString()).equals((edtCNewPw.getText()).toString())){
                     setCode = false;
-                    edtCNewPw.setError("Security Code Not mathch!");
+                    edtCNewPw.setError("Security Code Not match!");
                     focusView = edtCNewPw;
                 }
 

@@ -165,51 +165,15 @@
 
         <ImageView
             app:srcCompat="@android:drawable/ic_menu_report_image"
-            android:id="@+id/ivPhoto2"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="160dp"
-            android:layout_marginLeft="108dp" />
-
-        <ImageView
-            app:srcCompat="@android:drawable/ic_menu_report_image"
-            android:id="@+id/ivPhoto3"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="160dp"
-            android:layout_marginLeft="146dp" />
-
-        <ImageView
-            android:layout_height="55dp"
-            android:layout_width="55dp"
-            app:srcCompat="@android:drawable/ic_menu_report_image"
-            android:id="@+id/ivPhoto1"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="160dp"
-            android:layout_marginLeft="70dp" />
-
-        <ImageView
-            app:srcCompat="@android:drawable/ic_menu_report_image"
             android:id="@+id/ivBigPhoto"
             android:layout_alignParentTop="true"
             android:layout_width="165dp"
             android:layout_height="165dp"
             android:layout_marginLeft="100dp" />
 
-        <ImageButton
-            app:srcCompat="@android:drawable/ic_input_add"
-            android:id="@+id/ibAddPhoto"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="160dp"
-            android:layout_marginLeft="226dp" />
-
         <ImageView
             app:srcCompat="@android:drawable/ic_menu_report_image"
-            android:id="@+id/ivPhoto4"
+            android:id="@+id/ivPhoto2"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_alignParentLeft="true"
@@ -258,6 +222,15 @@
             android:text="test"
             android:textAlignment="center"
             android:fontFamily="sans-serif" />
+
+        <ImageView
+            android:layout_height="55dp"
+            android:layout_width="55dp"
+            app:srcCompat="@android:drawable/ic_menu_report_image"
+            android:id="@+id/ivPhoto1"
+            android:layout_marginLeft="70dp"
+            android:layout_above="@+id/edtName"
+            android:layout_toStartOf="@+id/btnPostSubmit" />
     </RelativeLayout>
 
 

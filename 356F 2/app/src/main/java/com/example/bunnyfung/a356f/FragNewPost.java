@@ -93,11 +93,9 @@ public class FragNewPost extends Fragment {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 frag = new FragHome();
                 fragTransaction = getFragmentManager().beginTransaction().replace(R.id.container, frag);
                 fragTransaction.commit();
-
             }
         });
 
@@ -140,7 +138,8 @@ public class FragNewPost extends Fragment {
                             //Bitphoto = BitmapFactory.decodeResource(getResources(), R.id.ivBigPhoto);
                             Bitphoto = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
                             post = new Post(sName, sBand, sType, sizeNum, priceNum, sDescription, owner, Bitphoto);
-                            //
+
+                            //Testing Log
                             System.out.println(post.toString());
                             JSONObject jsonObj = null;
                             try {
@@ -171,7 +170,6 @@ public class FragNewPost extends Fragment {
                                     submit.setVisibility(View.VISIBLE);
                                     stu = "";
                                     break;
-
                             }
 
                         }else{

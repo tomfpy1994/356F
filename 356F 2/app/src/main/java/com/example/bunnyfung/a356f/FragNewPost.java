@@ -44,19 +44,21 @@ public class FragNewPost extends Fragment {
     public int sizeNum, priceNum;
     public Button submit, cancel;
     public CheckBox halfSize;
+    public Bitmap Bitphoto;
     FragmentTransaction fragTransaction;
     Fragment frag;
     public String stu ="";
     public String sName, sBand, sType, sSize,sPrice, sDescription;
     public static final int SELECTED_PICTURE = 1;
     View rootView;
-    public String userID;
+    public String owner,userid;
     private GoogleApiClient client;
 
     // constructor
     public FragNewPost(Account acc){
         this.acc=acc;
-        userID = acc.getId();
+        owner = acc.getUserid();
+        userid = acc.getId();
     }
 
     @Override
@@ -86,23 +88,16 @@ public class FragNewPost extends Fragment {
         statu = (TextView) rootView.findViewById(R.id.tvStatu);
 
 
-        //get user input
-        sName = name.getText().toString();
-        sBand = brand.getText().toString();
-        sType = type.getText().toString();
-        sSize = size.getText().toString();
-        sPrice = price.getText().toString();
-        sDescription = description.getText().toString();
-        //convert to integer
-        sizeNum = Integer.valueOf(sSize);
-        priceNum = Integer.valueOf(sPrice);
+
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 frag = new FragHome();
                 fragTransaction = getFragmentManager().beginTransaction().replace(R.id.container, frag);
                 fragTransaction.commit();
+
             }
         });
 
@@ -111,6 +106,7 @@ public class FragNewPost extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, SELECTED_PICTURE);
+                Bitphoto = BitmapFactory.decodeResource(getResources(), R.id.ivBigPhoto);
             }
         });
 
@@ -128,12 +124,22 @@ public class FragNewPost extends Fragment {
             public void onClick(View view) {
                 switch(view.getId()){
                     case R.id.btnPostSubmit:
-
+                        //get user input
+                        sName = name.getText().toString();
+                        sBand = brand.getText().toString();
+                        sType = type.getText().toString();
+                        sSize = size.getText().toString();
+                        sPrice = price.getText().toString();
+                        sDescription = description.getText().toString();
+                        //convert to integer
+                        sizeNum = Integer.valueOf(sSize);
+                        priceNum = Integer.valueOf(sPrice);
 
                         System.out.println(sName+" "+sBand+" "+sType+" "+sizeNum+" "+priceNum+" "+sDescription);
                         if(!sName.equals("")&&!sBand.equals("")&&!sType.equals("")&&!sSize.equals("")&&!sPrice.equals("")&&!sDescription.equals("")){
-                            Bitmap photo = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
-                            post = new Post(sName, sBand, sType, sizeNum, priceNum, sDescription, userID, photo);
+                            //Bitphoto = BitmapFactory.decodeResource(getResources(), R.id.ivBigPhoto);
+                            Bitphoto = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
+                            post = new Post(sName, sBand, sType, sizeNum, priceNum, sDescription, owner, Bitphoto,userid);
                             //
                             System.out.println(post.toString());
                             JSONObject jsonObj = null;
@@ -245,7 +251,7 @@ public class FragNewPost extends Fragment {
 
         switch (requestCode) {
             case SELECTED_PICTURE:
-                if (resultCode == getActivity().RESULT_OK) {
+                if (resultCode == Activity.RESULT_OK) {
                     Uri uri = data.getData();
                     String[] projection = {MediaStore.Images.Media.DATA};
 
@@ -258,7 +264,7 @@ public class FragNewPost extends Fragment {
 
                     Bitmap selectedImag = BitmapFactory.decodeFile(filePath);
                     photo.setImageBitmap(selectedImag);
-                    post.setPhoto(selectedImag);
+                    //post.setPhoto(selectedImag);
                 }
         }
     }

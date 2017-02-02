@@ -45,7 +45,7 @@ public class ProductEditPage extends AppCompatActivity {
     public static final int SELECTED_PICTURE = 1;
     FragmentTransaction fragTransaction;
     Fragment frag;
-    public String userID;
+    public String owner,userID;
     private GoogleApiClient client;
 
     //constructor
@@ -98,7 +98,7 @@ public class ProductEditPage extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();;
+                finish();
             }
         });
 
@@ -136,7 +136,7 @@ public class ProductEditPage extends AppCompatActivity {
                         sSize = size.getText().toString();
                         sPrice = price.getText().toString();
                         sDescription = description.getText().toString();
-                        userID = post.getUserID();
+
                         //convert to integer
                         sizeNum = Integer.valueOf(sSize);
                         priceNum = Integer.valueOf(sPrice);
@@ -144,7 +144,7 @@ public class ProductEditPage extends AppCompatActivity {
                         System.out.println(sName+" "+sBrand+" "+sType+" "+sizeNum+" "+priceNum+" "+sDescription);
                         if(!sName.equals("")&&!sBrand.equals("")&&!sType.equals("")&&!sSize.equals("")&&!sPrice.equals("")&&!sDescription.equals("")){
                             Bitmap photo = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
-                            post = new Post(sName, sBrand, sType, sizeNum, priceNum, sDescription, userID, photo);
+                            post = new Post(sName, sBrand, sType, sizeNum, priceNum, sDescription, post.getOwner(), photo, post.getpId());
                             //
                             System.out.println(post.toString());
                             JSONObject jsonObj = null;
@@ -158,6 +158,7 @@ public class ProductEditPage extends AppCompatActivity {
 
                             while (stu == "") {
                                 try {
+                                    System.out.println("The program will sleep!!");
                                     Thread.sleep(1000);
                                 } catch (InterruptedException e) {
 

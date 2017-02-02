@@ -16,14 +16,14 @@ import java.io.InputStream;
  */
 
 public class Post {
-    private String userID, owner, name, brand, type, description, state;
+    private String productID, owner, name, brand, type, description, state;
     private int size, price;
     private Bitmap photo;
 
     //constructor
     public Post(JSONObject jsonObject){
         try{
-            this.userID = jsonObject.getString("_id");
+            this.productID = jsonObject.getString("_id");
             this.name = jsonObject.getString("pname");
             this.type = jsonObject.getString("ptype");
             this.brand = jsonObject.getString("brand");
@@ -37,7 +37,7 @@ public class Post {
         }
     }
     //constructor 2
-    public Post(String name,String brand,String type,int size,int price,String description,String owner, Bitmap photo, String userID){
+    public Post(String name,String brand,String type,int size,int price,String description,String owner, Bitmap photo){
         this.name = name;
         this.brand = brand;
         this.type = type;
@@ -45,7 +45,6 @@ public class Post {
         this.price = price;
         this.description = description;
         this.owner = owner;
-        this.userID = userID;
         this.photo = photo;
         this.state = "";
     }
@@ -57,16 +56,18 @@ public class Post {
     public int getPrice(){ return price; }
     public String getDescription(){ return description; }
     public String getOwner(){ return owner; }
-    public String getpId(){return userID;}
     public Bitmap getPhoto(){ return photo;}
     public String getState(){ return state;}
+    public String getProductID(){ return productID; }
 
     //set method
     public void setPhoto(Bitmap photo){this.photo = photo;}
 
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
-        jsonObj.put("_id",getpId());
+        if (productID!=null){
+            jsonObj.put("_id",getProductID());
+        }
         jsonObj.put("pname",getName());
         jsonObj.put("ptype",getType());
         jsonObj.put("brand",getBrand());
@@ -81,7 +82,7 @@ public class Post {
 
     // to string
     public String toString(){
-        return "product detail and information: "+getpId()+","+getName()+","+getType()+","+getBrand()+
+        return "product detail and information: "+getName()+","+getType()+","+getBrand()+
                 ","+getSize()+","+getPrice()+","+getOwner()+","+getDescription();
     }
 

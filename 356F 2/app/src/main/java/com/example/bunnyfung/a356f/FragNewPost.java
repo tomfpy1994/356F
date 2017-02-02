@@ -57,8 +57,8 @@ public class FragNewPost extends Fragment {
     // constructor
     public FragNewPost(Account acc){
         this.acc=acc;
-        owner = acc.getUserid();
-        userid = acc.getId();
+        owner = acc.getId();
+
     }
 
     @Override
@@ -139,7 +139,7 @@ public class FragNewPost extends Fragment {
                         if(!sName.equals("")&&!sBand.equals("")&&!sType.equals("")&&!sSize.equals("")&&!sPrice.equals("")&&!sDescription.equals("")){
                             //Bitphoto = BitmapFactory.decodeResource(getResources(), R.id.ivBigPhoto);
                             Bitphoto = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
-                            post = new Post(sName, sBand, sType, sizeNum, priceNum, sDescription, owner, Bitphoto,userid);
+                            post = new Post(sName, sBand, sType, sizeNum, priceNum, sDescription, owner, Bitphoto);
                             //
                             System.out.println(post.toString());
                             JSONObject jsonObj = null;

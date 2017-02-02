@@ -144,7 +144,7 @@ public class ProductEditPage extends AppCompatActivity {
                         System.out.println(sName+" "+sBrand+" "+sType+" "+sizeNum+" "+priceNum+" "+sDescription);
                         if(!sName.equals("")&&!sBrand.equals("")&&!sType.equals("")&&!sSize.equals("")&&!sPrice.equals("")&&!sDescription.equals("")){
                             Bitmap photo = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
-                            post = new Post(sName, sBrand, sType, sizeNum, priceNum, sDescription, post.getOwner(), photo, post.getpId());
+                            post = new Post(sName, sBrand, sType, sizeNum, priceNum, sDescription, post.getOwner(), photo);
                             //
                             System.out.println(post.toString());
                             JSONObject jsonObj = null;
@@ -152,6 +152,7 @@ public class ProductEditPage extends AppCompatActivity {
                                 jsonObj = new JSONObject(post.passToJsonObjectStr());
                                 System.out.println("pass to do method"+jsonObj);
                                 doModifyPost(jsonObj);
+                                System.out.println("doModifyPost was done!");
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -165,7 +166,7 @@ public class ProductEditPage extends AppCompatActivity {
                                 }
                             }
                             switch (stu) {
-                                case "add success":
+                                case "update success":
                                     statu.setText("modify post Success! ");
                                     statu.setTextColor(Color.BLUE);
                                     submit.setVisibility(View.VISIBLE);

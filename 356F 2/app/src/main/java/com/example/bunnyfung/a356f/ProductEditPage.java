@@ -11,7 +11,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -39,7 +38,7 @@ public class ProductEditPage extends AppCompatActivity {
     public ImageView photo;
     public TextView name, brand, type, size, price, description, statu;
     public int sizeNum, priceNum;
-    public Button submit, cancel, delete;
+    public Button submit, cancel;
     public CheckBox halfSize;
     public String stu ="";
     public String sName, sBrand, sType, sSize, sPrice, sDescription;
@@ -83,7 +82,6 @@ public class ProductEditPage extends AppCompatActivity {
         description = (TextView) findViewById(R.id.tfDescription);
         submit = (Button) findViewById(R.id.btnPostSubmit);
         cancel = (Button) findViewById(R.id.btnPostCancel);
-        delete = (Button) findViewById(R.id.btnPostDelete);
         halfSize = (CheckBox) findViewById(R.id.cbSize);
         statu = (TextView) findViewById(R.id.tvStatu);
 
@@ -94,35 +92,13 @@ public class ProductEditPage extends AppCompatActivity {
         price.setText(post.getPrice()+"");
         description.setText(post.getDescription());
         photo.setImageBitmap(post.getPhoto());
-        Log.d("New State", post.getState());
+
 
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
-            }
-        });
-
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("ProductID",post.getProductID());
-                Log.d("Owner", post.getOwner());
-
-                post.setState("3");
-                JSONObject jsonObj = null;
-                try {
-                    jsonObj = new JSONObject(post.passToJsonObjectStr());
-                    System.out.println("pass to do method"+post.toString());
-                    Log.d("postToJsonStr", jsonObj.toString());
-                    Log.d("State", jsonObj.getString("state"));
-                    doDeletePost(jsonObj);
-                    System.out.println("doDeletePost was done!");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
             }
         });
 
@@ -289,67 +265,6 @@ public class ProductEditPage extends AppCompatActivity {
         };
         thread.start();
     }
-
-    public void doDeletePost(final JSONObject j){
-        Thread thread = new Thread() {
-            public void run() {
-                StringBuilder sb = new StringBuilder();
-                HttpURLConnection connection = null;
-
-                try {
-                    URL url = new URL("http://s356fproject.mybluemix.net/api/updateproduct");
-                    connection = (HttpURLConnection) url.openConnection();
-                    connection.setDoOutput(true);
-                    connection.setDoInput(true);
-                    connection.setRequestMethod("POST");
-                    connection.setUseCaches(false);
-                    connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                    connection.setConnectTimeout(10000);
-                    connection.setReadTimeout(10000);
-
-
-                    //Testing Log
-                    System.out.println("URL:" + url.toString());
-                    String strJsonobj = j.toString();
-                    System.out.println("doDeletePost Method jsonObj: " + strJsonobj);
-
-                    OutputStream os = connection.getOutputStream();
-                    os.write(j.toString().getBytes("UTF-8"));
-                    os.close();
-
-                    int HttpResult = connection.getResponseCode();
-                    System.out.println("resopnseCode: " + HttpResult);
-
-                    if (HttpResult == 200) {
-                        BufferedReader br = new BufferedReader(new InputStreamReader(
-                                connection.getInputStream()));
-                        String line = null;
-                        while ((line = br.readLine()) != null) {
-                            sb.append(line + "\n");
-                        }
-                        br.close();
-                        System.out.println("" + sb.toString());
-
-                        JSONObject resultObject = new JSONObject(sb.toString());
-                        stu = resultObject.getString("status");
-                        System.out.println("responesStatud: "+stu);
-
-                    } else if (HttpResult == 500) {
-                        stu = "500";
-                    }
-
-                    connection.disconnect();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        thread.start();
-    }
-
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -7,7 +7,9 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -236,6 +238,29 @@ public class FragNewPost extends Fragment {
             }
         };
         thread.start();
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case SELECTED_PICTURE:
+                if (resultCode == getActivity().RESULT_OK) {
+                    Uri uri = data.getData();
+                    String[] projection = {MediaStore.Images.Media.DATA};
+
+                    Cursor cursor = getActivity().getContentResolver().query(uri, projection, null, null, null);
+                    cursor.moveToFirst();
+
+                    int columnIndex = cursor.getColumnIndex(projection[0]);
+                    String filePath = cursor.getString(columnIndex);
+                    cursor.close();
+
+                    Bitmap selectedImag = BitmapFactory.decodeFile(filePath);
+                    photo.setImageBitmap(selectedImag);
+                    post.setPhoto(selectedImag);
+                }
+        }
     }
 
 }

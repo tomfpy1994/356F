@@ -40,7 +40,7 @@ import java.net.URL;
 public class FragNewPost extends Fragment {
     public Account acc;
     public Post post;
-    public ImageView photo;
+    public ImageView photo, ivPhoto2, ivPhoto1;
     public TextView name, brand, type, size, price, description, statu;
     public int sizeNum, priceNum;
     public Button submit, cancel;
@@ -77,6 +77,8 @@ public class FragNewPost extends Fragment {
 
         // initialized the item in layout
         photo = (ImageView) rootView.findViewById(R.id.ivBigPhoto);
+        ivPhoto1 = (ImageView) rootView.findViewById(R.id.ivPhoto1);
+        ivPhoto2 = (ImageView) rootView.findViewById(R.id.ivPhoto2);
         name = (TextView) rootView.findViewById(R.id.edtName);
         brand = (TextView) rootView.findViewById(R.id.tfBrand);
         type = (TextView) rootView.findViewById(R.id.tfType);
@@ -88,8 +90,11 @@ public class FragNewPost extends Fragment {
         halfSize = (CheckBox) rootView.findViewById(R.id.cbSize);
         statu = (TextView) rootView.findViewById(R.id.tvStatu);
 
+        //Demo Block
+        ivPhoto1.setVisibility(View.INVISIBLE);
+        ivPhoto2.setVisibility(View.INVISIBLE);
 
-
+        Bitphoto = ((BitmapDrawable)photo.getDrawable()).getBitmap();
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +140,6 @@ public class FragNewPost extends Fragment {
 
                         System.out.println(sName+" "+sBand+" "+sType+" "+sizeNum+" "+priceNum+" "+sDescription);
                         if(!sName.equals("")&&!sBand.equals("")&&!sType.equals("")&&!sSize.equals("")&&!sPrice.equals("")&&!sDescription.equals("")){
-                            //Bitphoto = BitmapFactory.decodeResource(getResources(), R.id.ivBigPhoto);
                             post = new Post(sName, sBand, sType, sizeNum, priceNum, sDescription, owner, Bitphoto);
                             post.setState("1");
 

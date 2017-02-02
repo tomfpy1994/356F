@@ -170,15 +170,6 @@
             android:layout_toEndOf="@+id/tfPrice" />
 
         <ImageView
-            app:srcCompat="@android:drawable/ic_menu_report_image"
-            android:id="@+id/ivPhoto3"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="160dp"
-            android:layout_marginLeft="146dp" />
-
-        <ImageView
             android:layout_height="55dp"
             android:layout_width="55dp"
             app:srcCompat="@android:drawable/ic_menu_report_image"
@@ -218,41 +209,62 @@
             android:layout_above="@+id/tvSize"
             android:layout_toEndOf="@+id/tvType" />
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tfDescription"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:text="Submit"
+                android:textSize="13sp"
+                android:id="@+id/btnPostSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/tfDescription"
+                android:layout_alignStart="@+id/tfDescription"
+                android:layout_weight="1"
+                android:textColor="@color/colorAccent" />
+
+            <Button
+                android:text="Cancel"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textSize="13sp"
+                android:id="@+id/btnPostCancel"
+                android:layout_below="@+id/tfDescription"
+                android:layout_alignParentEnd="true"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="delete post"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/btnDeletePost"
+                android:layout_below="@+id/btnPostSubmit"
+                android:layout_alignParentStart="true"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <ImageView
+            app:srcCompat="@android:drawable/ic_menu_report_image"
+            android:id="@+id/ivPhoto2"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="146dp"
+            android:layout_alignTop="@+id/ivPhoto1"
+            android:layout_centerHorizontal="true" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
             android:id="@+id/tvStatu"
-            android:layout_below="@+id/btnPostSubmit"
-            android:layout_alignParentStart="true"
             android:textAlignment="center"
-            android:fontFamily="sans-serif" />
+            android:fontFamily="sans-serif"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
 
-        <Button
-            android:text="Submit"
-            android:textSize="13sp"
-            android:id="@+id/btnPostSubmit"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/tfDescription"
-            android:layout_alignStart="@+id/tfDescription" />
-
-        <Button
-            android:text="Cancel"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:textSize="13sp"
-            android:id="@+id/btnPostCancel"
-            android:layout_below="@+id/tfDescription"
-            android:layout_alignParentEnd="true" />
-
-        <Button
-            android:text="delete post"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnDeletePost"
-            android:layout_below="@+id/tvStatu"
-            android:layout_marginTop="11dp" />
     </RelativeLayout>
 
 

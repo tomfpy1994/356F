@@ -25,7 +25,7 @@ import org.json.JSONObject;
 public class ProductDetailPage extends AppCompatActivity{
     private Post post;
     private String showType;
-    private ImageView ivPhoto1, ivPhoto2, ivPhoto3, ivSellerIcon;
+    private ImageView ivPhoto1, ivSPhoto1, ivSPhoto2, ivSellerIcon;
     private TextView tvTitle, tvPrice, tvName, tvBrand, tvType, tvSize, tvDec, owner1, tvSellerName, tvPhone, tvCred;
     private LinearLayout owner2;
     private Button btnSubmit;
@@ -59,8 +59,8 @@ public class ProductDetailPage extends AppCompatActivity{
         }
 
         ivPhoto1 = (ImageView) findViewById(R.id.ivPhoto1);
-        ivPhoto2 = (ImageView) findViewById(R.id.ivPhoto2);
-        ivPhoto3 = (ImageView) findViewById(R.id.ivPhoto3);
+        ivSPhoto1 = (ImageView) findViewById(R.id.ivSPhoto1);
+        ivSPhoto2 = (ImageView) findViewById(R.id.ivSPhoto2);
         ivSellerIcon = (ImageView) findViewById(R.id.ivSellerIcon);
 
         tvTitle = (TextView) findViewById(R.id.tvTitle);
@@ -75,6 +75,10 @@ public class ProductDetailPage extends AppCompatActivity{
         tvPhone = (TextView) findViewById(R.id.tvPhone);
         tvCred = (TextView) findViewById(R.id.tvCred);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
+
+        //Demo Block
+        ivSPhoto1.setVisibility(View.INVISIBLE);
+        ivSPhoto2.setVisibility(View.INVISIBLE);
 
         owner2 = (LinearLayout) findViewById(R.id.owner2);
 

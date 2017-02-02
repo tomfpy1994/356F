@@ -35,7 +35,7 @@ public class ProductEditPage extends AppCompatActivity {
     public Account acc;
     public Post post;
     public JSONObject j;
-    public ImageView photo;
+    public ImageView photo, ivPhoto1, ivPhoto2, ibAddPhoto;
     public TextView name, brand, type, size, price, description, statu;
     public int sizeNum, priceNum;
     public Button submit, cancel, delete;
@@ -74,6 +74,9 @@ public class ProductEditPage extends AppCompatActivity {
 
         // initialized the item in layout
         photo = (ImageView) findViewById(R.id.ivBigPhoto);
+        ivPhoto1 = (ImageView) findViewById(R.id.ivPhoto1);
+        ivPhoto2 = (ImageView) findViewById(R.id.ivPhoto2);
+        ibAddPhoto = (ImageView) findViewById(R.id.ibAddPhoto);
         name = (TextView) findViewById(R.id.edtName);
         brand = (TextView) findViewById(R.id.tfBrand);
         type = (TextView) findViewById(R.id.tfType);
@@ -94,6 +97,10 @@ public class ProductEditPage extends AppCompatActivity {
         description.setText(post.getDescription());
         photo.setImageBitmap(post.getPhoto());
 
+        //Demo Block
+        ivPhoto1.setVisibility(View.INVISIBLE);
+        ivPhoto2.setVisibility(View.INVISIBLE);
+        ibAddPhoto.setVisibility(View.INVISIBLE);
 
 
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -152,7 +159,6 @@ public class ProductEditPage extends AppCompatActivity {
 
                         System.out.println(sName+" "+sBrand+" "+sType+" "+sizeNum+" "+priceNum+" "+sDescription);
                         if(!sName.equals("")&&!sBrand.equals("")&&!sType.equals("")&&!sSize.equals("")&&!sPrice.equals("")&&!sDescription.equals("")){
-                            Bitmap photo = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
                             //post = new Post(sName, sBrand, sType, sizeNum, priceNum, sDescription, post.getOwner(), photo);
                             //
                             System.out.println(post.toString());
@@ -180,6 +186,14 @@ public class ProductEditPage extends AppCompatActivity {
                                     statu.setTextColor(Color.BLUE);
                                     submit.setVisibility(View.VISIBLE);
                                     stu = "";
+                                    Intent intent = new Intent();
+                                    try {
+                                        intent.putExtra("post",post.passToJsonObjectStr());
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    setResult(RESULT_OK, intent);
+                                    finish();
                                     break;
                                 case "500":
                                     statu.setText("modify post fail! ");
@@ -372,6 +386,7 @@ public class ProductEditPage extends AppCompatActivity {
                     cursor.close();
 
                     Bitmap selectedImag = BitmapFactory.decodeFile(filePath);
+
                     photo.setImageBitmap(selectedImag);
                     post.setPhoto(selectedImag);
                 }

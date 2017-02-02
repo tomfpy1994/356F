@@ -140,49 +140,49 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
             cancel = true;
         }
 
-        // NOTE: Check for a valid password, if the user entered one.
         if (TextUtils.isEmpty(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
-        doLogin(email, password);
-        while (resultObject==null){
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println("LoginPage resultObject: "+resultObject.toString());
-        if (resultObject.has("status")){
-            mEmailView.setError("User id may worng");
-            mPasswordView.setError("Password may worng");
-            focusView = mPasswordView;
-            cancel=true;
-        }else {
-            try{
-                JSONObject jsonObject = new JSONObject(resultObject.toString());
 
-//                String userid_t = resultObject.getString("userid");
-//                String email_t = resultObject.getString("email");
-//                String pw_t = resultObject.getString("pw");
-
-                acc = new Account(resultObject);
-                System.out.println(acc.getUserid() + "," + acc.getEmail() + "," + acc.getPassword());
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-        resultObject=null;
 
         if (cancel) {
             focusView.requestFocus();
         } else {
-            Intent intent = new Intent(this, MainPage.class);
-            intent.putExtra("acc",acc.passToJsonObjectStr());
-            startActivity(intent);
+            doLogin(email, password);
+            while (resultObject == null) {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("LoginPage resultObject: " + resultObject.toString());
+
+            if (resultObject.has("status")) {
+                mEmailView.setError("User id may worng");
+                mPasswordView.setError("Password may worng");
+                focusView = mPasswordView;
+                cancel = true;
+
+                focusView.requestFocus();
+            } else {
+                try {
+                    JSONObject jsonObject = new JSONObject(resultObject.toString());
+
+                    acc = new Account(resultObject);
+                    System.out.println(acc.getUserid() + "," + acc.getEmail() + "," + acc.getPassword());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                Intent intent = new Intent(this, MainPage.class);
+                intent.putExtra("acc", acc.passToJsonObjectStr());
+                startActivity(intent);
+            }
+
         }
     }
 

@@ -70,6 +70,10 @@ public class FragProfile extends Fragment {
             ivIcon.setImageBitmap(acc.getIcon());
         }
 
+        //Demo Block
+        btnMyScore.setEnabled(false);
+        btnWishList.setEnabled(false);
+        btnHistory.setEnabled(false);
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override

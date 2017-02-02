@@ -218,25 +218,6 @@
             android:layout_above="@+id/tvSize"
             android:layout_toEndOf="@+id/tvType" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:id="@+id/tvStatu"
-            android:layout_below="@+id/btnPostSubmit"
-            android:layout_alignParentStart="true"
-            android:textAlignment="center"
-            android:fontFamily="sans-serif" />
-
-        <Button
-            android:text="Submit"
-            android:textSize="13sp"
-            android:id="@+id/btnPostSubmit"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/tfDescription"
-            android:layout_alignStart="@+id/tfDescription" />
-
         <Button
             android:text="Cancel"
             android:layout_width="100dp"
@@ -245,6 +226,32 @@
             android:id="@+id/btnPostCancel"
             android:layout_below="@+id/tfDescription"
             android:layout_alignParentEnd="true" />
+
+        <Button
+            android:text="Submit"
+            android:textSize="13sp"
+            android:id="@+id/btnPostSubmit"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/tfDescription"
+            android:layout_alignStart="@+id/tvDescription" />
+
+        <Button
+            android:text="Delete"
+            android:layout_width=" 100dp"
+            android:layout_height="40dp"
+            android:id="@+id/btnPostDelete"
+            android:layout_below="@+id/tfDescription"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvStatu"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif"
+            android:layout_below="@+id/btnPostCancel"
+            android:layout_alignParentStart="true" />
     </RelativeLayout>
 
 

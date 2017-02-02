@@ -66,7 +66,9 @@ public class FragMyProduct extends Fragment {
             if (jsonArray!=null) {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Post post = new Post(jsonArray.getJSONObject(i));
-                    alPost.add(post);
+                    if (!(post.getState().equals("3"))){
+                        alPost.add(post);
+                    }
                 }
             }
         } catch (JSONException e) {

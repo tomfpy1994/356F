@@ -74,7 +74,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="ABC123"
             android:ems="10"
             android:id="@+id/edtName"
             android:width="100dp"
@@ -82,22 +81,9 @@
             android:paddingTop="3dip"
             android:textSize = "14sp"
             android:layout_above="@+id/tvBrand"
-            android:layout_toEndOf="@+id/textview_2" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="Adidas"
-            android:ems="10"
-            android:id="@+id/tfBrand"
-            android:width="100dp"
-            android:paddingBottom="3dip"
-            android:paddingTop="3dip"
-            android:textSize = "14sp"
-            android:layout_alignBaseline="@+id/tvBrand"
-            android:layout_alignBottom="@+id/tvBrand"
-            android:layout_toEndOf="@+id/tvBrand" />
+            android:layout_toEndOf="@+id/textview_2"
+            android:hint="Product Name"
+            android:text="ABC123" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -111,7 +97,8 @@
             android:paddingTop="3dip"
             android:textSize = "14sp"
             android:layout_above="@+id/tvPrice"
-            android:layout_toEndOf="@+id/tvSize" />
+            android:layout_toEndOf="@+id/tvSize"
+            android:hint="Size" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -125,7 +112,8 @@
             android:layout_above="@+id/tvDescription"
             android:layout_toEndOf="@+id/tvPrice"
             android:textSize = "14sp"
-            android:width="80dp" />
+            android:width="80dp"
+            android:hint="Price" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -140,7 +128,8 @@
             android:layout_alignBottom="@+id/tvDescription"
             android:layout_toEndOf="@+id/tvDescription"
             android:textSize = "14sp"
-            android:width="250dip" />
+            android:width="250dip"
+            android:hint="Description" />
 
         <TextView
             android:text="Name:"
@@ -210,7 +199,8 @@
             android:paddingTop="3dip"
             android:textSize = "14sp"
             android:layout_above="@+id/tvSize"
-            android:layout_toEndOf="@+id/tvType" />
+            android:layout_toEndOf="@+id/tvType"
+            android:hint="Product Type" />
 
         <TextView
             android:layout_width="match_parent"
@@ -231,6 +221,22 @@
             android:layout_marginLeft="70dp"
             android:layout_above="@+id/edtName"
             android:layout_toStartOf="@+id/btnPostSubmit" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Adidas"
+            android:ems="10"
+            android:id="@+id/tfBrand"
+            android:width="100dp"
+            android:paddingBottom="3dip"
+            android:paddingTop="3dip"
+            android:textSize = "14sp"
+            android:layout_alignBaseline="@+id/tvBrand"
+            android:layout_alignBottom="@+id/tvBrand"
+            android:layout_toEndOf="@+id/tvBrand"
+            android:hint="Product Brand" />
     </RelativeLayout>
 
 

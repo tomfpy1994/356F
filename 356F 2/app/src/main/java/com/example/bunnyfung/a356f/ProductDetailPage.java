@@ -84,6 +84,7 @@ public class ProductDetailPage extends AppCompatActivity{
         tvType.setText(post.getType());
         tvSize.setText(sizeUnit + post.getSize());
         tvDec.setText(post.getDescription());
+        tvTitle.setText(post.getBrand()+" "+post.getName()+" US"+post.getSize());
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -16,7 +16,7 @@ import java.io.InputStream;
  */
 
 public class Post {
-    private String productID, owner, name, brand, type, description, state;
+    private String productID, owner, name, brand, type, description, state, buyer;
     private int price;
     private double size;
     private Bitmap photo;
@@ -34,6 +34,7 @@ public class Post {
             this.state = jsonObject.getString("state");
             this.photo = base64ToBitmap(jsonObject.getString("photo1data"));
             this.description = jsonObject.getString("description");
+            this.buyer = jsonObject.getString("buyer");
         }catch (JSONException j){
             j.printStackTrace();
         }
@@ -49,6 +50,7 @@ public class Post {
         this.owner = owner;
         this.photo = photo;
         this.state = "";
+        this.buyer = "";
     }
     //get method
     public String getName(){ return name; }
@@ -61,6 +63,7 @@ public class Post {
     public Bitmap getPhoto(){ return photo;}
     public String getState(){ return state;}
     public String getProductID(){ return productID; }
+    public String getBuyer(){ return buyer; }
 
 
     //set method
@@ -73,6 +76,7 @@ public class Post {
     public void setDescription(String description){ this.description = description;}
     public void setOwner(String owner){ this.owner = owner;}
     public void setState(String state){ this.state = state;}
+    public void setBuyer(String buyer){ this.buyer = buyer; }
 
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
@@ -86,6 +90,7 @@ public class Post {
         jsonObj.put("owner", getOwner());
         jsonObj.put("state", getState());
         jsonObj.put("description",getDescription());
+        jsonObj.put("buyer ", getBuyer());
 
         return jsonObj.toString();
     }
@@ -93,13 +98,12 @@ public class Post {
     // to string
     public String toString(){
         return "product detail and information: "+getProductID()+","+getName()+","+getType()+","+getBrand()+
-                ","+getSize()+","+getPrice()+","+getOwner()+","+getDescription();
+                ","+getSize()+","+getPrice()+","+getOwner()+","+getDescription()+","+getBuyer();
     }
 
     private String bitmapToBase64(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        //TODO:png or jpeg
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream .toByteArray();
 
         return Base64.encodeToString(byteArray, Base64.DEFAULT);

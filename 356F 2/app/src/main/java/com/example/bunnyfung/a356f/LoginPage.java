@@ -57,7 +57,7 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    public static Account acc;
+    public static Account acc = null;
     static JSONObject resultObject;
     private GoogleApiClient client;
 

@@ -61,8 +61,10 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".ProductEditPage"
+        <activity
+            android:name=".ProductEditPage"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SearchPage"></activity>
     </application>
 
 </manifest>

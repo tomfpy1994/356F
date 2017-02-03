@@ -17,7 +17,8 @@ import java.io.InputStream;
 
 public class Post {
     private String productID, owner, name, brand, type, description, state;
-    private int size, price;
+    private int price;
+    private double size;
     private Bitmap photo;
 
     //constructor
@@ -27,7 +28,7 @@ public class Post {
             this.name = jsonObject.getString("pname");
             this.type = jsonObject.getString("ptype");
             this.brand = jsonObject.getString("brand");
-            this.size = jsonObject.getInt("size");
+            this.size = jsonObject.getDouble("size");
             this.price = jsonObject.getInt("price");
             this.owner = jsonObject.getString("owner");
             this.state = jsonObject.getString("state");
@@ -38,7 +39,7 @@ public class Post {
         }
     }
     //constructor 2
-    public Post(String name,String brand,String type,int size,int price,String description,String owner, Bitmap photo){
+    public Post(String name,String brand,String type,double size,int price,String description,String owner, Bitmap photo){
         this.name = name;
         this.brand = brand;
         this.type = type;
@@ -53,7 +54,7 @@ public class Post {
     public String getName(){ return name; }
     public String getBrand(){ return brand;}
     public String getType(){ return type; }
-    public int getSize(){ return size; }
+    public double getSize(){ return size; }
     public int getPrice(){ return price; }
     public String getDescription(){ return description; }
     public String getOwner(){ return owner; }
@@ -67,7 +68,7 @@ public class Post {
     public void setName(String name){this.name = name; }
     public void setBrand(String brand){ this.brand = brand;}
     public void setType(String type){ this.type = type;}
-    public void setSize(int size){ this.size = size;}
+    public void setSize(double size){ this.size = size;}
     public void setPrice(int price){ this.price = price;}
     public void setDescription(String description){ this.description = description;}
     public void setOwner(String owner){ this.owner = owner;}

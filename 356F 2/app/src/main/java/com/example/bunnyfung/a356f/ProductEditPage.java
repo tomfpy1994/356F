@@ -37,7 +37,8 @@ public class ProductEditPage extends AppCompatActivity {
     public JSONObject j;
     public ImageView photo, ivPhoto1, ivPhoto2, ibAddPhoto;
     public TextView name, brand, type, size, price, description, statu;
-    public int sizeNum, priceNum;
+    public int priceNum;
+    public double sizeNum, half;
     public Button submit, cancel, delete;
     public CheckBox halfSize;
     public String stu ="";
@@ -122,11 +123,12 @@ public class ProductEditPage extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
                 if(isChecked){
-                    sizeNum+=0.5;
+                    half=0.5;
                     System.out.println("check box is select");
                 }else{
                     sSize = size.getText().toString();
-                    sizeNum = Integer.valueOf(sSize);
+                    sizeNum = Double.valueOf(sSize);
+                    System.out.println(sizeNum);
                 }
             }
 
@@ -146,8 +148,10 @@ public class ProductEditPage extends AppCompatActivity {
                         sDescription = description.getText().toString();
 
                         //convert to integer
-                        sizeNum = Integer.valueOf(sSize);
+                        sizeNum = Double.valueOf(sSize);
                         priceNum = Integer.valueOf(sPrice);
+
+                        sizeNum+=half;
 
                         // modify post data
                         post.setName(sName);

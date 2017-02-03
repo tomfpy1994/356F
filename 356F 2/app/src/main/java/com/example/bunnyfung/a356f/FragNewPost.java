@@ -42,7 +42,8 @@ public class FragNewPost extends Fragment {
     public Post post;
     public ImageView photo, ivPhoto2, ivPhoto1;
     public TextView name, brand, type, size, price, description, statu;
-    public int sizeNum, priceNum;
+    public int priceNum;
+    public double sizeNum, half;
     public Button submit, cancel;
     public CheckBox halfSize;
     public Bitmap Bitphoto;
@@ -117,7 +118,12 @@ public class FragNewPost extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
                 if(isChecked){
+                    half=0.5;
                     System.out.println("check box is select");
+                }else{
+                    sSize = size.getText().toString();
+                    sizeNum = Double.valueOf(sSize);
+                    System.out.println(sizeNum);
                 }
             }
 
@@ -135,8 +141,9 @@ public class FragNewPost extends Fragment {
                         sPrice = price.getText().toString();
                         sDescription = description.getText().toString();
                         //convert to integer
-                        sizeNum = Integer.valueOf(sSize);
+                        sizeNum = Double.valueOf(sSize);
                         priceNum = Integer.valueOf(sPrice);
+                        sizeNum+=half;
 
                         System.out.println(sName+" "+sBand+" "+sType+" "+sizeNum+" "+priceNum+" "+sDescription);
                         if(!sName.equals("")&&!sBand.equals("")&&!sType.equals("")&&!sSize.equals("")&&!sPrice.equals("")&&!sDescription.equals("")){

@@ -86,10 +86,10 @@ public class FragHome extends Fragment {
                     //Testing Log
                     System.out.println("All_Post:"+clickedPostStr);
 
-                    //Intent intent = new Intent(getActivity(), ProductDetailPage.class);
-                    //intent.putExtra("post", clickedPostStr);
-                    //intent.putExtra("showType","edit");
-                    //startActivity(intent);
+                    Intent intent = new Intent(getActivity(), ProductPage.class);
+                    intent.putExtra("post", clickedPostStr);
+                    intent.putExtra("showType","show");
+                    startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

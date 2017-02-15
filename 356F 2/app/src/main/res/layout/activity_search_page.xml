@@ -24,7 +24,7 @@
             android:layout_height="wrap_content">
 
             <AutoCompleteTextView
-                android:text="AutoCompleteTextView"
+                android:text="enter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvSearch"
@@ -38,10 +38,60 @@
 
         </LinearLayout>
 
-        <ListView
+        <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/searchProductList" />
+            android:layout_height="92dp"
+            android:id="@+id/group">
+
+            <RadioButton
+                android:text="price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbPrice"
+
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text="size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbSize"
+
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text="name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbName"
+
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text="brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbBrand"
+
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text="type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbType"
+
+                android:layout_weight="1" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text"
+            android:textAlignment="center"
+            android:textSize="18sp" />
 
     </LinearLayout>
+
 </RelativeLayout>

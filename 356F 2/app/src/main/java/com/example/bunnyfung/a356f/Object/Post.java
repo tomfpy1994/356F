@@ -34,7 +34,11 @@ public class Post {
             this.state = jsonObject.getString("state");
             this.photo = base64ToBitmap(jsonObject.getString("photo1data"));
             this.description = jsonObject.getString("description");
-            this.buyer = jsonObject.getString("buyer");
+            if (jsonObject.isNull("buyer")){
+                this.buyer = "";
+            }else {
+                this.buyer = jsonObject.getString("buyer");
+            }
         }catch (JSONException j){
             j.printStackTrace();
         }

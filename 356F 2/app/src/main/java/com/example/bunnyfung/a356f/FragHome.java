@@ -78,7 +78,6 @@ public class FragHome extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 try {
                     Post clickedPost = alPost.get(position);
                     String clickedPostStr = clickedPost.passToJsonObjectStr();

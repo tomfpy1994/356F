@@ -3,6 +3,7 @@ package com.example.bunnyfung.a356f;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -30,6 +31,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.bunnyfung.a356f.Connection.Connection;
 import com.example.bunnyfung.a356f.Object.Account;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -60,6 +62,7 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
     public static Account acc;
     static JSONObject resultObject;
     private GoogleApiClient client;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,14 +154,9 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
         if (cancel) {
             focusView.requestFocus();
         } else {
-            doLogin(email, password);
-            while (resultObject == null) {
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+            Connection conn = new Connection(email, password);
+            resultObject = conn.queryServer();
+
             System.out.println("LoginPage resultObject: " + resultObject.toString());
 
             if (resultObject.has("status")) {
@@ -273,65 +271,6 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
         int IS_PRIMARY = 1;
     }
 
-    public void doLogin(final String email, final String pw) {
-
-        Thread thread = new Thread() {
-            public void run() {
-                StringBuilder sb = new StringBuilder();
-                HttpURLConnection connection = null;
-                JSONObject acc = new JSONObject();
-
-                try {
-                    acc.put("userid",email);
-                    acc.put("pw",pw);
-
-                    System.out.println("acc JsonObject: "+acc.toString());
-
-                    URL url = new URL("http://s356fproject.mybluemix.net/api/login");
-                    connection = (HttpURLConnection) url.openConnection();
-                    connection.setDoOutput(true);
-                    connection.setDoInput(true);
-                    connection.setRequestMethod("POST");
-                    connection.setUseCaches(false);
-                    connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                    connection.setConnectTimeout(10000);
-                    connection.setReadTimeout(10000);
-
-
-                    //Testing Log
-                    System.out.println("URL:" + url.toString());
-                    String strJsonobj = acc.toString();
-                    System.out.println("doLogin Method jsonObj: " + strJsonobj);
-
-                    OutputStream os = connection.getOutputStream();
-                    os.write(acc.toString().getBytes("UTF-8"));
-                    os.close();
-
-                    int HttpResult = connection.getResponseCode();
-                    System.out.println("resopnseCode: " + HttpResult);
-
-                    if (HttpResult == 200) {
-                        BufferedReader br = new BufferedReader(new InputStreamReader(
-                                connection.getInputStream()));
-                        String line = null;
-                        while ((line = br.readLine()) != null) {
-                            sb.append(line + "\n");
-                        }
-                        br.close();
-                        System.out.println("" + sb.toString());
-                        resultObject = new JSONObject(sb.toString());
-                        System.out.println("responesJsonObject"+resultObject);
-                    }
-
-                    connection.disconnect();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        thread.start();
-    }
 
 }
 

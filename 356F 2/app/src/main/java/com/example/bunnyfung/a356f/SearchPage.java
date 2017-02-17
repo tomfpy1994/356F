@@ -35,7 +35,13 @@ public class SearchPage extends AppCompatActivity {
     private Button.OnClickListener go = new Button.OnClickListener(){
         @Override
         public void onClick(View view) {
-            t.setText("enter ");
+            input = searchInput.getText().toString();
+            t.setText(input);
+            // go to result search
+            //ResultOfSearch run = new ResultOfSearch(chose, input);
+            Intent intent1 = new Intent(getApplication(), ResultOfSearch.class);
+            intent1.putExtra("result", chose+"/"+input);
+            startActivityForResult(intent1,0);
 
         }
     };

@@ -155,7 +155,7 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
             focusView.requestFocus();
         } else {
             Connection conn = new Connection();
-            resultObject = conn.doLoing(email, password);
+            resultObject = conn.Login(email, password);
 
             System.out.println("LoginPage resultObject: " + resultObject.toString());
 

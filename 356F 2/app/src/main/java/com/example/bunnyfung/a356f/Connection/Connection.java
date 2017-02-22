@@ -20,14 +20,12 @@ public class Connection {
     private JSONObject resultObject = null;
     private JSONObject acc = new JSONObject();
     private URL url;
-    private String method = "";
 
     public Connection() {}
 
-    public void doUpdate(){
 
-    }
-    public JSONObject doLoing(String email, String pw){
+    public JSONObject Login(String email, String pw){
+        String method = "";
         try {
             this.email = email;
             this.pw = pw;
@@ -44,7 +42,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer();
+        queryServer(method);
 
         while (resultObject == null) {
             try {
@@ -57,7 +55,9 @@ public class Connection {
     }
 
 
-    public void queryServer() {
+
+    public void queryServer(final String method) {
+        resultObject = null;
         Thread thread = new Thread() {
             public void run() {
                 StringBuilder sb = new StringBuilder();
@@ -66,10 +66,10 @@ public class Connection {
                 try {
                     System.out.println("acc JsonObject: " + acc.toString());
                     connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod(method);
                     connection.setDoOutput(true);
                     connection.setDoInput(true);
                     connection.setUseCaches(false);
-                    connection.setRequestMethod(method);
                     connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
                     connection.setConnectTimeout(10000);
                     connection.setReadTimeout(10000);

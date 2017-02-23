@@ -48,9 +48,6 @@
             android:name=".DealPage"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ProductDetailPage"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".RegisterPage"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

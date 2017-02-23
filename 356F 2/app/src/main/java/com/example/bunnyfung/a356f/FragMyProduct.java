@@ -61,9 +61,10 @@ public class FragMyProduct extends Fragment {
             }
         }
         try {
-            //Testing Log
-            System.out.println("FragMyProduct resultObject: "+jsonArray.getJSONObject(0).getString("owner"));
-            if (jsonArray!=null) {
+            if (jsonArray!=null && jsonArray.length()!=0) {
+                //Testing Log
+                System.out.println("FragMyProduct resultObject: "+jsonArray.getJSONObject(0).getString("owner"));
+
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Post post = new Post(jsonArray.getJSONObject(i));
                     if (!(post.getState().equals("3"))){
@@ -95,7 +96,7 @@ public class FragMyProduct extends Fragment {
                     //Testing Log
                     System.out.println("MyProduct_Post:"+clickedPostStr);
 
-                    Intent intent = new Intent(getActivity(), ProductDetailPage.class);
+                    Intent intent = new Intent(getActivity(), ProductPage.class);
                     intent.putExtra("post", clickedPostStr);
                     intent.putExtra("showType","edit");
                     startActivity(intent);

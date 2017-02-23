@@ -25,14 +25,13 @@ public class FragMeun extends Fragment {
         this.acc = acc;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_frag_meun, container, false);
 
-        frag = new FragHome();
+        frag = new FragHome(acc);
         fragTransaction = getFragmentManager().beginTransaction().add(R.id.container, frag);
         fragTransaction.commit();
 
@@ -45,7 +44,7 @@ public class FragMeun extends Fragment {
         ibHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frag = new FragHome();
+                frag = new FragHome(acc);
                 fragTransaction = getFragmentManager().beginTransaction().replace(R.id.container, frag);
                 fragTransaction.commit();
             }

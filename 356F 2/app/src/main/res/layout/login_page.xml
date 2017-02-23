@@ -99,11 +99,26 @@
         android:layout_height="match_parent"
         android:gravity="bottom|end">
 
-        <Button
-            android:text="Auto Fill"
-            android:layout_width="128dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnAutofill" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="bunny"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnAutofill"
+                android:layout_weight="1"
+                android:layout_width="100dp" />
+
+            <Button
+                android:text="Tester2"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnTester2"
+                android:layout_weight="1"
+                android:layout_width="100dp" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

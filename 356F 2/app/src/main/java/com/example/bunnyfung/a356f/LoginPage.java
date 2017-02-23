@@ -116,6 +116,15 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
             }
         });
 
+        Button btnTester2 = (Button) findViewById(R.id.btnTester2);
+        btnTester2.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mEmailView.setText("tester2");
+                mPasswordView.setText("123");
+            }
+        });
+
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 

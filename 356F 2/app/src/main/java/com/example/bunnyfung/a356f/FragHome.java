@@ -38,7 +38,6 @@ public class FragHome extends Fragment {
 
     public FragHome() {}
     public FragHome(Account ac){ this.acc=ac; }
-    public FragHome(Post p){ this.post=p; }
     @Override
 
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
@@ -85,11 +84,21 @@ public class FragHome extends Fragment {
                     String clickedPostStr = clickedPost.passToJsonObjectStr();
 
                     //Testing Log
-                    System.out.println("All_Post:"+clickedPostStr);
+                    System.out.println("Clicked_Post:"+clickedPostStr);
+                    System.out.println("Acc:"+acc.toString());
+                    System.out.println("Clicked_Post_OwnerID:"+ clickedPost.getOwner());
+                    System.out.println("AccID: "+acc.getId());
+
 
                     Intent intent = new Intent(getActivity(), ProductPage.class);
                     intent.putExtra("post", clickedPostStr);
-                    intent.putExtra("showType","show");
+
+                    if (clickedPost.getOwner().equals(acc.getId())){
+                        intent.putExtra("showType","edit");
+                    }else {
+                        intent.putExtra("showType","show");
+                    }
+
                     startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();

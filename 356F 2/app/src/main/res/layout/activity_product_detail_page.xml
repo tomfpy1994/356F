@@ -21,7 +21,7 @@
             android:id="@+id/svSecondView"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:layout_height="530dp">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -52,30 +52,6 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true" />
                 </RelativeLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="89dp"
-                    android:weightSum="2">
-
-                    <ImageView
-                        app:srcCompat="@android:drawable/ic_menu_gallery"
-                        android:id="@+id/ivSPhoto1"
-                        android:layout_width="match_parent"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:layout_gravity="right" />
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="90dp"
-                        app:srcCompat="@android:drawable/ic_menu_gallery"
-                        android:id="@+id/ivSPhoto2"
-                        android:layout_weight="1"
-                        android:layout_gravity="left" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -268,7 +244,7 @@
                             android:text="BunnyFung"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tvSellerName"
+                            android:id="@+id/tvOwnerName"
                             android:textColor="@android:color/black" />
 
                         <LinearLayout
@@ -287,7 +263,7 @@
                                 android:text="6053 2826"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/tvPhone"
+                                android:id="@+id/tvOwnerPhone"
                                 android:layout_weight="1"
                                 android:textColor="@android:color/background_dark" />
                         </LinearLayout>
@@ -308,7 +284,7 @@
                                 android:text="TextView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/tvCred"
+                                android:id="@+id/tvOwnerCred"
                                 android:layout_weight="1"
                                 android:textColor="@android:color/background_dark" />
                         </LinearLayout>

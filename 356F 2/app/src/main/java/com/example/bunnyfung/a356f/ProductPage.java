@@ -22,8 +22,9 @@ import org.json.JSONObject;
 public class ProductPage extends AppCompatActivity {
     private Post post;
     private String showType;
-    private ImageView ivPhoto1, ivSPhoto1, ivSPhoto2, ivSellerIcon;
-    private TextView tvTitle, tvPrice, tvName, tvBrand, tvType, tvSize, tvDec, owner1, tvSellerName, tvPhone, tvCred;
+    private ImageView ivPhoto1, ivSellerIcon;
+    private TextView tvTitle, tvPrice, tvName, tvBrand, tvType, tvSize, tvDec, owner1, tvOwnerName,
+            tvOwnerPhone, tvOwnerCred;
     private LinearLayout owner2;
     private Button btnSubmit;
     private final String doller = "$";
@@ -42,6 +43,7 @@ public class ProductPage extends AppCompatActivity {
             Intent intent = getIntent();
             JSONObject jsonObject = new JSONObject(intent.getStringExtra("post"));
             showType = intent.getStringExtra("showType");
+            System.out.println(showType);
 
             post = new Post(jsonObject);
 
@@ -53,8 +55,6 @@ public class ProductPage extends AppCompatActivity {
         }
 
         ivPhoto1 = (ImageView) findViewById(R.id.ivPhoto1);
-        ivSPhoto1 = (ImageView) findViewById(R.id.ivSPhoto1);
-        ivSPhoto2 = (ImageView) findViewById(R.id.ivSPhoto2);
         ivSellerIcon = (ImageView) findViewById(R.id.ivSellerIcon);
 
         tvTitle = (TextView) findViewById(R.id.tvTitle);
@@ -65,14 +65,11 @@ public class ProductPage extends AppCompatActivity {
         tvSize = (TextView) findViewById(R.id.tvSize);
         tvDec = (TextView) findViewById(R.id.tvDec);
         owner1 = (TextView) findViewById(R.id.owner1);
-        tvSellerName = (TextView) findViewById(R.id.tvSellerName);
-        tvPhone = (TextView) findViewById(R.id.tvPhone);
-        tvCred = (TextView) findViewById(R.id.tvCred);
+        tvOwnerName = (TextView) findViewById(R.id.tvOwnerName);
+        tvOwnerPhone = (TextView) findViewById(R.id.tvOwnerPhone);
+        tvOwnerCred = (TextView) findViewById(R.id.tvOwnerCred);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
-        //Demo Block
-        ivSPhoto1.setVisibility(View.INVISIBLE);
-        ivSPhoto2.setVisibility(View.INVISIBLE);
 
         owner2 = (LinearLayout) findViewById(R.id.owner2);
 
@@ -84,6 +81,12 @@ public class ProductPage extends AppCompatActivity {
         tvSize.setText(sizeUnit + post.getSize());
         tvDec.setText(post.getDescription());
         tvTitle.setText(post.getBrand()+" "+post.getName()+" US"+post.getSize());
+
+        tvOwnerName.setText(post.getOwner());
+        //TODO: set Owner phone and creadi
+        tvOwnerPhone.setText("");
+        tvOwnerCred.setText("");
+
 
         if (showType.equals("edit")) {
             owner1.setVisibility(View.GONE);

@@ -24,6 +24,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -150,7 +151,6 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
         }
 
 
-
         if (cancel) {
             focusView.requestFocus();
         } else {
@@ -178,6 +178,7 @@ public class LoginPage extends AppCompatActivity implements LoaderCallbacks<Curs
 
                 Intent intent = new Intent(this, MainPage.class);
                 intent.putExtra("acc", acc.passToJsonObjectStr());
+
                 startActivity(intent);
             }
 

@@ -25,7 +25,6 @@ public class Connection {
 
 
     public JSONObject Login(String email, String pw){
-        String method = "";
         try {
             this.email = email;
             this.pw = pw;
@@ -38,15 +37,33 @@ public class Connection {
             }
 
             url = new URL("http://s356fproject.mybluemix.net/api/login");
-            method = "POST";
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer(method);
+        queryServer("POST","Login");
 
         while (resultObject == null) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultObject;
+    }
+
+    public JSONObject getProduct(){
+
+        try {
+            url = new URL("http://s356fproject.mybluemix.net/api/list/");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        queryServer("GET","getProduct");
+
+        while (resultObject == null) {
+            try {
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -56,7 +73,7 @@ public class Connection {
 
 
 
-    public void queryServer(final String method) {
+    public void queryServer(final String method, final String action) {
         resultObject = null;
         Thread thread = new Thread() {
             public void run() {
@@ -67,21 +84,29 @@ public class Connection {
                     System.out.println("acc JsonObject: " + acc.toString());
                     connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod(method);
-                    connection.setDoOutput(true);
-                    connection.setDoInput(true);
-                    connection.setUseCaches(false);
                     connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                    connection.setConnectTimeout(10000);
-                    connection.setReadTimeout(10000);
+                    connection.setConnectTimeout(20000);
+                    connection.setReadTimeout(20000);
+
+
+                    if (method.equals("POST")) {
+                        connection.setDoOutput(true);
+                        connection.setDoInput(true);
+                        connection.setUseCaches(false);
+                    }
+
 
                     //Testing Log
                     System.out.println("URL:" + url.toString());
                     String strJsonobj = acc.toString();
                     System.out.println("queryServer jsonObj: " + strJsonobj);
 
-                    OutputStream os = connection.getOutputStream();
-                    os.write(acc.toString().getBytes("UTF-8"));
-                    os.close();
+                    if (method.equals("POST")) {
+                        OutputStream os = connection.getOutputStream();
+                        os.write(acc.toString().getBytes("UTF-8"));
+                        os.close();
+                    }
+
 
                     int HttpResult = connection.getResponseCode();
                     System.out.println("resopnseCode: " + HttpResult);
@@ -90,15 +115,35 @@ public class Connection {
                         BufferedReader br = new BufferedReader(new InputStreamReader(
                                 connection.getInputStream()));
                         String line = null;
+
                         while ((line = br.readLine()) != null) {
                             sb.append(line + "\n");
                         }
-                        br.close();
-                        System.out.println("" + sb.toString());
-                        resultObject = new JSONObject(sb.toString());
-                        System.out.println("responesJsonObject" + resultObject);
-                    }
 
+                        br.close();
+
+                        switch (action){
+                            case "Login":
+                                //Testing Log
+                                System.out.println("" + sb.toString());
+
+                                resultObject = new JSONObject(sb.toString());
+
+                                //Testing Log
+                                System.out.println("responesJsonObject" + resultObject);
+                                break;
+
+                            case "getProduct":
+                                //Testing Log
+                                System.out.println(sb.toString());
+                                System.out.println("sb Length: "+ sb.length());
+
+                                String sbStr = "{products:"+sb+"}";
+                                resultObject = new JSONObject(sbStr);
+                                break;
+                        }
+
+                    }
                     connection.disconnect();
 
                 } catch (Exception e) {

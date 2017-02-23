@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Button;
 
 import com.example.bunnyfung.a356f.Adapter.MyProductAdapter;
+import com.example.bunnyfung.a356f.Connection.Connection;
 import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Post;
 
@@ -50,7 +51,7 @@ public class FragHome extends Fragment {
         getProduct();
         while (jsonArray==null){
             try {
-                Thread.sleep(500);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -108,50 +109,62 @@ public class FragHome extends Fragment {
     }
 
     public void getProduct(){
-        Thread thread = new Thread() {
-            public void run() {
-                StringBuilder sb = new StringBuilder();
-                HttpURLConnection connection = null;
+        Connection conn = new Connection();
+        try {
+            jsonArray = conn.getProduct().getJSONArray("products");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-                try {
-                    URL url = new URL("http://s356fproject.mybluemix.net/api/list/");
-                    connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("GET");
-                    connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                    connection.setConnectTimeout(20000);
-                    connection.setReadTimeout(20000);
-
-
-                    //Testing Log
-                    System.out.println("URL:" + url.toString());
-
-
-                    int HttpResult = connection.getResponseCode();
-                    System.out.println("resopnseCode: " + HttpResult);
-
-                    if (HttpResult == 200) {
-                        BufferedReader br = new BufferedReader(new InputStreamReader(
-                                connection.getInputStream()));
-                        String line = null;
-                        while ((line = br.readLine()) != null) {
-                            sb.append(line + "\n");
-                        }
-                        br.close();
-                        System.out.println(sb.toString());
-                        System.out.println("sb Length: "+ sb.length());
-
-                        String sbStr = "{products:"+sb+"}";
-
-                        JSONObject productsJson = new JSONObject(sbStr);
-                        jsonArray = productsJson.getJSONArray("products");
-                    }
-                    connection.disconnect();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        thread.start();
     }
+
+//    public void getProduct(){
+//        Thread thread = new Thread() {
+//            public void run() {
+//                StringBuilder sb = new StringBuilder();
+//                HttpURLConnection connection = null;
+//
+//                try {
+//
+//                    URL url = new URL("http://s356fproject.mybluemix.net/api/list/");
+//                    connection = (HttpURLConnection) url.openConnection();
+//                    connection.setRequestMethod("GET");
+//
+//                    connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+//                    connection.setConnectTimeout(20000);
+//                    connection.setReadTimeout(20000);
+//
+//
+//                    //Testing Log
+//                    System.out.println("URL:" + url.toString());
+//
+//
+//                    int HttpResult = connection.getResponseCode();
+//                    System.out.println("resopnseCode: " + HttpResult);
+//
+//                    if (HttpResult == 200) {
+//                        BufferedReader br = new BufferedReader(new InputStreamReader(
+//                                connection.getInputStream()));
+//                        String line = null;
+//                        while ((line = br.readLine()) != null) {
+//                            sb.append(line + "\n");
+//                        }
+//                        br.close();
+//                        System.out.println(sb.toString());
+//                        System.out.println("sb Length: "+ sb.length());
+//
+//                        String sbStr = "{products:"+sb+"}";
+//
+//                        JSONObject productsJson = new JSONObject(sbStr);
+//                        jsonArray = productsJson.getJSONArray("products");
+//                    }
+//                    connection.disconnect();
+//
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        };
+//        thread.start();
+//    }
 }

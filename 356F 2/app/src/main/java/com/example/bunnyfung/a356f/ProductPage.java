@@ -114,6 +114,11 @@ public class ProductPage extends AppCompatActivity {
 
                 }else if (showType.equals("show")){//go to make offer page
                     intent1 = new Intent(getApplication(), MakeOfferPage.class);
+                    try {
+                        intent1.putExtra("post", post.passToJsonObjectStr());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     startActivity(intent1);
                 }
             }

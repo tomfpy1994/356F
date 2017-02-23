@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_make_offer_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bunnyfung.a356f.MakeOfferPage"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivPhoto1"
+            android:background="@drawable/ic_menu_gallery"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="NIKE 美麗的波鞋NIKE 美麗的波鞋NIKE 美麗的波鞋NIKE 美麗的波鞋NIKE 美麗的波鞋"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTitle"
+                android:layout_weight="1"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textAlignment="textStart"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:text="$100000"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvPrice"
+                android:layout_weight="1"
+                android:textColor="@color/colorAccent"
+                android:textSize="22sp"
+                android:textAlignment="viewEnd"
+                android:layout_width="match_parent" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:text="Details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView14"
+            android:background="?android:attr/colorBackground"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:fontFamily="sans-serif-condensed"
+            android:typeface="normal"
+            android:textAlignment="center"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Name:"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView20"
+                android:layout_weight="0.07"
+                android:layout_width="90dp" />
+
+            <TextView
+                android:text="ACBD12344"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvName"
+                android:layout_weight="1"
+                android:textColor="@android:color/background_dark" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Brand:"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView21"
+                android:layout_weight="0.07"
+                android:layout_width="90dp" />
+
+            <TextView
+                android:text="Nike"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvBrand"
+                android:layout_weight="1"
+                android:textColor="@android:color/background_dark" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Type:"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView23"
+                android:layout_weight="0.07"
+                android:layout_width="90dp" />
+
+            <TextView
+                android:text="Run boots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvType"
+                android:layout_weight="1"
+                android:textColor="@android:color/background_dark" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Size:"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView25"
+                android:layout_weight="0.07"
+                android:layout_width="90dp" />
+
+            <TextView
+                android:text="US 5"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvSize"
+                android:textColor="@android:color/background_dark"
+                android:gravity="left"
+                android:layout_gravity="left"
+                android:layout_width="280dp" />
+        </LinearLayout>
+
+        <TextView
+            android:text="Offer Details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/owner1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="14dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="20sp" />
+
+        <Button
+            android:text="Make Offer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSubmit"
+            style="@style/Widget.AppCompat.Button.Colored" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -61,9 +61,16 @@
         <activity
             android:name=".ProductEditPage"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SearchPage" />
-        <activity android:name=".ProductPage" />
-        <activity android:name=".ResultOfSearch"></activity>
+        <activity
+            android:name=".SearchPage"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ProductPage"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ResultOfSearch"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MakeOfferPage" />
     </application>
 
 </manifest>

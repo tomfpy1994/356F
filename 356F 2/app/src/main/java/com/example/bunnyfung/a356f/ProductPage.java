@@ -37,7 +37,7 @@ public class ProductPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_detail_page);
+        setContentView(R.layout.activity_product_page);
 
         try {
             Intent intent = getIntent();
@@ -82,6 +82,7 @@ public class ProductPage extends AppCompatActivity {
         tvDec.setText(post.getDescription());
         tvTitle.setText(post.getBrand()+" "+post.getName()+" US"+post.getSize());
 
+        //TODO: show the correct OwnerName, Not owner_id(Server new post need to add col "OwnerName")
         tvOwnerName.setText(post.getOwner());
         //TODO: set Owner phone and creadi
         tvOwnerPhone.setText("");
@@ -101,25 +102,25 @@ public class ProductPage extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent1;
                 if (showType.equals("edit")) {
-                    Intent intent1 = new Intent(getApplication(), ProductEditPage.class);
+                    intent1 = new Intent(getApplication(), ProductEditPage.class);
                     try {
                         intent1.putExtra("post", post.passToJsonObjectStr());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     startActivityForResult(intent1,1);
-                }else if (showType.equals("show")){
-                    //go to make offer page
+
+                }else if (showType.equals("show")){//go to make offer page
+                    intent1 = new Intent(getApplication(), MakeOfferPage.class);
+                    startActivity(intent1);
                 }
             }
         });
 
 
 
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 

@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bunnyfung.a356f.Object.Account;
+import com.example.bunnyfung.a356f.Object.Offer;
 import com.example.bunnyfung.a356f.Object.Post;
 import com.github.jjobes.slidedatetimepicker.SlideDateTimeListener;
 import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
@@ -18,10 +20,12 @@ import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MakeOfferPage extends AppCompatActivity {
+    private Account acc;
     private Post post;
     private ImageView ivPhoto1;
     private TextView tvTitle, tvPrice, tvName, tvBrand, tvType, tvSize;
@@ -30,18 +34,23 @@ public class MakeOfferPage extends AppCompatActivity {
     private final String doller = "$";
     private final String sizeUnit = "US ";
     private SimpleDateFormat mFormatter = new SimpleDateFormat("dd/MM/yyyy, hh:mm");
+    private SimpleDateFormat dbDateFormatter = new SimpleDateFormat("ddMMyyyyhhmm");
+    private String strDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_offer_page);
 
-        getActionBar().setTitle("Make Offer");
 
         Intent intent = getIntent();
         try {
             JSONObject jsonObject = new JSONObject(intent.getStringExtra("post"));
             post = new Post(jsonObject);
+
+            JSONObject accJsonObject = new JSONObject(intent.getStringExtra("acc"));
+            acc = new Account(accJsonObject);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -81,14 +90,32 @@ public class MakeOfferPage extends AppCompatActivity {
                         .show();
             }
         });
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Date date;
+                try {
+                    date = mFormatter.parse(strDate);
+                    System.out.println(dbDateFormatter.format(date));
+                    String dbStrDate = dbDateFormatter.format(date);
+
+                    Offer offer = new Offer(post.getOwner(),acc.getId(),dbStrDate,edtPlace.getText().toString());
+                    System.out.println(offer.toStrng());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private SlideDateTimeListener listener = new SlideDateTimeListener() {
         @Override
         public void onDateTimeSet(Date date)
         {
-            edtDateTime.setText(mFormatter.format(date));
-            Toast.makeText(getApplication(), mFormatter.format(date), Toast.LENGTH_SHORT).show();
+            strDate = mFormatter.format(date);
+            edtDateTime.setText(strDate);
+            Toast.makeText(getApplication(), strDate, Toast.LENGTH_SHORT).show();
         }
 
         // Optional cancel listener

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Post;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -20,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ProductPage extends AppCompatActivity {
+    private Account acc;
     private Post post;
     private String showType;
     private ImageView ivPhoto1, ivSellerIcon;
@@ -44,8 +46,11 @@ public class ProductPage extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject(intent.getStringExtra("post"));
             showType = intent.getStringExtra("showType");
             System.out.println(showType);
-
             post = new Post(jsonObject);
+
+            JSONObject accJsonObject = new JSONObject(intent.getStringExtra("acc"));
+            acc = new Account(accJsonObject);
+
 
             //Testing Log
             System.out.println("ProductPage" + post.toString());
@@ -107,6 +112,7 @@ public class ProductPage extends AppCompatActivity {
                     intent1 = new Intent(getApplication(), ProductEditPage.class);
                     try {
                         intent1.putExtra("post", post.passToJsonObjectStr());
+                        intent1.putExtra("acc", acc.passToJsonObjectStr());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -116,6 +122,7 @@ public class ProductPage extends AppCompatActivity {
                     intent1 = new Intent(getApplication(), MakeOfferPage.class);
                     try {
                         intent1.putExtra("post", post.passToJsonObjectStr());
+                        intent1.putExtra("acc", acc.passToJsonObjectStr());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

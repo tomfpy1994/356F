@@ -92,6 +92,7 @@ public class FragHome extends Fragment {
 
                     Intent intent = new Intent(getActivity(), ProductPage.class);
                     intent.putExtra("post", clickedPostStr);
+                    intent.putExtra("acc", acc.passToJsonObjectStr());
 
                     if (clickedPost.getOwner().equals(acc.getId())){
                         intent.putExtra("showType","edit");

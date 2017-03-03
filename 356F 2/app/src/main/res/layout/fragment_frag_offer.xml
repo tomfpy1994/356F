@@ -38,10 +38,10 @@
                 android:layout_toStartOf="@+id/btnProcessing" />
 
             <Button
-                android:text="Yours Offer"
+                android:text="My offer"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:id="@+id/btnYoursOffer"
+                android:id="@+id/btnMyOffer"
                 style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                 android:textColor="#04B404"
                 android:textAlignment="center"
@@ -51,7 +51,7 @@
         </LinearLayout>
 
         <ListView
-            android:id="@+id/mobile_list"
+            android:id="@+id/lvOfferList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
         </ListView>

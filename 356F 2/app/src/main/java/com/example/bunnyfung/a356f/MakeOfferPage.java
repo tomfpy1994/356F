@@ -102,6 +102,8 @@ public class MakeOfferPage extends AppCompatActivity {
 
                     Offer offer = new Offer(post.getOwner(),acc.getId(),dbStrDate,edtPlace.getText().toString());
                     System.out.println(offer.toStrng());
+
+                    //TODO: do server
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

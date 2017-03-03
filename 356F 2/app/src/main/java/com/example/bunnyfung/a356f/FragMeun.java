@@ -71,7 +71,7 @@ public class FragMeun extends Fragment {
         ibOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frag = new FragOffer();
+                frag = new FragOffer(acc);
                 fragTransaction = getFragmentManager().beginTransaction().replace(R.id.container, frag);
                 fragTransaction.commit();
             }

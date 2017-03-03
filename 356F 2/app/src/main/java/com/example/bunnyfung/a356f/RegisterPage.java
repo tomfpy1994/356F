@@ -51,7 +51,6 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         etUserid = (EditText) findViewById(R.id.etUserid);
         etPw = (EditText) findViewById(R.id.etPw);

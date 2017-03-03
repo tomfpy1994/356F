@@ -35,7 +35,7 @@ public class MakeOfferPage extends AppCompatActivity {
     private final String sizeUnit = "US ";
     private SimpleDateFormat mFormatter = new SimpleDateFormat("dd/MM/yyyy, hh:mm");
     private SimpleDateFormat dbDateFormatter = new SimpleDateFormat("ddMMyyyyhhmm");
-    private String strDate;
+    private String strDate ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,12 +96,14 @@ public class MakeOfferPage extends AppCompatActivity {
             public void onClick(View v) {
                 Date date;
                 try {
-                    date = mFormatter.parse(strDate);
-                    System.out.println(dbDateFormatter.format(date));
-                    String dbStrDate = dbDateFormatter.format(date);
+                    if (!strDate.equals("")) {
+                        date = mFormatter.parse(strDate);
+                        System.out.println(dbDateFormatter.format(date));
+                        String dbStrDate = dbDateFormatter.format(date);
 
                     Offer offer = new Offer(post.getOwner(),acc.getId(),dbStrDate,edtPlace.getText().toString());
                     System.out.println(offer.toStrng());
+                    }
 
                     //TODO: do server
                 } catch (ParseException e) {

@@ -9,12 +9,13 @@ import org.json.JSONObject;
 
 public class Offer {
     private String _id, ownerID, buyerID, dateTime, place, ownerCode, buyerCode;
+    private double price;
     private int stat;
     private int[] statTpye =  new int[] {0,1,2,3};
     private String[] rsp = new String [] {""};
 
     //for new offer
-    public Offer(String ownerID, String buyerID, String dateTime, String place){
+    public Offer(String ownerID, String buyerID, String dateTime, String place, double price){
         this.ownerID = ownerID;
         this.buyerID = buyerID;
         this.dateTime = dateTime;
@@ -22,6 +23,7 @@ public class Offer {
         ownerCode = "";
         buyerCode = "";
         stat = statTpye[0];
+        this.price = price;
     }
 
     //for json object
@@ -30,11 +32,12 @@ public class Offer {
             this._id = object.getString("_id");
             this.ownerID = object.getString("ownerID");
             this.buyerID = object.getString("buyerID");
-            this.dateTime = object.getString("dateTime");
+            this.dateTime = object.getString("DateTime");
             this.place = object.getString("place");
-            this.ownerCode = object.getString("ownerCode");
-            this.buyerCode = object.getString("buyerCode");
+            this.ownerCode = object.getString("OwnerCode");
+            this.buyerCode = object.getString("BuyerCode");
             this.stat = object.getInt("stat");
+            this.price = object.getDouble("price");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -46,11 +49,12 @@ public class Offer {
             jsonObj.put("_id",get_id());
             jsonObj.put("ownerID",getOwnerID());
             jsonObj.put("buyerID",getBuyerID());
-            jsonObj.put("dateTime",getDateTime());
+            jsonObj.put("DateTime",getDateTime());
             jsonObj.put("place",getPlace());
-            jsonObj.put("ownerCode",getOwnerCode());
-            jsonObj.put("buyerCode",getBuyerCode());
+            jsonObj.put("OwnerCode",getOwnerCode());
+            jsonObj.put("BuyerCode",getBuyerCode());
             jsonObj.put("stat", getStat());
+            jsonObj.put("price", getPrice());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -66,6 +70,7 @@ public class Offer {
     public String getOwnerCode(){return ownerCode;}
     public String getBuyerCode(){return buyerCode;}
     public int getStat(){return stat;}
+    public double getPrice(){return price;}
 
     public void setDateTime(String dateTime){this.dateTime = dateTime;}
     public void setPlace(String place){this.place = place;}
@@ -74,6 +79,6 @@ public class Offer {
     public void setOwnerCode(String ownerCode){this.ownerCode = ownerCode;}
     public void setBuyerCode(String buyerCode){this.buyerCode = buyerCode;}
 
-    public String toStrng(){return get_id()+","+getOwnerID()+","+getBuyerID()+","+getDateTime()+","+getPlace();}
+    public String toString(){return get_id()+","+getOwnerID()+","+getBuyerID()+","+getDateTime()+","+getPlace()+","+getPrice();}
 
 }

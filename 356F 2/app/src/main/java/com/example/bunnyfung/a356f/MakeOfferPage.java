@@ -3,6 +3,7 @@ package com.example.bunnyfung.a356f;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bunnyfung.a356f.Connection.Connection;
 import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Offer;
 import com.example.bunnyfung.a356f.Object.Post;
@@ -29,7 +31,7 @@ public class MakeOfferPage extends AppCompatActivity {
     private Post post;
     private ImageView ivPhoto1;
     private TextView tvTitle, tvPrice, tvName, tvBrand, tvType, tvSize;
-    private EditText edtDateTime, edtPlace;
+    private EditText edtDateTime, edtPlace, edtPrice;
     private Button btnSubmit;
     private final String doller = "$";
     private final String sizeUnit = "US ";
@@ -65,6 +67,7 @@ public class MakeOfferPage extends AppCompatActivity {
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         edtDateTime = (EditText) findViewById(R.id.edtDateTime);
         edtPlace = (EditText) findViewById(R.id.edtPlace);
+        edtPrice = (EditText) findViewById(R.id.edtPrice);
 
         ivPhoto1.setImageBitmap(post.getPhoto());
         tvPrice.setText(doller + post.getPrice());
@@ -95,18 +98,28 @@ public class MakeOfferPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Date date;
+                double price = 0.0;
+                if (!edtPrice.getText().equals(""))
+                    price = Double.parseDouble(edtPrice.getText().toString());
+
                 try {
                     if (!strDate.equals("")) {
                         date = mFormatter.parse(strDate);
                         System.out.println(dbDateFormatter.format(date));
                         String dbStrDate = dbDateFormatter.format(date);
 
-                    Offer offer = new Offer(post.getOwner(),acc.getId(),dbStrDate,edtPlace.getText().toString());
-                    System.out.println(offer.toStrng());
+                        Offer offer = new Offer(post.getOwner(), acc.getId(), dbStrDate, edtPlace.getText().toString(),price);
+                        System.out.println(offer.toString());
+
+                        Connection conn = new Connection();
+                        JSONObject resultObject = conn.addOffer(offer);
+                        System.out.println(resultObject.getString("status"));
                     }
 
                     //TODO: do server
                 } catch (ParseException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }

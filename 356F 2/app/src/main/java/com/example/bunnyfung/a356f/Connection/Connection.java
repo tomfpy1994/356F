@@ -1,5 +1,7 @@
 package com.example.bunnyfung.a356f.Connection;
 
+import com.example.bunnyfung.a356f.Object.Offer;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,7 +42,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("POST","Login");
+        queryServer("POST","Login",null);
 
         while (resultObject == null) {
             try {
@@ -59,7 +61,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("GET","getProduct");
+        queryServer("GET","getProduct",null);
 
         while (resultObject == null) {
             try {
@@ -71,9 +73,29 @@ public class Connection {
         return resultObject;
     }
 
+    public JSONObject addOffer(Offer offer){
+
+        try {
+            url = new URL("http://s356fproject.mybluemix.net/api/addoffer");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        queryServer("POST","addOffer", offer);
+
+        while (resultObject == null) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultObject;
+
+    }
 
 
-    public void queryServer(final String method, final String action) {
+
+    public void queryServer(final String method, final String action, final Offer offer) {
         resultObject = null;
         Thread thread = new Thread() {
             public void run() {
@@ -98,12 +120,26 @@ public class Connection {
 
                     //Testing Log
                     System.out.println("URL:" + url.toString());
-                    String strJsonobj = acc.toString();
-                    System.out.println("queryServer jsonObj: " + strJsonobj);
+
 
                     if (method.equals("POST")) {
                         OutputStream os = connection.getOutputStream();
-                        os.write(acc.toString().getBytes("UTF-8"));
+
+                        switch (action){
+                            case "addOffer":
+                                //Testing Log
+                                System.out.println("queryServer jsonObj: " + offer.toString());
+
+                                os.write(offer.toString().getBytes("UTF-8"));
+                                break;
+
+                            case "Login":
+                                //Testing Log
+                                System.out.println("queryServer jsonObj: " + acc.toString());
+
+                                os.write(acc.toString().getBytes("UTF-8"));
+                                break;
+                        }
                         os.close();
                     }
 
@@ -126,7 +162,6 @@ public class Connection {
                             case "Login":
                                 //Testing Log
                                 System.out.println("" + sb.toString());
-
                                 resultObject = new JSONObject(sb.toString());
 
                                 //Testing Log
@@ -141,6 +176,13 @@ public class Connection {
                                 String sbStr = "{products:"+sb+"}";
                                 resultObject = new JSONObject(sbStr);
                                 break;
+
+                            case "addOffer":
+                                //Testing Log
+                                System.out.println("" + sb.toString());
+
+                                resultObject = new JSONObject(sb.toString());
+                                System.out.println("responesStatud: "+resultObject.getString("status"));
                         }
 
                     }

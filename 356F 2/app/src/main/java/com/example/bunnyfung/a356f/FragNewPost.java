@@ -254,6 +254,7 @@ public class FragNewPost extends Fragment {
         };
         thread.start();
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

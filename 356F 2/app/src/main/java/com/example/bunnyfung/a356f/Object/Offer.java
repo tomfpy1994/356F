@@ -12,7 +12,6 @@ public class Offer {
     private double price;
     private int stat;
     private int[] statTpye =  new int[] {0,1,2,3};
-    private String[] rsp = new String [] {""};
 
     //for new offer
     public Offer(String postID, String ownerID, String buyerID, String dateTime, String place, double price){
@@ -80,7 +79,6 @@ public class Offer {
 
     public void setDateTime(String dateTime){this.dateTime = dateTime;}
     public void setPlace(String place){this.place = place;}
-    //TODO: set stat
     public void setStat(){}
     public void setOwnerCode(String ownerCode){this.ownerCode = ownerCode;}
     public void setBuyerCode(String buyerCode){this.buyerCode = buyerCode;}

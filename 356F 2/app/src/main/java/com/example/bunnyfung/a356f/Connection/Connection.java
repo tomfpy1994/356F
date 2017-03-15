@@ -130,7 +130,7 @@ public class Connection {
                                 //Testing Log
                                 System.out.println("queryServer jsonObj: " + offer.toString());
 
-                                os.write(offer.toString().getBytes("UTF-8"));
+                                os.write(offer.passToJsonObjectStr().getBytes("UTF-8"));
                                 break;
 
                             case "Login":

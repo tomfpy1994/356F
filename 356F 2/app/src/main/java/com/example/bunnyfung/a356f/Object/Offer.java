@@ -8,14 +8,15 @@ import org.json.JSONObject;
  */
 
 public class Offer {
-    private String _id, ownerID, buyerID, dateTime, place, ownerCode, buyerCode;
+    private String _id, postID, ownerID, buyerID, dateTime, place, ownerCode, buyerCode;
     private double price;
     private int stat;
     private int[] statTpye =  new int[] {0,1,2,3};
     private String[] rsp = new String [] {""};
 
     //for new offer
-    public Offer(String ownerID, String buyerID, String dateTime, String place, double price){
+    public Offer(String postID, String ownerID, String buyerID, String dateTime, String place, double price){
+        this.postID = postID;
         this.ownerID = ownerID;
         this.buyerID = buyerID;
         this.dateTime = dateTime;
@@ -30,8 +31,9 @@ public class Offer {
     public Offer(JSONObject object){
         try {
             this._id = object.getString("_id");
-            this.ownerID = object.getString("ownerID");
-            this.buyerID = object.getString("buyerID");
+            this.postID = object.getString("PostID");
+            this.ownerID = object.getString("OwnerID");
+            this.buyerID = object.getString("BuyerID");
             this.dateTime = object.getString("DateTime");
             this.place = object.getString("place");
             this.ownerCode = object.getString("OwnerCode");
@@ -46,9 +48,12 @@ public class Offer {
     public String passToJsonObjectStr() {
         JSONObject jsonObj = new JSONObject();
         try {
-            jsonObj.put("_id",get_id());
-            jsonObj.put("ownerID",getOwnerID());
-            jsonObj.put("buyerID",getBuyerID());
+            if (_id!=null){
+                jsonObj.put("_id",get_id());
+            }
+            jsonObj.put("PostID",getPostId());
+            jsonObj.put("OwnerID",getOwnerID());
+            jsonObj.put("BuyerID",getBuyerID());
             jsonObj.put("DateTime",getDateTime());
             jsonObj.put("place",getPlace());
             jsonObj.put("OwnerCode",getOwnerCode());
@@ -63,6 +68,7 @@ public class Offer {
     }
 
     public String get_id(){return _id;}
+    public String getPostId(){return postID;}
     public String getOwnerID(){return ownerID;}
     public String getBuyerID(){return buyerID;}
     public String getDateTime(){return dateTime;}
@@ -79,6 +85,7 @@ public class Offer {
     public void setOwnerCode(String ownerCode){this.ownerCode = ownerCode;}
     public void setBuyerCode(String buyerCode){this.buyerCode = buyerCode;}
 
-    public String toString(){return get_id()+","+getOwnerID()+","+getBuyerID()+","+getDateTime()+","+getPlace()+","+getPrice();}
+    public String toString(){return get_id()+","+getPostId()+","+getOwnerID()+","+getBuyerID()+","
+            +getDateTime()+","+getPlace()+","+getStat()+","+getPrice();}
 
 }

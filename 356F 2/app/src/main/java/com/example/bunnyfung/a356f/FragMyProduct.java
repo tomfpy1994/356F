@@ -98,6 +98,7 @@ public class FragMyProduct extends Fragment {
 
                     Intent intent = new Intent(getActivity(), ProductPage.class);
                     intent.putExtra("post", clickedPostStr);
+                    intent.putExtra("acc", acc.passToJsonObjectStr());
                     intent.putExtra("showType","edit");
                     startActivity(intent);
                 } catch (JSONException e) {

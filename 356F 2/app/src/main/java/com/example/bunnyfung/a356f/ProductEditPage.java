@@ -185,7 +185,7 @@ public class ProductEditPage extends AppCompatActivity {
                                 }
                             }
                             switch (stu) {
-                                case "update success":
+                                case "update product success":
                                     statu.setText("modify post Success! ");
                                     statu.setTextColor(Color.BLUE);
                                     submit.setVisibility(View.VISIBLE);
@@ -238,11 +238,12 @@ public class ProductEditPage extends AppCompatActivity {
                     }
                 }
                 switch (stu) {
-                    case "update success":
+                    case "update product success":
                         statu.setText("delete post Success! ");
                         statu.setTextColor(Color.BLUE);
                         submit.setVisibility(View.VISIBLE);
                         stu = "";
+                        finish();
                         break;
                     case "500":
                         statu.setText("delete post fail! ");

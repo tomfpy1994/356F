@@ -37,7 +37,7 @@
             <TextView
                 android:text="$100000"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvPrice"
+                android:id="@+id/tvOfferedPrice"
                 android:layout_weight="1"
                 android:textColor="@color/colorAccent"
                 android:textSize="22sp"
@@ -202,7 +202,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="none"
                 android:ems="10"
                 android:id="@+id/edtDateTime"
                 android:layout_weight="1"

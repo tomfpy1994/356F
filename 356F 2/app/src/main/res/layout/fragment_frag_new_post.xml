@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:id="@+id/tvPrice"
+            android:id="@+id/tvOfferedPrice"
             android:paddingLeft="15dip"
             android:paddingRight="15dip"
             android:layout_below="@+id/tvSize"
@@ -54,8 +54,8 @@
             android:id="@+id/tvDescription"
             android:paddingLeft="15dip"
             android:paddingRight="15dip"
-            android:layout_below="@+id/tvPrice"
-            android:layout_alignEnd="@+id/tvPrice"
+            android:layout_below="@+id/tvOfferedPrice"
+            android:layout_alignEnd="@+id/tvOfferedPrice"
             android:paddingBottom="5dip" />
 
         <TextView
@@ -96,7 +96,7 @@
             android:paddingBottom="3dip"
             android:paddingTop="3dip"
             android:textSize = "14sp"
-            android:layout_above="@+id/tvPrice"
+            android:layout_above="@+id/tvOfferedPrice"
             android:layout_toEndOf="@+id/tvSize"
             android:hint="Size" />
 
@@ -110,7 +110,7 @@
             android:paddingBottom="3dip"
             android:paddingTop="3dip"
             android:layout_above="@+id/tvDescription"
-            android:layout_toEndOf="@+id/tvPrice"
+            android:layout_toEndOf="@+id/tvOfferedPrice"
             android:textSize = "14sp"
             android:width="80dp"
             android:hint="Price" />

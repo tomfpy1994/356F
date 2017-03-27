@@ -8,10 +8,11 @@ import org.json.JSONObject;
  */
 
 public class Offer {
-    private String _id, postID, ownerID, buyerID, dateTime, place, ownerCode, buyerCode;
+    private String _id, postID, ownerID, ownerName, buyerID, buyerName, dateTime, place, ownerCode, buyerCode;
     private double price;
     private int stat;
-    private int[] statTpye =  new int[] {0,1,2,3};
+    private int[] statTpye =  new int[] {0,1,2};
+    // 0 = waiting, 1 = processing, 2 = deal
 
     //for new offer
     public Offer(String postID, String ownerID, String buyerID, String dateTime, String place, double price){

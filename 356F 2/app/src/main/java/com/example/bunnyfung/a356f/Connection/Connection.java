@@ -1,5 +1,6 @@
 package com.example.bunnyfung.a356f.Connection;
 
+import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Offer;
 
 import org.json.JSONException;
@@ -93,6 +94,28 @@ public class Connection {
 
     }
 
+    public JSONObject listOffer(Account acc, int stat){
+
+        String preStr = "%22";
+        String urlStr = "http://s356fproject.mybluemix.net/api/listoffer/?";
+        urlStr = urlStr+"/"+acc.getId()+ "/"+'"'+stat+'"';
+        try {
+            url = new URL(urlStr);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        queryServer("GET","listOffer", null);
+
+        while (resultObject == null) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultObject;
+    }
+
 
 
     public void queryServer(final String method, final String action, final Offer offer) {
@@ -158,10 +181,9 @@ public class Connection {
 
                         br.close();
 
+                        System.out.println(sb.toString());
                         switch (action){
                             case "Login":
-                                //Testing Log
-                                System.out.println("" + sb.toString());
                                 resultObject = new JSONObject(sb.toString());
 
                                 //Testing Log
@@ -169,8 +191,6 @@ public class Connection {
                                 break;
 
                             case "getProduct":
-                                //Testing Log
-                                System.out.println(sb.toString());
                                 System.out.println("sb Length: "+ sb.length());
 
                                 String sbStr = "{products:"+sb+"}";
@@ -178,11 +198,17 @@ public class Connection {
                                 break;
 
                             case "addOffer":
-                                //Testing Log
-                                System.out.println("" + sb.toString());
-
                                 resultObject = new JSONObject(sb.toString());
                                 System.out.println("responesStatud: "+resultObject.getString("status"));
+                                break;
+
+                            case  "listOffer":
+                                System.out.println("sb Length: "+ sb.length());
+
+                                String sbStr1 = "{offers:"+sb+"}";
+                                resultObject = new JSONObject(sbStr1);
+                                break;
+
                         }
 
                     }

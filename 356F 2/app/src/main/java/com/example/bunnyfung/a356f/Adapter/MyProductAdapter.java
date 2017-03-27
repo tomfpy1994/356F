@@ -13,8 +13,6 @@ import android.widget.TextView;
 import com.example.bunnyfung.a356f.Object.Post;
 import com.example.bunnyfung.a356f.R;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 
@@ -48,7 +46,7 @@ public class MyProductAdapter extends ArrayAdapter{
         TextView tvBand = (TextView) convertView.findViewById(R.id.tvBand);
         TextView tvSize = (TextView) convertView.findViewById(R.id.tvSize);
         TextView tvType = (TextView) convertView.findViewById(R.id.tvType);
-        TextView tvPrice = (TextView) convertView.findViewById(R.id.tvPrice);
+        TextView tvPrice = (TextView) convertView.findViewById(R.id.tvOfferedPrice);
 
         ivImg.setImageBitmap(alPosts.get(position).getPhoto());
         tvName.setText(alPosts.get(position).getName());

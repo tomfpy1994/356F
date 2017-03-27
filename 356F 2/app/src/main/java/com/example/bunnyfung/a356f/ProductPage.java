@@ -63,7 +63,7 @@ public class ProductPage extends AppCompatActivity {
         ivSellerIcon = (ImageView) findViewById(R.id.ivSellerIcon);
 
         tvTitle = (TextView) findViewById(R.id.tvTitle);
-        tvPrice = (TextView) findViewById(R.id.tvPrice);
+        tvPrice = (TextView) findViewById(R.id.tvOfferedPrice);
         tvName = (TextView) findViewById(R.id.tvName);
         tvBrand = (TextView) findViewById(R.id.tvBrand);
         tvType = (TextView) findViewById(R.id.tvType);

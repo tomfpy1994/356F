@@ -3,12 +3,10 @@ package com.example.bunnyfung.a356f;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,7 +57,7 @@ public class MakeOfferPage extends AppCompatActivity {
 
         ivPhoto1 = (ImageView) findViewById(R.id.ivPhoto1);
         tvTitle = (TextView) findViewById(R.id.tvTitle);
-        tvPrice = (TextView) findViewById(R.id.tvPrice);
+        tvPrice = (TextView) findViewById(R.id.tvOfferedPrice);
         tvName = (TextView) findViewById(R.id.tvName);
         tvBrand = (TextView) findViewById(R.id.tvBrand);
         tvType = (TextView) findViewById(R.id.tvType);
@@ -116,6 +114,9 @@ public class MakeOfferPage extends AppCompatActivity {
                         Connection conn = new Connection();
                         JSONObject resultObject = conn.addOffer(offer);
                         System.out.println(resultObject.getString("status"));
+                        if (resultObject.getString("status").equals("add success")){
+                            finish();
+                        }
                     }
 
                     //TODO: do server

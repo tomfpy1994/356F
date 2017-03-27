@@ -1,7 +1,6 @@
 package com.example.bunnyfung.a356f.Adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,6 @@ public class OfferAdapter extends ArrayAdapter {
         this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -58,11 +56,10 @@ public class OfferAdapter extends ArrayAdapter {
         }
 
         //TODO:get Product Img
-        //ivImg.setImageBitmap(alOffer.get(position).getPhoto());
+        ivImg.setImageBitmap(offer.getPhoto());
         //TODO: get product title
-        tvName.setText(offer.getPostId());
-        //TODO: get buyerName
-        tvBuyerID.setText(offer.getBuyerID());
+        tvName.setText(offer.getTitle());
+        tvBuyerID.setText(offer.getBuyerName());
         tvOfferedPrice.setText(offer.getPrice()+"");
 
 

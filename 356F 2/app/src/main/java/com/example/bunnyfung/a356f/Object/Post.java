@@ -69,7 +69,6 @@ public class Post {
     public String getProductID(){ return productID; }
     public String getBuyer(){ return buyer; }
 
-
     //set method
     public void setPhoto(Bitmap photo){this.photo = photo;}
     public void setName(String name){this.name = name; }

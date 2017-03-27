@@ -106,7 +106,9 @@ public class MakeOfferPage extends AppCompatActivity {
                         System.out.println(dbDateFormatter.format(date));
                         String dbStrDate = dbDateFormatter.format(date);
 
-                        Offer offer = new Offer(post.getProductID(), post.getOwner(), acc.getId(), dbStrDate, edtPlace.getText().toString(),price);
+                        Offer offer = new Offer(post.getProductID(), post.getOwner(), acc.getId(),
+                                acc.getUserid(), dbStrDate, edtPlace.getText().toString(),price,
+                                post.getName(), post.getPhoto());
                         //Testing Log
                         System.out.println(offer.toString());
                         System.out.print(offer.passToJsonObjectStr());

@@ -96,7 +96,7 @@ public class Connection {
 
     public JSONObject listOffer(Account acc, int stat){
 
-        String preStr = "%22";
+
         String urlStr = "http://s356fproject.mybluemix.net/api/listoffer/?";
         urlStr = urlStr+"/"+acc.getId()+ "/"+'"'+stat+'"';
         try {

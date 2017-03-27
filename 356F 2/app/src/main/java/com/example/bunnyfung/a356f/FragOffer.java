@@ -69,6 +69,26 @@ public class FragOffer extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO: request server query processing data
+                alOffer.clear();
+                if (jsonArray!=null) {
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        Offer temOffer = null;
+                        try {
+                            temOffer = new Offer(jsonArray.getJSONObject(i));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (temOffer.getStat()==1){
+                            alOffer.add(temOffer);
+
+                        }
+                    }
+                }
+
+                lvOfferList.invalidateViews();
+                OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer);
+                lvOfferList.setAdapter(adapter);
             }
         });
 

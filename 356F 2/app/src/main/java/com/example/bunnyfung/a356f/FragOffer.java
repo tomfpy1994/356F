@@ -62,7 +62,7 @@ public class FragOffer extends Fragment {
         //Testing Log
         System.out.println(alOffer.size());
 
-        OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer);
+        OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer, 0);
         lvOfferList.setAdapter(adapter);
 
         btnProcessing.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +87,7 @@ public class FragOffer extends Fragment {
                 }
 
                 lvOfferList.invalidateViews();
-                OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer);
+                OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer, 0);
                 lvOfferList.setAdapter(adapter);
             }
         });
@@ -112,7 +112,7 @@ public class FragOffer extends Fragment {
                     }
                 }
 
-                OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer);
+                OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer, 0);
                 lvOfferList.setAdapter(adapter);
                 lvOfferList.invalidateViews();
 
@@ -141,9 +141,8 @@ public class FragOffer extends Fragment {
                 }
 
                 lvOfferList.invalidateViews();
-                OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer);
+                OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer, 1);
                 lvOfferList.setAdapter(adapter);
-
             }
         });
 

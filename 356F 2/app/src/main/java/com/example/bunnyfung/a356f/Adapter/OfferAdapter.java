@@ -22,9 +22,11 @@ public class OfferAdapter extends ArrayAdapter {
     private ArrayList<Offer> alOffer;
     private int resource;
     private LayoutInflater inflater;
+    private int isMyOffer;
 
-    public OfferAdapter(Context context, int resource, ArrayList<Offer> alOffer) {
+    public OfferAdapter(Context context, int resource, ArrayList<Offer> alOffer, int isMyOffer) {
         super(context, resource, alOffer);
+        this.isMyOffer = isMyOffer;
         this.alOffer = alOffer;
         this.resource = resource;
         this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -45,6 +47,10 @@ public class OfferAdapter extends ArrayAdapter {
         Button btnDecline = (Button) convertView.findViewById(R.id.btnDecline);
 
         Offer offer = alOffer.get(position);
+
+        //Testing Log
+        System.out.println(isMyOffer+"");
+
         if (offer.getStat()==1){
             btnAccept.setVisibility(View.INVISIBLE);
         }else if (offer.getStat()==2){
@@ -53,6 +59,9 @@ public class OfferAdapter extends ArrayAdapter {
         }else {
             btnAccept.setVisibility(View.VISIBLE);
             btnDecline.setVisibility(View.VISIBLE);
+        }
+        if (isMyOffer==1){
+            btnAccept.setVisibility(View.INVISIBLE);
         }
 
         //TODO:get Product Img

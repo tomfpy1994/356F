@@ -116,6 +116,27 @@ public class Connection {
         return resultObject;
     }
 
+    public JSONObject getOneProduct(String prodID){
+
+        String urlStr = "http://s356fproject.mybluemix.net/api/list/_id/"+prodID;
+        try {
+            url = new URL(urlStr);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        queryServer("GET","getProduct", null);
+
+        while (resultObject == null) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultObject;
+
+    }
+
 
 
     public void queryServer(final String method, final String action, final Offer offer) {

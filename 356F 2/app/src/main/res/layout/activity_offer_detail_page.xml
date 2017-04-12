@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_offer_detail_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.bunnyfung.a356f.OfferDetailPage"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivPhoto1"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="NIKE 美麗的波鞋NIKE 美麗的波鞋NIKE 美麗的波鞋NIKE 美麗的波鞋NIKE 美麗的波鞋"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTitle"
+                android:layout_weight="1"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textAlignment="textStart"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:text="$100000"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvOfferedPrice"
+                android:layout_weight="1"
+                android:textColor="@color/colorAccent"
+                android:textSize="22sp"
+                android:textAlignment="viewEnd"
+                android:layout_width="match_parent" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:text="Details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView14"
+            android:background="?android:attr/colorBackground"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:fontFamily="sans-serif-condensed"
+            android:typeface="normal"
+            android:textAlignment="center"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Name:"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView20"
+                android:layout_weight="0.07"
+                android:layout_width="90dp" />
+
+            <TextView
+                android:text="ACBD12344"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvName"
+                android:layout_weight="1"
+                android:textColor="@android:color/background_dark" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Brand:"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView21"
+                android:layout_weight="0.07"
+                android:layout_width="90dp" />
+
+            <TextView
+                android:text="Nike"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvBrand"
+                android:layout_weight="1"
+                android:textColor="@android:color/background_dark" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Type:"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView23"
+                android:layout_weight="0.07"
+                android:layout_width="90dp" />
+
+            <TextView
+                android:text="Run boots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvType"
+                android:layout_weight="1"
+                android:textColor="@android:color/background_dark" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <TextView
+                android:text="Size:"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView25"
+                android:layout_weight="0.18"
+                android:layout_width="wrap_content" />
+
+            <TextView
+                android:text="US 5"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvSize"
+                android:textColor="@android:color/background_dark"
+                android:gravity="left"
+                android:layout_gravity="left"
+                android:layout_width="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:text="Offer Details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/owner1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="14dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <TextView
+                android:text="Offered By:"
+                android:layout_width="83dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView24" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/edtBuyerID"
+                android:textColor="?attr/actionMenuTextColor" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Price: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView17"
+                android:layout_weight="0.93" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/edtPrice"
+                android:layout_weight="1"
+                android:textColor="?attr/actionMenuTextColor" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Date Time:"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.10"
+                android:layout_width="25dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:ems="10"
+                android:id="@+id/edtDateTime"
+                android:layout_weight="1"
+                android:textColor="?attr/actionMenuTextColor" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Place: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView18"
+                android:layout_weight="0.65" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/edtPlace"
+                android:layout_weight="0.80"
+                android:textColor="?attr/actionMenuTextColor" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.65">
+
+            <Button
+                android:text="Accept"
+                android:layout_width="153dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnAccept"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="Decline"
+                android:layout_width="153dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnDecline"
+                style="@style/Widget.AppCompat.Button.Small"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

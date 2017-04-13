@@ -21,7 +21,6 @@ public class FragOffer extends Fragment {
     private Button btnProcessing,btnInvitation,btnMyOffer;
     private ListView lvOfferList;
     private JSONArray jsonArray = null;
-    private Offer offer;
     private ArrayList<Offer> alOffer = new ArrayList<Offer>();
 
     public FragOffer() {}
@@ -76,6 +75,11 @@ public class FragOffer extends Fragment {
 
                 Intent intent = new Intent(getActivity(), OfferDetailPage.class);
                 intent.putExtra("offer", clickedOfferStr);
+                try {
+                    intent.putExtra("acc", acc.passToJsonObjectStr());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 startActivity(intent);
             }

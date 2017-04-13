@@ -107,7 +107,7 @@ public class Offer {
     public void setBuyerCode(String buyerCode){this.buyerCode = buyerCode;}
 
     public String toString(){return get_id()+","+getPostId()+","+getOwnerID()+","+getBuyerID()+","
-            +getDateTime()+","+getPlace()+","+getStat()+","+getPrice();}
+            +getDateTime()+","+getPlace()+","+getStat()+","+getPrice()+","+getBuyerCode();}
 
     private String bitmapToBase64(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

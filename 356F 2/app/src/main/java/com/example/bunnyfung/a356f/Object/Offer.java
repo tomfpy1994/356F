@@ -101,8 +101,7 @@ public class Offer {
 
     public void setDateTime(String dateTime){this.dateTime = dateTime;}
     public void setPlace(String place){this.place = place;}
-    public void setStatProccesing(){this.stat = statTpye[1];}
-    public void setStatDeal(){this.stat = statTpye[2];}
+    public void setStat(){}
     public void setOwnerCode(String ownerCode){this.ownerCode = ownerCode;}
     public void setBuyerCode(String buyerCode){this.buyerCode = buyerCode;}
 

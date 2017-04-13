@@ -56,12 +56,55 @@ public class Connection {
     }
 
     public JSONObject getProduct(){
+
         try {
             url = new URL("http://s356fproject.mybluemix.net/api/list/");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         queryServer("GET","getProduct",null);
+
+        while (resultObject == null) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultObject;
+    }
+
+    public JSONObject addOffer(Offer offer){
+
+        try {
+            url = new URL("http://s356fproject.mybluemix.net/api/addoffer");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        queryServer("POST","addOffer", offer);
+
+        while (resultObject == null) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultObject;
+
+    }
+
+    public JSONObject listOffer(Account acc, int stat){
+
+
+        String urlStr = "http://s356fproject.mybluemix.net/api/listoffer/?";
+        urlStr = urlStr+"/"+acc.getId()+ "/"+'"'+stat+'"';
+        try {
+            url = new URL(urlStr);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        queryServer("GET","listOffer", null);
 
         while (resultObject == null) {
             try {
@@ -91,69 +134,8 @@ public class Connection {
             }
         }
         return resultObject;
+
     }
-
-
-    public JSONObject addOffer(Offer offer){
-
-        try {
-            url = new URL("http://s356fproject.mybluemix.net/api/addoffer");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        queryServer("POST","addOffer", offer);
-
-        while (resultObject == null) {
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        return resultObject;
-    }
-
-
-    public JSONObject listOffer(Account acc, int stat){
-
-        String urlStr = "http://s356fproject.mybluemix.net/api/listoffer/?";
-        urlStr = urlStr+"/"+acc.getId()+ "/"+'"'+stat+'"';
-        try {
-            url = new URL(urlStr);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        queryServer("GET","listOffer", null);
-
-        while (resultObject == null) {
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        return resultObject;
-    }
-
-    public JSONObject updateOffer(Offer offer){
-        String urlStr = "http://s356fproject.mybluemix.net/api/updateoffer";
-        try {
-            url = new URL(urlStr);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        queryServer("POST","updateOffer", offer);
-
-        while (resultObject == null) {
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        return resultObject;
-    }
-
 
 
 
@@ -191,19 +173,15 @@ public class Connection {
                             case "addOffer":
                                 //Testing Log
                                 System.out.println("queryServer jsonObj: " + offer.toString());
+
                                 os.write(offer.passToJsonObjectStr().getBytes("UTF-8"));
                                 break;
 
                             case "Login":
                                 //Testing Log
                                 System.out.println("queryServer jsonObj: " + acc.toString());
-                                os.write(acc.toString().getBytes("UTF-8"));
-                                break;
 
-                            case "updateOffer":
-                                //Testing Log
-                                System.out.println("queryServer jsonObj: " + offer.toString());
-                                os.write(offer.passToJsonObjectStr().getBytes("UTF-8"));
+                                os.write(acc.toString().getBytes("UTF-8"));
                                 break;
                         }
                         os.close();
@@ -252,10 +230,6 @@ public class Connection {
                                 resultObject = new JSONObject(sbStr1);
                                 break;
 
-                            case "updateOffer":
-                                resultObject = new JSONObject(sb.toString());
-                                System.out.println("responesStatud: "+resultObject.getString("status"));
-                                break;
                         }
 
                     }

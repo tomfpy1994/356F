@@ -94,6 +94,26 @@
                 android:layout_height="match_parent"
                 android:weightSum="2">
 
+                <Button
+                    android:text="Accept"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/btnAccept"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="40dp"
+                    android:textStyle="normal|bold"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:textColorLink="?attr/actionModeSplitBackground" />
+
+                <Button
+                    android:text="Decline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:id="@+id/btnDecline"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp" />
             </LinearLayout>
 
         </LinearLayout>

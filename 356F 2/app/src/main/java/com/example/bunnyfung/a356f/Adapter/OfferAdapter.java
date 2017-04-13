@@ -43,27 +43,26 @@ public class OfferAdapter extends ArrayAdapter {
         TextView tvName = (TextView) convertView.findViewById(R.id.tvName);
         TextView tvBuyerID = (TextView) convertView.findViewById(R.id.tvBuyerID);
         TextView tvOfferedPrice = (TextView) convertView.findViewById(R.id.tvOfferedPrice);
-//        Button btnAccept = (Button) convertView.findViewById(R.id.btnAccept);
-//        Button btnDecline = (Button) convertView.findViewById(R.id.btnDecline);
-
+        Button btnAccept = (Button) convertView.findViewById(R.id.btnAccept);
+        Button btnDecline = (Button) convertView.findViewById(R.id.btnDecline);
 
         Offer offer = alOffer.get(position);
 
         //Testing Log
         System.out.println(isMyOffer+"");
 
-//        if (offer.getStat()==1){
-//            btnAccept.setVisibility(View.INVISIBLE);
-//        }else if (offer.getStat()==2){
-//            btnAccept.setVisibility(View.INVISIBLE);
-//            btnDecline.setVisibility(View.INVISIBLE);
-//        }else {
-//            btnAccept.setVisibility(View.VISIBLE);
-//            btnDecline.setVisibility(View.VISIBLE);
-//        }
-//        if (isMyOffer==1){
-//            btnAccept.setVisibility(View.INVISIBLE);
-//        }
+        if (offer.getStat()==1){
+            btnAccept.setVisibility(View.INVISIBLE);
+        }else if (offer.getStat()==2){
+            btnAccept.setVisibility(View.INVISIBLE);
+            btnDecline.setVisibility(View.INVISIBLE);
+        }else {
+            btnAccept.setVisibility(View.VISIBLE);
+            btnDecline.setVisibility(View.VISIBLE);
+        }
+        if (isMyOffer==1){
+            btnAccept.setVisibility(View.INVISIBLE);
+        }
 
         //TODO:get Product Img
         ivImg.setImageBitmap(offer.getPhoto());
@@ -71,13 +70,6 @@ public class OfferAdapter extends ArrayAdapter {
         tvName.setText(offer.getTitle());
         tvBuyerID.setText(offer.getBuyerName());
         tvOfferedPrice.setText(offer.getPrice()+"");
-
-//        btnDecline.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                System.out.println("321");
-//            }
-//        });
 
 
         return convertView;

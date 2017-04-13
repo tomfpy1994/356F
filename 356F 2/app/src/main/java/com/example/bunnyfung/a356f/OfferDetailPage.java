@@ -16,8 +16,7 @@ import org.json.JSONObject;
 
 public class OfferDetailPage extends AppCompatActivity {
     private Offer offer;
-    private EditText edtBuyerID, edtPrice, edtDateTime, edtPlace;
-    private TextView tvTitle, tvName, tvBrand, tvType, tvSize, tvOfferedPrice;
+    private TextView tvName, tvBrand, tvSize, tvDesc, tvBuyerID, tvOfferedPrice, tvDateTime, tvPlace;
     private Post post;
     private JSONObject resultObject;
     private JSONArray jsonArray = null;
@@ -27,16 +26,14 @@ public class OfferDetailPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer_detail_page);
 
-        edtBuyerID = (EditText) findViewById(R.id.edtBuyerID);
-        edtPrice = (EditText) findViewById(R.id.edtPrice);
-        edtDateTime = (EditText) findViewById(R.id.edtDateTime);
-        edtPlace = (EditText) findViewById(R.id.edtPlace);
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
+        tvBuyerID = (TextView) findViewById(R.id.tvBuyerID);
+        tvOfferedPrice = (TextView) findViewById(R.id.tvOfferedPrice);
+        tvDateTime = (TextView) findViewById(R.id.tvDateTime);
+        tvPlace = (TextView) findViewById(R.id.tvPlace);
         tvName = (TextView) findViewById(R.id.tvName);
         tvBrand = (TextView) findViewById(R.id.tvBrand);
-        tvType = (TextView) findViewById(R.id.tvType);
         tvSize = (TextView) findViewById(R.id.tvSize);
-        tvOfferedPrice = (TextView) findViewById(R.id.tvOfferedPrice);
+        tvDesc = (TextView) findViewById(R.id.tvDesc);
 
         try {
             JSONObject jsonOffer = new JSONObject(getIntent().getStringExtra("offer"));
@@ -45,14 +42,10 @@ public class OfferDetailPage extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        edtBuyerID.setText(offer.getBuyerName());
-        edtBuyerID.setEnabled(false);
-        edtPrice.setText(offer.getPrice()+"");
-        edtPrice.setEnabled(false);
-        edtDateTime.setText(offer.getDateTime());
-        edtDateTime.setEnabled(false);
-        edtPlace.setText(offer.getPlace());
-        edtPlace.setEnabled(false);
+        tvBuyerID.setText(offer.getBuyerName());
+        tvOfferedPrice.setText(offer.getPrice()+"");
+        tvDateTime.setText(offer.getDateTime());
+        tvPlace.setText(offer.getPlace());
 
         //Testing Log
         System.out.print("Offer productID:"+ offer.getPostId());
@@ -67,12 +60,10 @@ public class OfferDetailPage extends AppCompatActivity {
             jsonArray = resultObject.getJSONArray("products");
             post = new Post(jsonArray.getJSONObject(0));
 
-            tvOfferedPrice.setText(offer.getPrice()+"");
             tvName.setText(""+post.getName());
             tvBrand.setText(""+post.getBrand());
-            tvType.setText(""+post.getType());
             tvSize.setText(""+post.getSize());
-            tvTitle.setText(post.getBrand()+" "+post.getName()+" US"+post.getSize());
+            tvDesc.setText(""+post.getDescription());
 
         } catch (JSONException e) {
             e.printStackTrace();

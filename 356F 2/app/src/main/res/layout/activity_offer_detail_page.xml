@@ -12,141 +12,127 @@
     android:orientation="vertical">
 
     <TextView
-        android:text="Product Details"
+        android:id="@+id/textView26"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView8"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:fontFamily="sans-serif-condensed"
-        android:textSize="20sp"
-        android:textColor="@android:color/darker_gray"
-        android:textAlignment="center"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp" />
+        android:fontFamily="sans-serif-condensed"
+        android:text="Product Details"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="20sp" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/ivProductImg"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:layout_width="match_parent" />
+            android:layout_weight="1" />
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:text="Name:"
+                        android:id="@+id/textView38"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView38"
-                        android:layout_weight="1"
+                        android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
-                        android:layout_marginBottom="2dp" />
+                        android:layout_weight="1"
+                        android:text="Name:" />
 
                     <TextView
-                        android:text="Brand:"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/textView39"
-                        android:layout_weight="1"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginBottom="2dp" />
-
-                    <TextView
-                        android:text="Size:"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView40"
-                        android:layout_weight="1"
+                        android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
-                        android:layout_marginBottom="2dp" />
+                        android:layout_weight="1"
+                        android:text="Brand:" />
+
+                    <TextView
+                        android:id="@+id/textView40"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_weight="1"
+                        android:text="Size:" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:text="UtrlBoot"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/tvName"
-                        android:textColor="@android:color/black"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginBottom="2dp" />
-
-                    <TextView
-                        android:text="Nike"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginTop="2dp"
+                        android:text="UtrlBoot"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
                         android:id="@+id/tvBrand"
-                        android:layout_weight="1"
-                        android:textColor="@android:color/black"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginBottom="2dp" />
-
-                    <TextView
-                        android:text="US 7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tvSize"
-                        android:textColor="@android:color/black"
+                        android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
-                        android:layout_marginBottom="2dp" />
+                        android:layout_weight="1"
+                        android:text="Nike"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/tvSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginTop="2dp"
+                        android:text="US 7"
+                        android:textColor="@android:color/black" />
                 </LinearLayout>
+
             </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/ivPhoto1"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
             <TextView
-                android:text="$100000"
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvOfferedPrice"
-                android:layout_weight="1"
-                android:textColor="@color/colorAccent"
-                android:textSize="22sp"
-                android:textAlignment="viewEnd"
-                android:layout_width="match_parent" />
-        </LinearLayout>
+                android:text="Description:" />
 
+            <TextView
+                android:id="@+id/tvDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="fjaslkfjsdaklfjsdaklfjsdklfjsdklffjdsafjskalfjsalkfjsakfljsfskfjsakffksdkfsdjkfjewnfionasoivnwo"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -156,14 +142,6 @@
         android:weightSum="1"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </LinearLayout>
-
 
         <TextView
             android:text="Offer Details"
@@ -179,93 +157,131 @@
             android:textSize="20sp" />
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="2">
+            android:orientation="vertical">
 
-            <TextView
-                android:text="Offered By:"
-                android:layout_width="83dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView24" />
-
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/edtBuyerID"
-                android:textColor="?attr/actionMenuTextColor" />
+                android:layout_weight="0.97"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="62dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:text="User:" />
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:text="Date Time:" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvBuyerID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="Bunny Fung"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/tvDateTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_weight="1"
+                        android:text="21/12/2016"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvOfferedPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:text="$100000"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.97"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView35"
+                    android:layout_width="66dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="3dp"
+                    android:text="Place:"
+                    android:textAlignment="textStart" />
+
+                <TextView
+                    android:id="@+id/tvPlace"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_weight="1"
+                    android:text="asjfklsajfksldfjslkdfjsakldfjasklfjsklfjasklfjsadklfsjafkasjfaklfjsal"
+                    android:textColor="@android:color/black" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <TextView
+            android:id="@+id/textView34"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:text="Agreement"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="20sp" />
 
-            <TextView
-                android:text="Price: "
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView17"
-                android:layout_weight="0.93" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:ems="10"
-                android:id="@+id/edtPrice"
-                android:layout_weight="1"
-                android:textColor="?attr/actionMenuTextColor" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <CheckBox
+            android:id="@+id/checkBox5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:text="Date Time:"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.10"
-                android:layout_width="25dp" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="none"
-                android:ems="10"
-                android:id="@+id/edtDateTime"
-                android:layout_weight="1"
-                android:textColor="?attr/actionMenuTextColor" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:text="Place: "
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView18"
-                android:layout_weight="0.65" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/edtPlace"
-                android:layout_weight="0.80"
-                android:textColor="?attr/actionMenuTextColor" />
-
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="I agree to the Terms and Conditions" />
 
         <LinearLayout
             android:orientation="horizontal"

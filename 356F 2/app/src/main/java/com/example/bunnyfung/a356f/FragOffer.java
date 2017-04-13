@@ -1,13 +1,13 @@
 package com.example.bunnyfung.a356f;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-
-import com.example.bunnyfung.a356f.Adapter.MyProductAdapter;
 import com.example.bunnyfung.a356f.Adapter.OfferAdapter;
 import com.example.bunnyfung.a356f.Connection.Connection;
 import com.example.bunnyfung.a356f.Object.Account;
@@ -52,23 +52,38 @@ public class FragOffer extends Fragment {
 
                     if (temOffer.getStat()==1){
                         alOffer.add(temOffer);
-
                     }
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         //Testing Log
         System.out.println(alOffer.size());
 
         OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer, 0);
         lvOfferList.setAdapter(adapter);
 
+        lvOfferList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Offer clickedOffer = alOffer.get(position);
+                String clickedOfferStr = clickedOffer.passToJsonObjectStr();
+
+                //Testing Log
+                System.out.println("Clicked_Offer:"+clickedOfferStr);
+
+                Intent intent = new Intent(getActivity(), OfferDetailPage.class);
+                intent.putExtra("offer", clickedOfferStr);
+
+                startActivity(intent);
+            }
+        });
+
         btnProcessing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: request server query processing data
                 alOffer.clear();
                 if (jsonArray!=null) {
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -95,7 +110,6 @@ public class FragOffer extends Fragment {
         btnInvitation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: request server query Invitation data
                 alOffer.clear();
                 if (jsonArray!=null) {
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -122,7 +136,6 @@ public class FragOffer extends Fragment {
         btnMyOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: request server query My Offer data
                 alOffer.clear();
                 if (jsonArray!=null) {
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -135,7 +148,6 @@ public class FragOffer extends Fragment {
 
                         if (temOffer.getBuyerID().equals(acc.getId())){
                             alOffer.add(temOffer);
-
                         }
                     }
                 }

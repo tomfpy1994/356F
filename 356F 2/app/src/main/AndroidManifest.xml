@@ -66,11 +66,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ProductPage"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ResultOfSearch"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MakeOfferPage" />
+        <activity android:name=".OfferDetailPage"></activity>
     </application>
 
 </manifest>

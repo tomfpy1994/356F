@@ -136,23 +136,23 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="1"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <TextView
-            android:text="Offer Details"
+            android:id="@+id/owner1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/owner1"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="14dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            android:textAlignment="center"
             android:fontFamily="sans-serif-condensed"
+            android:text="Offer Details"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
             android:textColor="@android:color/darker_gray"
             android:textSize="20sp" />
 
@@ -284,26 +284,26 @@
             android:text="I agree to the Terms and Conditions" />
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.65">
+            android:layout_weight="0.65"
+            android:orientation="horizontal">
 
             <Button
-                android:text="Accept"
-                android:layout_width="153dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnAccept"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_weight="1" />
-
-            <Button
-                android:text="Decline"
                 android:layout_width="153dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Accept" />
+
+            <Button
                 android:id="@+id/btnDecline"
                 style="@style/Widget.AppCompat.Button.Small"
-                android:layout_weight="1" />
+                android:layout_width="153dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Decline" />
         </LinearLayout>
 
     </LinearLayout>

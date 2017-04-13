@@ -1,7 +1,9 @@
 package com.example.bunnyfung.a356f;
 
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,6 +19,7 @@ import org.json.JSONObject;
 public class OfferDetailPage extends AppCompatActivity {
     private Offer offer;
     private TextView tvName, tvBrand, tvSize, tvDesc, tvBuyerID, tvOfferedPrice, tvDateTime, tvPlace;
+    private Button btnAccept, btnDecline;
     private Post post;
     private JSONObject resultObject;
     private JSONArray jsonArray = null;
@@ -34,6 +37,9 @@ public class OfferDetailPage extends AppCompatActivity {
         tvBrand = (TextView) findViewById(R.id.tvBrand);
         tvSize = (TextView) findViewById(R.id.tvSize);
         tvDesc = (TextView) findViewById(R.id.tvDesc);
+
+        btnAccept = (Button) findViewById(R.id.btnAccept);
+        btnDecline = (Button) findViewById(R.id.btnDecline);
 
         try {
             JSONObject jsonOffer = new JSONObject(getIntent().getStringExtra("offer"));
@@ -68,6 +74,20 @@ public class OfferDetailPage extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        btnDecline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                offer.setStatDeal();
+                System.out.println(""+offer.toString());
+
+                Connection conn = new Connection();
+                resultObject = conn.updateOffer(offer);
+
+                System.out.println(resultObject.toString()+"");
+            }
+        });
 
 
 

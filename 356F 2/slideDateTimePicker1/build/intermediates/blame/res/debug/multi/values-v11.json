@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/BunnyFung/Downloads/SlideDateTimePicker-master/slideDateTimePicker/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v11/values-v11.xml",
+        "outputFile": "D:\\Users\\BunnyFung\\Downloads\\SlideDateTimePicker-master\\slideDateTimePicker\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
         "map": [
             {
                 "to": {
@@ -12,7 +12,7 @@
                     "endOffset": 187
                 },
                 "from": {
-                    "file": "/Users/BunnyFung/Downloads/SlideDateTimePicker-master/slideDateTimePicker/src/main/res/values-v11/styles.xml",
+                    "file": "D:\\Users\\BunnyFung\\Downloads\\SlideDateTimePicker-master\\slideDateTimePicker\\src\\main\\res\\values-v11\\styles.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -20,6 +20,32 @@
                         "endLine": 8,
                         "endColumn": 12,
                         "endOffset": 309
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "D:\\GitHub\\356F\\356F 2\\slideDateTimePicker1\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 4,
+                    "endColumn": 12,
+                    "endOffset": 187
+                },
+                "from": {
+                    "file": "D:\\GitHub\\356F\\356F 2\\slideDateTimePicker1\\src\\main\\res\\values-v11\\styles.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 183,
+                        "endLine": 8,
+                        "endColumn": 12,
+                        "endOffset": 317
                     }
                 }
             }

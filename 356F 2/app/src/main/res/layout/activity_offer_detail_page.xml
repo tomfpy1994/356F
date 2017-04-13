@@ -11,6 +11,116 @@
     tools:context="com.example.bunnyfung.a356f.OfferDetailPage"
     android:orientation="vertical">
 
+    <TextView
+        android:text="Product Details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView8"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="20sp"
+        android:textColor="@android:color/darker_gray"
+        android:textAlignment="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivProductImg"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:text="Name:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView38"
+                        android:layout_weight="1"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp" />
+
+                    <TextView
+                        android:text="Brand:"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView39"
+                        android:layout_weight="1"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp" />
+
+                    <TextView
+                        android:text="Size:"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView40"
+                        android:layout_weight="1"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:text="UtrlBoot"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvName"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp" />
+
+                    <TextView
+                        android:text="Nike"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvBrand"
+                        android:layout_weight="1"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp" />
+
+                    <TextView
+                        android:text="US 7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvSize"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -25,17 +135,6 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <TextView
-                android:text="NIKE 美麗的波鞋NIKE 美麗的波鞋NIKE 美麗的波鞋NIKE 美麗的波鞋NIKE 美麗的波鞋"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvTitle"
-                android:layout_weight="1"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textAlignment="textStart"
-                android:textAllCaps="false" />
 
             <TextView
                 android:text="$100000"
@@ -58,102 +157,13 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
 
-        <TextView
-            android:text="Details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView14"
-            android:background="?android:attr/colorBackground"
-            android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            android:fontFamily="sans-serif-condensed"
-            android:typeface="normal"
-            android:textAlignment="center"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="20sp"
-            android:layout_marginBottom="10dp" />
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:text="Name:"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView20"
-                android:layout_weight="0.07"
-                android:layout_width="90dp" />
-
-            <TextView
-                android:text="ACBD12344"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvName"
-                android:layout_weight="1"
-                android:textColor="@android:color/background_dark" />
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <TextView
-                android:text="Brand:"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView21"
-                android:layout_weight="0.07"
-                android:layout_width="90dp" />
-
-            <TextView
-                android:text="Nike"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvBrand"
-                android:layout_weight="1"
-                android:textColor="@android:color/background_dark" />
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:text="Type:"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView23"
-                android:layout_weight="0.07"
-                android:layout_width="90dp" />
-
-            <TextView
-                android:text="Run boots"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvType"
-                android:layout_weight="1"
-                android:textColor="@android:color/background_dark" />
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="1">
-
-            <TextView
-                android:text="Size:"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView25"
-                android:layout_weight="0.18"
-                android:layout_width="wrap_content" />
-
-            <TextView
-                android:text="US 5"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvSize"
-                android:textColor="@android:color/background_dark"
-                android:gravity="left"
-                android:layout_gravity="left"
-                android:layout_width="wrap_content" />
-        </LinearLayout>
 
         <TextView
             android:text="Offer Details"

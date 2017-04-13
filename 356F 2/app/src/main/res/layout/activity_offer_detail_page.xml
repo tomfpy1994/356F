@@ -276,7 +276,7 @@
             android:textSize="20sp" />
 
         <CheckBox
-            android:id="@+id/checkBox5"
+            android:id="@+id/cbAgreement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

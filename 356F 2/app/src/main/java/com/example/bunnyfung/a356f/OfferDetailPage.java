@@ -2,6 +2,7 @@ package com.example.bunnyfung.a356f;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ public class OfferDetailPage extends AppCompatActivity {
     private Offer offer;
     private EditText edtBuyerID, edtPrice, edtDateTime, edtPlace;
     private TextView tvTitle, tvName, tvBrand, tvType, tvSize, tvOfferedPrice;
+    private Button btnDecline, btnAccept;
     private Post post;
     private JSONObject resultObject;
     private JSONArray jsonArray = null;
@@ -37,6 +39,8 @@ public class OfferDetailPage extends AppCompatActivity {
         tvType = (TextView) findViewById(R.id.tvType);
         tvSize = (TextView) findViewById(R.id.tvSize);
         tvOfferedPrice = (TextView) findViewById(R.id.tvOfferedPrice);
+        btnDecline = (Button) findViewById(R.id.btnDecline);
+        btnAccept = (Button) findViewById(R.id.btnAccept);
 
         try {
             JSONObject jsonOffer = new JSONObject(getIntent().getStringExtra("offer"));
@@ -44,6 +48,19 @@ public class OfferDetailPage extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        btnDecline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                offer.setStatDeal();
+
+                Connection conn = new Connection();
+                resultObject = conn.updateOffer(offer);
+
+                //Testing Log
+                System.out.println("resultObject: "+resultObject.toString());
+            }
+        });
 
         edtBuyerID.setText(offer.getBuyerName());
         edtBuyerID.setEnabled(false);

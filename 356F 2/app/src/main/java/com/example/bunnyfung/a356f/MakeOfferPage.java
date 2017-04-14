@@ -96,9 +96,9 @@ public class MakeOfferPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Date date;
-                double price = 0.0;
+                int price = 0;
                 if (!edtPrice.getText().equals(""))
-                    price = Double.parseDouble(edtPrice.getText().toString());
+                    price = Integer.parseInt(edtPrice.getText().toString());
 
                 try {
                     if (!strDate.equals("")) {

@@ -17,14 +17,14 @@ import java.io.InputStream;
 
 public class Offer {
     private String _id, postID, ownerID, buyerID, buyerName, dateTime, place, ownerCode, buyerCode, title;
-    private double price;
+    private int price;
     private int stat;
     private int[] statTpye =  new int[] {0,1,2};
     // 0 = waiting, 1 = processing, 2 = deal
     private Bitmap photo;
 
     //for new offer
-    public Offer(String postID, String ownerID, String buyerID, String buyerName, String dateTime, String place, double price, String title, Bitmap photo){
+    public Offer(String postID, String ownerID, String buyerID, String buyerName, String dateTime, String place, int price, String title, Bitmap photo){
         this.postID = postID;
         this.ownerID = ownerID;
         this.buyerID = buyerID;
@@ -52,7 +52,7 @@ public class Offer {
             this.ownerCode = object.getString("OwnerCode");
             this.buyerCode = object.getString("BuyerCode");
             this.stat = object.getInt("stat");
-            this.price = object.getDouble("price");
+            this.price = object.getInt("price");
             this.title = object.getString("title");
             this.photo = base64ToBitmap(object.getString("photo"));
         } catch (JSONException e) {
@@ -95,7 +95,7 @@ public class Offer {
     public String getOwnerCode(){return ownerCode;}
     public String getBuyerCode(){return buyerCode;}
     public int getStat(){return stat;}
-    public double getPrice(){return price;}
+    public int getPrice(){return price;}
     public String getTitle(){return title;}
     public Bitmap getPhoto(){return photo;}
 

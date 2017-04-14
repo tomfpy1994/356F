@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.bunnyfung.a356f.Connection.Connection;
@@ -74,7 +75,6 @@ public class OfferDetailPage extends AppCompatActivity {
 
                 case 1: btnAccept.setText("DEAL");
                         tvAgreeTitle.setVisibility(View.INVISIBLE);
-                        cbAgreement.setVisibility(View.INVISIBLE);
                         break;
 
                 case 2: btnDecline.setVisibility(View.INVISIBLE);
@@ -138,19 +138,116 @@ public class OfferDetailPage extends AppCompatActivity {
                     if (btnAccept.getText().equals("DEAL")){
                         //Testing Log
                         System.out.println("Deal");
+
+                        if (offer.getBuyerID().equals(acc.getId())) {
+                            //Testing Log
+                            System.out.println("buyer enter code");
+
+                            AlertDialog.Builder alertDialog = new AlertDialog.Builder(OfferDetailPage.this);
+                            alertDialog.setTitle("Enter seller deal Code");
+
+                            final EditText input = new EditText(OfferDetailPage.this);
+                            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                                    LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.MATCH_PARENT);
+                            input.setLayoutParams(lp);
+                            alertDialog.setView(input);
+
+                            alertDialog.setPositiveButton("YES",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            String dealCode = input.getText().toString();
+
+                                            //Testing Log
+                                            System.out.println("entered dealcode : " + dealCode);
+
+                                            if (dealCode.equals(offer.getOwnerCode())) {
+                                                if (acc.getBalance()-offer.getPrice()>0) {
+                                                    //Testing Log
+                                                    System.out.println("dealcode same");
+
+                                                    //Do update buyerAcc, SellerAcc, post, offer
+                                                    //set offer
+                                                    offer.setBuyerCode(dealCode);
+                                                    offer.setStatDeal();
+                                                    //Testing Log
+                                                    System.out.println("Offer: " + offer.toString());
+
+
+                                                    //set product
+                                                    post.setState("1");
+                                                    //Testing Log
+                                                    System.out.println("Post: " + post.toString());
+
+
+                                                    //set buyerAcc balance
+                                                    int balance = acc.getBalance() - offer.getPrice();
+                                                    acc.setBalance(balance);
+                                                    //Testing Log
+                                                    System.out.println("buyerAcc: " + acc.toString());
+
+
+                                                    //set sellerAcc balance
+                                                    //TODO: get sellerAcc and update balance
+                                                }else {
+                                                    AlertDialog dialog1 = new AlertDialog.Builder(OfferDetailPage.this)
+                                                            .setTitle("Payment Error")
+                                                            .setMessage("You have not enought balance.\n Please deposit money.")
+                                                            .setCancelable(false)
+                                                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                    // Whatever...
+                                                                }
+                                                            }).show();
+                                                }
+
+
+
+
+
+                                            }
+                                        }
+                                    });
+
+                            alertDialog.setNegativeButton("NO",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.cancel();
+                                        }
+                                    });
+                            alertDialog.show();
+                        }else{
+
+                            AlertDialog dialog = new AlertDialog.Builder(OfferDetailPage.this)
+                                    .setTitle("Deal Code")
+                                    .setMessage(offer.getOwnerCode()+"")
+                                    .setCancelable(false)
+                                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            // Whatever...
+                                        }
+                                    }).show();
+
+
+                            TextView textView = (TextView) dialog.findViewById(android.R.id.message);
+                            textView.setTextSize(50);
+                            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+                        }
                     }else {
                         System.out.println("Accept");
                         if (offer.getBuyerCode().equals("")){
                             //Testing Log
                             System.out.println("buyerCode is null");
                             Random r = new Random();
-                            int intBuyerCode = r.nextInt(10000);
-                            String strBuyerCode = String.format("%04d", intBuyerCode);
+                            int intOwnerCode = r.nextInt(10000);
+                            String strOwnerCode = String.format("%04d", intOwnerCode);
 
                             //Testing Log
-                            System.out.println("gened buyerCode is "+strBuyerCode);
+                            System.out.println("gened buyerCode is "+strOwnerCode);
 
-                            offer.setBuyerCode(strBuyerCode);
+                            offer.setOwnerCode(strOwnerCode);
                             offer.setStatProccessing();
 
                             //Testing Log
@@ -164,7 +261,7 @@ public class OfferDetailPage extends AppCompatActivity {
 
                         AlertDialog dialog = new AlertDialog.Builder(OfferDetailPage.this)
                                 .setTitle("Deal Code")
-                                .setMessage(offer.getBuyerCode()+"")
+                                .setMessage(offer.getOwnerCode()+"")
                                 .setCancelable(false)
                                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                     @Override
@@ -177,19 +274,13 @@ public class OfferDetailPage extends AppCompatActivity {
                         TextView textView = (TextView) dialog.findViewById(android.R.id.message);
                         textView.setTextSize(50);
                         textView.setGravity(Gravity.CENTER_HORIZONTAL);
-
-
                     }
                 }else {
                     System.out.println("checkbox Not checked");
                     cbAgreement.setFocusable(true);
                     cbAgreement.setTextColor(Color.RED);
-
                 }
             }
         });
-
-
-
     }
 }

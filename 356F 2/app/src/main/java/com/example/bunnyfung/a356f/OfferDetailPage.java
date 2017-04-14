@@ -162,6 +162,8 @@ public class OfferDetailPage extends AppCompatActivity {
                                             System.out.println("entered dealcode : " + dealCode);
 
                                             if (dealCode.equals(offer.getOwnerCode())) {
+                                                //Testing Log
+                                                System.out.println("acc balance:" + acc.getBalance()+"  offer price: "+offer.getPrice());
                                                 if (acc.getBalance()-offer.getPrice()>0) {
                                                     //Testing Log
                                                     System.out.println("dealcode same");
@@ -174,7 +176,7 @@ public class OfferDetailPage extends AppCompatActivity {
                                                     System.out.println("Offer: " + offer.toString());
 
 
-                                                    //set product
+                                                    //set post
                                                     post.setState("1");
                                                     //Testing Log
                                                     System.out.println("Post: " + post.toString());
@@ -189,6 +191,22 @@ public class OfferDetailPage extends AppCompatActivity {
 
                                                     //set sellerAcc balance
                                                     //TODO: get sellerAcc and update balance
+                                                    Connection conn = new Connection();
+                                                    resultObject = conn.getOneAccount(offer.getOwnerID());
+                                                    try {
+                                                        jsonArray = resultObject.getJSONArray("account");
+                                                        Account ownerAcc = new Account(jsonArray.getJSONObject(0));
+                                                        ownerAcc.setBalance(ownerAcc.getBalance()+offer.getPrice());
+
+                                                        //Testing Log
+                                                        System.out.println("ownerAcc:"+ ownerAcc.getBalance());
+
+                                                        resultObject = conn.dealOffer(offer,post, acc, ownerAcc);
+                                                        System.out.println(resultObject.toString());
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                    }
+
                                                 }else {
                                                     AlertDialog dialog1 = new AlertDialog.Builder(OfferDetailPage.this)
                                                             .setTitle("Payment Error")

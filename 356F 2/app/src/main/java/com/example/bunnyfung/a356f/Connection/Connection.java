@@ -2,6 +2,7 @@ package com.example.bunnyfung.a356f.Connection;
 
 import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Offer;
+import com.example.bunnyfung.a356f.Object.Post;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,6 +28,9 @@ public class Connection {
     public Connection() {}
 
 
+
+    //Account Methods
+
     public JSONObject Login(String email, String pw){
         try {
             this.email = email;
@@ -43,7 +47,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("POST","Login",null);
+        queryServer("POST","Login",null, null, null);
 
         while (resultObject == null) {
             try {
@@ -55,6 +59,47 @@ public class Connection {
         return resultObject;
     }
 
+    public JSONObject getOneAccount(String _id){
+
+        try {
+            url = new URL("http://s356fproject.mybluemix.net/api/listac/_id/"+_id);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        queryServer("GET","ListAccount",null, null, null);
+
+        while (resultObject == null) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultObject;
+    }
+
+    public JSONObject updateAcc(Account acc){
+        String urlStr = "http://s356fproject.mybluemix.net/api/updateac";
+        try {
+            url = new URL(urlStr);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        queryServer("POST","updateAcc", null, null, acc);
+
+        while (resultObject == null) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultObject;
+    }
+
+
+
     //Product Methods
 
     public JSONObject getProduct(){
@@ -64,7 +109,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("GET","getProduct",null);
+        queryServer("GET","getProduct",null, null, null);
 
         while (resultObject == null) {
             try {
@@ -84,7 +129,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("GET","getProduct", null);
+        queryServer("GET","getProduct", null, null, null);
 
         while (resultObject == null) {
             try {
@@ -94,7 +139,25 @@ public class Connection {
             }
         }
         return resultObject;
+    }
 
+    public JSONObject updatePost(Post post){
+        String urlStr = "http://s356fproject.mybluemix.net/api/updateproduct";
+        try {
+            url = new URL(urlStr);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        queryServer("POST","updatePost", null, post, null);
+
+        while (resultObject == null) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultObject;
     }
 
 
@@ -107,7 +170,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("POST","addOffer", offer);
+        queryServer("POST","addOffer", offer, null, null);
 
         while (resultObject == null) {
             try {
@@ -129,7 +192,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("GET","listOffer", null);
+        queryServer("GET","listOffer", null, null, null);
 
         while (resultObject == null) {
             try {
@@ -148,7 +211,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("POST","updateOffer", offer);
+        queryServer("POST","updateOffer", offer, null, null);
 
         while (resultObject == null) {
             try {
@@ -160,11 +223,39 @@ public class Connection {
         return resultObject;
     }
 
+    public JSONObject dealOffer(Offer offer, Post post, Account buyer, Account seller){
+
+        try {
+            //update offer
+            this.resultObject = updateOffer(offer);
+            if (resultObject.getString("status").equals("update offer success")){
+                //update post
+                this.resultObject = updatePost(post);
+                if (resultObject.getString("status").equals("update product success")){
+                    //update buyer acc
+                    this.resultObject = updateAcc(buyer);
+                    if (resultObject.getString("status").equals("update success")){
+                        //update seller acc
+                        this.resultObject = updateAcc(seller);
+                        if (resultObject.getString("status").equals("update success")){
+                            return resultObject;
+                        }
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return resultObject;
+    }
 
 
 
 
-    public void queryServer(final String method, final String action, final Offer offer) {
+
+
+
+    public void queryServer(final String method, final String action, final Offer offer, final Post post, final Account tmpacc) {
         resultObject = null;
         Thread thread = new Thread() {
             public void run() {
@@ -211,6 +302,19 @@ public class Connection {
                                 //Testing Log
                                 System.out.println("queryServer jsonObj: " + offer.toString());
                                 os.write(offer.passToJsonObjectStr().getBytes("UTF-8"));
+                                break;
+
+                            case "updatePost":
+                                //Testing Log
+                                System.out.println("queryServer jsonObj: " + post.toString());
+                                os.write(post.passToJsonObjectStr().getBytes("UTF-8"));
+                                break;
+
+                            case "updateAcc":
+                                //Testing Log
+                                System.out.println("queryServer jsonObj: " + tmpacc.toString());
+                                os.write(tmpacc.passToJsonObjectStr().getBytes("UTF-8"));
+                                break;
                         }
                         os.close();
                     }
@@ -262,6 +366,24 @@ public class Connection {
                                 resultObject = new JSONObject(sb.toString());
                                 System.out.println("responesStatud: "+resultObject.getString("status"));
                                 break;
+
+                            case "ListAccount":
+                                System.out.println("sb Length: "+ sb.length());
+
+                                String sbStr2 = "{account:"+sb+"}";
+                                resultObject = new JSONObject(sbStr2);
+                                break;
+
+                            case "updatePost":
+                                resultObject = new JSONObject(sb.toString());
+                                System.out.println("responesStatud: "+resultObject.getString("status"));
+                                break;
+
+                            case "updateAcc":
+                                resultObject = new JSONObject(sb.toString());
+                                System.out.println("responesStatud: "+resultObject.getString("status"));
+                                break;
+
                         }
 
                     }

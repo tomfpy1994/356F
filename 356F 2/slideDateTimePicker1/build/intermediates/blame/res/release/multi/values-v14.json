@@ -1,5 +1,31 @@
 [
     {
+        "outputFile": "/Users/BunnyFung/Documents/Github/356F/356F 2/D:\\GitHub\\356F\\356F 2\\slideDateTimePicker1\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v14\\values-v14.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 4,
+                    "endColumn": 12,
+                    "endOffset": 201
+                },
+                "from": {
+                    "file": "/Users/BunnyFung/Documents/Github/356F/356F 2/D:\\GitHub\\356F\\356F 2\\slideDateTimePicker1\\src\\main\\res\\values-v14\\styles.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 227,
+                        "endLine": 9,
+                        "endColumn": 12,
+                        "endOffset": 375
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "/Users/BunnyFung/Documents/Github/356F/356F 2/D:\\Users\\BunnyFung\\Documents\\Github\\356F\\356F 2\\slideDateTimePicker1\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v14\\values-v14.xml",
         "map": [
             {
@@ -13,6 +39,32 @@
                 },
                 "from": {
                     "file": "/Users/BunnyFung/Documents/Github/356F/356F 2/D:\\Users\\BunnyFung\\Documents\\Github\\356F\\356F 2\\slideDateTimePicker1\\src\\main\\res\\values-v14\\styles.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 220,
+                        "endLine": 9,
+                        "endColumn": 12,
+                        "endOffset": 366
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/BunnyFung/Documents/Github/356F/356F 2/D:\\Users\\BunnyFung\\Downloads\\SlideDateTimePicker-master\\slideDateTimePicker\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v14\\values-v14.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 4,
+                    "endColumn": 12,
+                    "endOffset": 201
+                },
+                "from": {
+                    "file": "/Users/BunnyFung/Documents/Github/356F/356F 2/D:\\Users\\BunnyFung\\Downloads\\SlideDateTimePicker-master\\slideDateTimePicker\\src\\main\\res\\values-v14\\styles.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -52,7 +104,7 @@
         ]
     },
     {
-        "outputFile": "/Users/BunnyFung/Documents/Github/356F/356F 2/D:\\GitHub\\356F\\356F 2\\slideDateTimePicker1\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v14\\values-v14.xml",
+        "outputFile": "/Users/Oliver/Desktop/356F/356F 2/slideDateTimePicker1/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-v14/values-v14.xml",
         "map": [
             {
                 "to": {
@@ -64,33 +116,7 @@
                     "endOffset": 201
                 },
                 "from": {
-                    "file": "/Users/BunnyFung/Documents/Github/356F/356F 2/D:\\GitHub\\356F\\356F 2\\slideDateTimePicker1\\src\\main\\res\\values-v14\\styles.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 227,
-                        "endLine": 9,
-                        "endColumn": 12,
-                        "endOffset": 375
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "/Users/BunnyFung/Documents/Github/356F/356F 2/D:\\Users\\BunnyFung\\Downloads\\SlideDateTimePicker-master\\slideDateTimePicker\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v14\\values-v14.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endLine": 4,
-                    "endColumn": 12,
-                    "endOffset": 201
-                },
-                "from": {
-                    "file": "/Users/BunnyFung/Documents/Github/356F/356F 2/D:\\Users\\BunnyFung\\Downloads\\SlideDateTimePicker-master\\slideDateTimePicker\\src\\main\\res\\values-v14\\styles.xml",
+                    "file": "/Users/Oliver/Desktop/356F/356F 2/slideDateTimePicker1/src/main/res/values-v14/styles.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,

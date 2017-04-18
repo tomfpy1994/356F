@@ -25,25 +25,12 @@
             android:layout_height="100dp">
 
             <Button
-                android:text="week"
+                android:id="@+id/btnGoBack"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/button3"
-                android:layout_weight="1" />
-
-            <Button
-                android:text="month"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnMonth"
-                android:layout_weight="1" />
-
-            <Button
-                android:text="year"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnYear"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="back" />
 
         </LinearLayout>
 

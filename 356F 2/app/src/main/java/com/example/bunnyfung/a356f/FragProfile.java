@@ -73,7 +73,7 @@ public class FragProfile extends Fragment {
         //Demo Block
         btnMyScore.setEnabled(false);
         btnWishList.setEnabled(false);
-        btnHistory.setEnabled(false);
+        //btnHistory.setEnabled(false);
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +144,7 @@ public class FragProfile extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                startActivity(intent);
+                startActivityForResult(intent,1);
             }
         });
 

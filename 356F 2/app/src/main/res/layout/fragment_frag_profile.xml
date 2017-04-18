@@ -65,11 +65,11 @@
                 android:layout_height="50dp">
 
                 <Button
-                    android:text="history"
+                    android:id="@+id/btnHistory"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btnHistory"
-                    android:layout_weight="1.03" />
+                    android:layout_weight="1.03"
+                    android:text="history of offer" />
 
                 <Button
                     android:text="my post"

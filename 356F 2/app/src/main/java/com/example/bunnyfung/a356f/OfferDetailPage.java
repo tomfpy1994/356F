@@ -2,7 +2,9 @@ package com.example.bunnyfung.a356f;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,12 +29,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
+
+import static java.security.AccessController.getContext;
 
 public class OfferDetailPage extends AppCompatActivity {
     private Offer offer;
     private Account acc;
     private TextView tvName, tvBrand, tvSize, tvDesc, tvBuyerID, tvOfferedPrice, tvDateTime, tvPlace, tvAgreeTitle;
+    private ImageView ivProductImg;
     private Button btnAccept, btnDecline;
     private CheckBox cbAgreement;
     private Post post;
@@ -57,6 +66,8 @@ public class OfferDetailPage extends AppCompatActivity {
         btnDecline = (Button) findViewById(R.id.btnDecline);
 
         cbAgreement = (CheckBox) findViewById(R.id.cbAgreement);
+
+        ivProductImg = (ImageView) findViewById(R.id.ivProductImg);
 
 
         try {
@@ -89,8 +100,18 @@ public class OfferDetailPage extends AppCompatActivity {
         }
 
         tvBuyerID.setText(offer.getBuyerName());
-        tvOfferedPrice.setText(offer.getPrice()+"");
-        tvDateTime.setText(offer.getDateTime());
+        tvOfferedPrice.setText("$"+offer.getPrice()+"");
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmm");
+        SimpleDateFormat showFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date convertedDate = new Date();
+        try {
+            convertedDate = dateFormat.parse(offer.getDateTime());
+            tvDateTime.setText(""+showFormat.format(convertedDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         tvPlace.setText(offer.getPlace());
 
         //Testing Log
@@ -110,6 +131,7 @@ public class OfferDetailPage extends AppCompatActivity {
             tvBrand.setText(""+post.getBrand());
             tvSize.setText(""+post.getSize());
             tvDesc.setText(""+post.getDescription());
+            ivProductImg.setImageBitmap(offer.getPhoto());
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -118,14 +140,28 @@ public class OfferDetailPage extends AppCompatActivity {
         btnDecline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog dialog1 = new AlertDialog.Builder(OfferDetailPage.this)
+                        .setTitle("Warning ")
+                        .setMessage("Are you comfirm to DECLINE the offer?")
+                        .setCancelable(false)
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                offer.setStatDeal();
+                                System.out.println(""+offer.toString());
 
-                offer.setStatDeal();
-                System.out.println(""+offer.toString());
+                                Connection conn = new Connection();
+                                resultObject = conn.updateOffer(offer);
 
-                Connection conn = new Connection();
-                resultObject = conn.updateOffer(offer);
+                                System.out.println(resultObject.toString()+"");
 
-                System.out.println(resultObject.toString()+"");
+                            }
+                        }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        }).show();
+
             }
         });
 
@@ -219,10 +255,6 @@ public class OfferDetailPage extends AppCompatActivity {
                                                                 }
                                                             }).show();
                                                 }
-
-
-
-
 
                                             }
                                         }

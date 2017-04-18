@@ -151,7 +151,9 @@ public class FragOffer extends Fragment {
                         }
 
                         if (temOffer.getBuyerID().equals(acc.getId())){
-                            alOffer.add(temOffer);
+                            if (temOffer.getStat()!=2) {
+                                alOffer.add(temOffer);
+                            }
                         }
                     }
                 }

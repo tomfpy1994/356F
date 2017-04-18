@@ -77,6 +77,15 @@ public class OfferDetailPage extends AppCompatActivity {
             JSONObject jsonAcc = new JSONObject(getIntent().getStringExtra("acc"));
             acc = new Account(jsonAcc);
 
+            String isMyOffer = getIntent().getStringExtra("isMyOffer");
+
+            //Testing Log
+            System.out.println("isMyOffer: "+isMyOffer);
+
+            if (isMyOffer.equals("1")){
+                btnAccept.setVisibility(View.INVISIBLE);
+            }
+
             switch (offer.getStat()){
                 case 0: if (acc.getId().equals(offer.getBuyerID())){
                             btnAccept.setText("DEAL");
@@ -93,7 +102,6 @@ public class OfferDetailPage extends AppCompatActivity {
                         tvAgreeTitle.setVisibility(View.INVISIBLE);
                         cbAgreement.setVisibility(View.INVISIBLE);
                         break;
-
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -155,10 +163,14 @@ public class OfferDetailPage extends AppCompatActivity {
 
                                 System.out.println(resultObject.toString()+"");
 
+                                dialog.dismiss();
+                                finish();
+
                             }
                         }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
                             }
                         }).show();
 
@@ -242,7 +254,7 @@ public class OfferDetailPage extends AppCompatActivity {
                                                     } catch (JSONException e) {
                                                         e.printStackTrace();
                                                     }
-
+                                                    finish();
                                                 }else {
                                                     AlertDialog dialog1 = new AlertDialog.Builder(OfferDetailPage.this)
                                                             .setTitle("Payment Error")
@@ -251,7 +263,6 @@ public class OfferDetailPage extends AppCompatActivity {
                                                             .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                                                 @Override
                                                                 public void onClick(DialogInterface dialog, int which) {
-                                                                    // Whatever...
                                                                 }
                                                             }).show();
                                                 }

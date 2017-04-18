@@ -22,6 +22,7 @@ public class FragOffer extends Fragment {
     private ListView lvOfferList;
     private JSONArray jsonArray = null;
     private ArrayList<Offer> alOffer = new ArrayList<Offer>();
+    private int isMyOffer = 0;
 
     public FragOffer() {}
     public FragOffer(Account ac){ this.acc=ac;}
@@ -57,6 +58,7 @@ public class FragOffer extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        isMyOffer = 0;
 
         //Testing Log
         System.out.println(alOffer.size());
@@ -77,6 +79,7 @@ public class FragOffer extends Fragment {
                 intent.putExtra("offer", clickedOfferStr);
                 try {
                     intent.putExtra("acc", acc.passToJsonObjectStr());
+                    intent.putExtra("isMyOffer", isMyOffer+"");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -105,6 +108,7 @@ public class FragOffer extends Fragment {
                     }
                 }
 
+                isMyOffer = 0;
                 lvOfferList.invalidateViews();
                 OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer, 0);
                 lvOfferList.setAdapter(adapter);
@@ -124,12 +128,15 @@ public class FragOffer extends Fragment {
                             e.printStackTrace();
                         }
 
-                        if (temOffer.getOwnerID().equals(acc.getId())){
-                            alOffer.add(temOffer);
+                        if (temOffer.getStat()!=2) {
+                            if (temOffer.getOwnerID().equals(acc.getId())) {
+                                alOffer.add(temOffer);
+                            }
                         }
                     }
                 }
 
+                isMyOffer = 0;
                 OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer, 0);
                 lvOfferList.setAdapter(adapter);
                 lvOfferList.invalidateViews();
@@ -158,6 +165,7 @@ public class FragOffer extends Fragment {
                     }
                 }
 
+                isMyOffer = 1;
                 lvOfferList.invalidateViews();
                 OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer, 1);
                 lvOfferList.setAdapter(adapter);

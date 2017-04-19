@@ -84,6 +84,7 @@ public class OfferDetailPage extends AppCompatActivity {
 
             if (isMyOffer.equals("1")){
                 btnAccept.setVisibility(View.INVISIBLE);
+                btnDecline.setText("Cencel");
             }
 
             switch (offer.getStat()){

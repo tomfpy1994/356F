@@ -53,17 +53,19 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Band: "
+                            android:id="@+id/textView32"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/textView32" />
+                            android:text="Band: "
+                            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                         <TextView
-                            android:text="TextView"
+                            android:id="@+id/tvBand"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tvBand"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:text="TextView"
+                            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -72,18 +74,20 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Size:"
+                            android:id="@+id/textView43"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/textView43"
-                            android:layout_weight="0.06" />
+                            android:layout_weight="0.06"
+                            android:text="Size:"
+                            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                         <TextView
-                            android:text="TextView"
+                            android:id="@+id/tvSize"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tvSize"
-                            android:layout_weight="0.96" />
+                            android:layout_weight="0.96"
+                            android:text="TextView"
+                            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -93,36 +97,40 @@
                         android:layout_weight="0.33">
 
                         <TextView
-                            android:text="Type: "
+                            android:id="@+id/textView37"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/textView37" />
+                            android:text="Type: "
+                            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                         <TextView
-                            android:text="TextView"
+                            android:id="@+id/tvType"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tvType"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:text="TextView"
+                            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
                     </LinearLayout>
 
                 </LinearLayout>
 
                 <TextView
-                    android:text="$ "
+                    android:id="@+id/textView44"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView44"
                     android:layout_weight="1"
-                    android:gravity="right|center" />
+                    android:gravity="right|center"
+                    android:text="$ "
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <TextView
-                    android:text="100000"
+                    android:id="@+id/tvOfferedPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/tvOfferedPrice"
                     android:layout_weight="1"
-                    android:gravity="left|center" />
+                    android:gravity="left|center"
+                    android:text="100000"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
             </LinearLayout>
 

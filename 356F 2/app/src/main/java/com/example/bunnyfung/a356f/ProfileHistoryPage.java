@@ -67,7 +67,7 @@ public class ProfileHistoryPage extends AppCompatActivity {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Offer temOffer = new Offer(jsonArray.getJSONObject(i));
 
-                    if (temOffer.getStat()==2 && temOffer.getOwnerID().equals(acc.getId())){
+                    if ((temOffer.getStat()==2 && temOffer.getOwnerID().equals(acc.getId()))||(temOffer.getStat()==2 && temOffer.getBuyerID().equals(acc.getId()))){
                         alOffer.add(temOffer);
                     }
                 }
@@ -77,25 +77,6 @@ public class ProfileHistoryPage extends AppCompatActivity {
         }
         //Testing Log
         System.out.println(alOffer.size());
-
-        /*
-        alOffer.clear();
-        if (jsonArray!=null) {
-            for (int i = 0; i < jsonArray.length(); i++) {
-                Offer temOffer = null;
-                try {
-                    temOffer = new Offer(jsonArray.getJSONObject(i));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                if (temOffer.getOwnerID().equals(acc.getId())){
-                    alOffer.add(temOffer);
-                    // success
-                    System.out.println("found !!");
-                }
-            }
-        }*/
 
         OfferHistoryAdapter a = new OfferHistoryAdapter(getApplicationContext(), alOffer);
         lvOfferList.setAdapter(a);

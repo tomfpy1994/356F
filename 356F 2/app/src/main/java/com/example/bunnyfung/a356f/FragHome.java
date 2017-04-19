@@ -112,6 +112,11 @@ public class FragHome extends Fragment {
             @Override
             public void onClick(View view) {
              Intent i = new Intent(getActivity(), SearchPage.class);
+                try {
+                    i.putExtra("acc",acc.passToJsonObjectStr());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 startActivity(i);
             }
         });

@@ -9,7 +9,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.example.bunnyfung.a356f.Object.Account;
+
 import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class SearchPage extends AppCompatActivity {
@@ -18,12 +21,25 @@ public class SearchPage extends AppCompatActivity {
     private TextView t,searchInput;
     private Button btnSearch;
     private String chose, input;
+    private Account acc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_page);
-        t = (TextView) findViewById(R.id.text);
 
+        String str = getIntent().getStringExtra("acc");
+        try {
+            JSONObject jsonObject = new JSONObject(str);
+            acc = new Account(jsonObject);
+
+            System.out.println(acc.passToJsonObjectStr());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.println(acc.toString());
+
+
+        t = (TextView) findViewById(R.id.text);
         rgroup = (RadioGroup) findViewById(R.id.group);
         btnSearch = (Button) findViewById(R.id.btnGoToSearch);
         searchInput = (TextView) findViewById(R.id.tvSearch);
@@ -36,11 +52,16 @@ public class SearchPage extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             input = searchInput.getText().toString();
-            t.setText(input);
+            //t.setText(input);
             // go to result search
-            //ResultOfSearch run = new ResultOfSearch(chose, input);
+           // ResultOfSearch run = new ResultOfSearch(chose, input);
             Intent intent1 = new Intent(getApplication(), ResultOfSearch.class);
-            intent1.putExtra("result", chose+"/"+input);
+            try{
+                intent1.putExtra("result", chose+"/"+input);
+                //intent1.putExtra("input", input);
+                intent1.putExtra("acc", acc.passToJsonObjectStr());
+            } catch (Exception e){}
+
             startActivityForResult(intent1,0);
 
         }

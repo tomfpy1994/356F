@@ -53,37 +53,41 @@
                         android:layout_marginTop="5dp">
 
                         <TextView
-                            android:text="Offered by:"
+                            android:id="@+id/textView32"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/textView32" />
+                            android:text="Offered by:"
+                            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                         <TextView
-                            android:text="TextView"
+                            android:id="@+id/tvBuyerID"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tvBuyerID"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimary" />
                     </LinearLayout>
 
                 </LinearLayout>
 
                 <TextView
-                    android:text="$ "
+                    android:id="@+id/textView44"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView44"
                     android:layout_weight="1"
                     android:gravity="right|center"
+                    android:text="$ "
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp" />
 
                 <TextView
-                    android:text="100000"
+                    android:id="@+id/tvOfferedPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/tvOfferedPrice"
                     android:layout_weight="1"
                     android:gravity="left|center"
+                    android:text="100000"
+                    android:textColor="@color/colorAccent"
                     android:textSize="20sp" />
 
             </LinearLayout>

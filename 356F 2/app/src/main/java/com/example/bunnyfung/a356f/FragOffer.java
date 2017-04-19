@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class FragOffer extends Fragment {
     private Account acc;
-    private Button btnProcessing,btnInvitation,btnMyOffer;
+    private Button btnProcessing,btnInvitation,btnMyOffer, btnHistory;
     private ListView lvOfferList;
     private JSONArray jsonArray = null;
     private ArrayList<Offer> alOffer = new ArrayList<Offer>();
@@ -38,7 +38,9 @@ public class FragOffer extends Fragment {
         btnProcessing = (Button)rootView.findViewById(R.id.btnProcessing);
         btnInvitation = (Button)rootView.findViewById(R.id.btnInvitation);
         btnMyOffer = (Button)rootView.findViewById(R.id.btnMyOffer);
+        btnHistory = (Button)rootView.findViewById(R.id.btnHistory);
         lvOfferList = (ListView)rootView.findViewById(R.id.lvOfferList);
+
 
 
         Connection conn = new Connection();
@@ -85,6 +87,20 @@ public class FragOffer extends Fragment {
                 }
 
                 startActivity(intent);
+            }
+        });
+
+        // go to my history page
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ProfileHistoryPage.class);
+                try {
+                    intent.putExtra("acc",acc.passToJsonObjectStr());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                startActivityForResult(intent,1);
             }
         });
 

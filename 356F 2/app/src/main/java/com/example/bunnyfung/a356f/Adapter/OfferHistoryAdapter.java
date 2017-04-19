@@ -54,8 +54,11 @@ public class OfferHistoryAdapter extends ArrayAdapter<Offer> {
         ivImg.setImageBitmap(offer.getPhoto());
         //TODO: get product title
         tvName.setText(offer.getTitle());
+        System.out.println("title :"+ offer.getTitle());
         tvBuyerID.setText(offer.getBuyerName());
+        System.out.println("name :" + offer.getBuyerName());
         tvOfferedPrice.setText(offer.getPrice()+"");
+        System.out.println("$$$$$ "+offer.getPrice());
 
 
 

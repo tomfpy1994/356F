@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.bunnyfung.a356f.Adapter.MyProductAdapter;
 import com.example.bunnyfung.a356f.Object.Post;
+import com.example.bunnyfung.a356f.Object.Account;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +28,7 @@ public class ResultOfSearch extends AppCompatActivity {
     private JSONArray jsonArray = null;
     private ArrayList<Post> alPost = new ArrayList<Post>();
     private String temp;
+    private Account acc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,17 @@ public class ResultOfSearch extends AppCompatActivity {
 
         text = (TextView) findViewById(R.id.tvResult);
         list = (ListView) findViewById(R.id.resultList);
+
+        String str = getIntent().getStringExtra("acc");
+        try {
+            JSONObject jsonObject = new JSONObject(str);
+            acc = new Account(jsonObject);
+
+            System.out.println(acc.passToJsonObjectStr());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.println(acc.toString());
 
         // ouput the result
         String s = getIntent().getStringExtra("result");
@@ -78,9 +91,17 @@ public class ResultOfSearch extends AppCompatActivity {
                     //Testing Log
                     System.out.println("All_Post:"+clickedPostStr);
 
-                    Intent intent = new Intent(getApplication(), ProductPage.class);
+                    Intent intent = new Intent(getApplicationContext(), ProductPage.class);
                     intent.putExtra("post", clickedPostStr);
-                    intent.putExtra("showType","show");
+                    intent.putExtra("acc", acc.passToJsonObjectStr());
+
+                    if (clickedPost.getOwner().equals(acc.getId())){
+                        intent.putExtra("showType","edit");
+                    }else {
+                        intent.putExtra("showType","show");
+                    }
+
+
                     startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -98,6 +119,8 @@ public class ResultOfSearch extends AppCompatActivity {
                 HttpURLConnection connection = null;
 
                 try {
+                    //URL url = new URL("http://s356fproject.mybluemix.net/api/list/price/100");
+                    // URL url = new URL("http://s356fproject.mybluemix.net/api/list/price/"+100);
                     URL url = new URL("http://s356fproject.mybluemix.net/api/list/"+temp);
                     connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("GET");

@@ -70,10 +70,13 @@
         <activity
             android:name=".ResultOfSearch"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MakeOfferPage"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".OfferDetailPage"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".MakeOfferPage"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".OfferDetailPage"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".GradingPage"></activity>
     </application>
 
 </manifest>

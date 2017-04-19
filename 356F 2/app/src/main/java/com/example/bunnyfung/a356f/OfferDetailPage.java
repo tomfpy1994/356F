@@ -18,6 +18,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.bunnyfung.a356f.Connection.Connection;
@@ -38,7 +39,7 @@ import static java.security.AccessController.getContext;
 
 public class OfferDetailPage extends AppCompatActivity {
     private Offer offer;
-    private Account acc;
+    private Account acc, ownerAcc;;
     private TextView tvName, tvBrand, tvSize, tvDesc, tvBuyerID, tvOfferedPrice, tvDateTime, tvPlace, tvAgreeTitle;
     private ImageView ivProductImg;
     private Button btnAccept, btnDecline;
@@ -46,6 +47,7 @@ public class OfferDetailPage extends AppCompatActivity {
     private Post post;
     private JSONObject resultObject;
     private JSONArray jsonArray = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -244,7 +246,7 @@ public class OfferDetailPage extends AppCompatActivity {
                                                     resultObject = conn.getOneAccount(offer.getOwnerID());
                                                     try {
                                                         jsonArray = resultObject.getJSONArray("account");
-                                                        Account ownerAcc = new Account(jsonArray.getJSONObject(0));
+                                                        ownerAcc = new Account(jsonArray.getJSONObject(0));
                                                         ownerAcc.setBalance(ownerAcc.getBalance()+offer.getPrice());
 
                                                         //Testing Log
@@ -255,7 +257,36 @@ public class OfferDetailPage extends AppCompatActivity {
                                                     } catch (JSONException e) {
                                                         e.printStackTrace();
                                                     }
-                                                    finish();
+
+                                                    AlertDialog dialog1 = new AlertDialog.Builder(OfferDetailPage.this)
+                                                            .setTitle("Payment Success")
+                                                            .setMessage("Your deal was done. \n Do you want to grading your trader?")
+                                                            .setCancelable(false)
+                                                            .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+
+                                                                    Intent intent = new Intent(getApplicationContext(), GradingPage.class);
+                                                                    try {
+                                                                        intent.putExtra("acc", ownerAcc.passToJsonObjectStr()+"");
+                                                                        intent.putExtra("offer", offer.passToJsonObjectStr()+"");
+                                                                    } catch (JSONException e) {
+                                                                        e.printStackTrace();
+                                                                    }
+                                                                    startActivity(intent);
+
+
+                                                                    dialog.dismiss();
+                                                                }
+                                                            })
+                                                            .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                    dialog.dismiss();
+                                                                    finish();
+                                                                }
+                                                            }).show();
+
                                                 }else {
                                                     AlertDialog dialog1 = new AlertDialog.Builder(OfferDetailPage.this)
                                                             .setTitle("Payment Error")

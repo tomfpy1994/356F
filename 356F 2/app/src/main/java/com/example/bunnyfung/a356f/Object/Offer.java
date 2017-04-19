@@ -103,6 +103,8 @@ public class Offer {
     public void setPlace(String place){this.place = place;}
     public void setStatProccessing(){this.stat = statTpye[1];}
     public void setStatDeal(){this.stat = statTpye[2];}
+    public void setStatBuyerCommed(){this.stat = statTpye[3];}
+    public void setStatSellerCommed(){this.stat = statTpye[4];}
     public void setOwnerCode(String ownerCode){this.ownerCode = ownerCode;}
     public void setBuyerCode(String buyerCode){this.buyerCode = buyerCode;}
 
@@ -111,7 +113,7 @@ public class Offer {
 
     private String bitmapToBase64(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 1000, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream .toByteArray();
 
         return Base64.encodeToString(byteArray, Base64.DEFAULT);

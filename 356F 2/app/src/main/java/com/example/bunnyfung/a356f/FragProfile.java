@@ -76,7 +76,7 @@ public class FragProfile extends Fragment {
             tvUserid.setText(acc.getUserid());
             tvEmail.setText(acc.getEmail());
             ivIcon.setImageBitmap(acc.getIcon());
-            rangeBar.setRating(acc.getGrade());
+            rangeBar.setRating(Float.parseFloat(acc.getGrade()+""));
             tvGrade.setText(acc.getGrade()+"/10");
         }
 

@@ -228,7 +228,7 @@ public class OfferDetailPage extends AppCompatActivity {
 
 
                                                     //set post
-                                                    post.setState("1");
+                                                    post.setState("3");
                                                     //Testing Log
                                                     System.out.println("Post: " + post.toString());
 
@@ -243,14 +243,17 @@ public class OfferDetailPage extends AppCompatActivity {
                                                     //set sellerAcc balance
                                                     //TODO: get sellerAcc and update balance
                                                     Connection conn = new Connection();
-                                                    resultObject = conn.getOneAccount(offer.getOwnerID());
                                                     try {
+                                                        resultObject = conn.getOneAccount(offer.getOwnerID());
                                                         jsonArray = resultObject.getJSONArray("account");
                                                         ownerAcc = new Account(jsonArray.getJSONObject(0));
                                                         ownerAcc.setBalance(ownerAcc.getBalance()+offer.getPrice());
 
                                                         //Testing Log
                                                         System.out.println("ownerAcc:"+ ownerAcc.getBalance());
+
+                                                        resultObject = conn.getOneProduct(offer.getPostId());
+                                                        jsonArray = resultObject.getJSONArray("product");
 
                                                         resultObject = conn.dealOffer(offer,post, acc, ownerAcc);
                                                         System.out.println(resultObject.toString());

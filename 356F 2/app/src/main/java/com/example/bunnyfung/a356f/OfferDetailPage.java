@@ -260,7 +260,7 @@ public class OfferDetailPage extends AppCompatActivity {
 
                                                     AlertDialog dialog1 = new AlertDialog.Builder(OfferDetailPage.this)
                                                             .setTitle("Payment Success")
-                                                            .setMessage("Your deal was done. \n Do you want to grading your trader?")
+                                                            .setMessage("Your deal was done. \n Do you want to grade your trader?")
                                                             .setCancelable(false)
                                                             .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                                                                 @Override

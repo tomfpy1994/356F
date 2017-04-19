@@ -258,15 +258,27 @@ public class OfferDetailPage extends AppCompatActivity {
                                                 }else {
                                                     AlertDialog dialog1 = new AlertDialog.Builder(OfferDetailPage.this)
                                                             .setTitle("Payment Error")
-                                                            .setMessage("You have not enought balance.\n Please deposit money.")
+                                                            .setMessage("You have not enough balance.\n Please deposit money.")
                                                             .setCancelable(false)
                                                             .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                                                 @Override
                                                                 public void onClick(DialogInterface dialog, int which) {
+                                                                    dialog.dismiss();
                                                                 }
                                                             }).show();
                                                 }
 
+                                            }else{
+                                                AlertDialog dialog1 = new AlertDialog.Builder(OfferDetailPage.this)
+                                                        .setTitle("Payment Error")
+                                                        .setMessage("Confirm code wrong, Please try again! ")
+                                                        .setCancelable(false)
+                                                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                dialog.dismiss();
+                                                            }
+                                                        }).show();
                                             }
                                         }
                                     });

@@ -67,7 +67,8 @@ public class ProfileHistoryPage extends AppCompatActivity {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Offer temOffer = new Offer(jsonArray.getJSONObject(i));
 
-                    if ((temOffer.getStat()==2 && temOffer.getOwnerID().equals(acc.getId()))||(temOffer.getStat()==2 && temOffer.getBuyerID().equals(acc.getId()))){
+                    //if ((temOffer.getStat()==2 && temOffer.getOwnerID().equals(acc.getId()))||(temOffer.getStat()==2 && temOffer.getBuyerID().equals(acc.getId()))){
+                    if(((temOffer.getStat()==2)||(temOffer.getStat()==3)||(temOffer.getStat()==4))&&((temOffer.getOwnerID().equals(acc.getId()))||(temOffer.getBuyerID().equals(acc.getId())))){
                         alOffer.add(temOffer);
                     }
                 }

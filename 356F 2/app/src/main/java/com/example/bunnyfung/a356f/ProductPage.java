@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,11 +25,12 @@ public class ProductPage extends AppCompatActivity {
     private Account acc;
     private Post post;
     private String showType;
-    private ImageView ivPhoto1, ivSellerIcon;
+    private ImageView ivPhoto1;
     private TextView tvTitle, tvPrice, tvName, tvBrand, tvType, tvSize, tvDec, owner1, tvOwnerName,
             tvOwnerPhone, tvOwnerCred;
     private LinearLayout owner2;
     private Button btnSubmit;
+    private ImageButton ibShare;
     private final String doller = "$";
     private final String sizeUnit = "US ";
 
@@ -60,7 +62,6 @@ public class ProductPage extends AppCompatActivity {
         }
 
         ivPhoto1 = (ImageView) findViewById(R.id.ivPhoto1);
-        ivSellerIcon = (ImageView) findViewById(R.id.ivSellerIcon);
 
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         tvPrice = (TextView) findViewById(R.id.tvOfferedPrice);
@@ -75,17 +76,26 @@ public class ProductPage extends AppCompatActivity {
         tvOwnerCred = (TextView) findViewById(R.id.tvOwnerCred);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
+        ibShare = (ImageButton) findViewById(R.id.ibShare);
+
 
         owner2 = (LinearLayout) findViewById(R.id.owner2);
 
         ivPhoto1.setImageBitmap(post.getPhoto());
-        tvPrice.setText(doller + post.getPrice());
-        tvName.setText(post.getName());
-        tvBrand.setText(post.getBrand());
-        tvType.setText(post.getType());
-        tvSize.setText(sizeUnit + post.getSize());
-        tvDec.setText(post.getDescription());
-        tvTitle.setText(post.getBrand()+" "+post.getName()+" US"+post.getSize());
+        final String price = doller + post.getPrice();
+        tvPrice.setText(price);
+        final String name = post.getName();
+        tvName.setText(name);
+        final String brand = post.getBrand();
+        tvBrand.setText(brand);
+        String type = post.getType();
+        tvType.setText(type);
+        final String size = sizeUnit + post.getSize();
+        tvSize.setText(size);
+        final String dec = post.getDescription();
+        tvDec.setText(dec);
+        final String title = post.getBrand()+" "+post.getName()+" US"+post.getSize();
+        tvTitle.setText(title);
 
         //TODO: show the correct OwnerName, Not owner_id(Server new post need to add col "OwnerName")
         tvOwnerName.setText(post.getOwner());
@@ -103,6 +113,20 @@ public class ProductPage extends AppCompatActivity {
             owner2.setVisibility(View.VISIBLE);
             btnSubmit.setText("Make Offer");
         }
+
+        ibShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "Message Shared From android app, Title:"
+                        +title+" Name:"+name+" Brand:"+brand+" Size:"+size+" Price:"+price+" Description:"+dec);
+                shareIntent.setType("text/plain");
+                startActivity(shareIntent);
+
+            }
+        });
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override

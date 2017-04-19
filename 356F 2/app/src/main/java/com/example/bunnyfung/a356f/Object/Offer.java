@@ -19,8 +19,8 @@ public class Offer {
     private String _id, postID, ownerID, buyerID, buyerName, dateTime, place, ownerCode, buyerCode, title;
     private int price;
     private int stat;
-    private int[] statTpye =  new int[] {0,1,2};
-    // 0 = waiting, 1 = processing, 2 = deal
+    private int[] statTpye =  new int[] {0,1,2,3,4};
+    // 0 = waiting, 1 = processing, 2 = deal, 3 = buyerGraded, 4 = sellerGraded
     private Bitmap photo;
 
     //for new offer
@@ -111,7 +111,7 @@ public class Offer {
 
     private String bitmapToBase64(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 1000, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream .toByteArray();
 
         return Base64.encodeToString(byteArray, Base64.DEFAULT);

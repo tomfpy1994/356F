@@ -24,6 +24,7 @@ public class Account {
     private String _id;
     private int balance;
     private String scode;
+    private int grade;
 
     public Account(JSONObject jsonObj){
         try {
@@ -35,6 +36,7 @@ public class Account {
             this._id = jsonObj.getString("_id");
             this.balance = jsonObj.getInt("balance");
             this.scode = jsonObj.getString("scode");
+            this.grade = jsonObj.getInt("grade");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -48,6 +50,7 @@ public class Account {
         this.icon = icon;
         this.balance = 0;
         this.scode = "";
+        this.grade = 10;
 
     }
 
@@ -58,6 +61,7 @@ public class Account {
     public void setIcon(Bitmap icon){this.icon = icon;}
     public void setBalance(int balance){this.balance = balance;}
     public void setsCode(String sCode){this.scode = sCode;}
+    public void setGrade(int grade){this.grade = grade;}
 
 
 
@@ -69,6 +73,7 @@ public class Account {
     public String getId(){return _id;}
     public int getBalance(){return balance;}
     public String getsCode(){return scode;}
+    public int getGrade(){return grade;}
 
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
@@ -82,6 +87,7 @@ public class Account {
         jsonObj.put("irondata",bitmapToBase64(icon));
         jsonObj.put("balance",getBalance());
         jsonObj.put("scode", getsCode());
+        jsonObj.put("grade", getGrade());
 
         return jsonObj.toString();
     }

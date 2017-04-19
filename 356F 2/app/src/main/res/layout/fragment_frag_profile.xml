@@ -15,54 +15,46 @@
         android:paddingTop="@dimen/activity_vertical_margin">
 
         <TextView
-            android:text="TextView"
+            android:id="@+id/tvUserid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView1"
-            android:id="@+id/tvUserid"
             android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@+id/textView1" />
+            android:layout_toEndOf="@+id/textView1"
+            android:text="TextView" />
 
         <Button
-            android:text="logout"
+            android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnLogout"
             android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/textView1"
             android:elevation="0dp"
-            android:layout_toEndOf="@+id/textView1" />
+            android:text="logout" />
 
         <TextView
-            android:text="creditworthiness"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="19dp"
-            android:layout_below="@+id/ivIcon"
-            android:layout_alignStart="@+id/ivIcon" />
-
-        <TextView
-            android:text="user ID:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
             android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignTop="@+id/ivIcon"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="17dp"
             android:layout_toEndOf="@+id/ivIcon"
-            android:layout_marginStart="38dp" />
+            android:text="user ID:" />
 
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
+            android:orientation="vertical"
             android:paddingBottom="10dp">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnHistory"
@@ -72,92 +64,121 @@
                     android:text="history of offer" />
 
                 <Button
-                    android:text="my post"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/btnMyPost"
-                    android:layout_weight="1.03" />
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.03"
+                    android:text="my post" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:orientation="horizontal">
 
                 <Button
-                    android:text="wish list"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/btnWishList"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="my score"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="wish list" />
+
+                <Button
                     android:id="@+id/btnMyScore"
-                    android:layout_weight="1" />
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="my score" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:orientation="horizontal">
 
                 <Button
-                    android:text="security code"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/btnSecurityCode"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="deposit/withdraw"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="security code" />
+
+                <Button
                     android:id="@+id/btnTransaction"
-                    android:layout_weight="1" />
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="deposit/withdraw" />
             </LinearLayout>
 
         </LinearLayout>
 
         <ImageButton
-            android:layout_width="130dp"
-            app:srcCompat="@mipmap/ic_launcher"
-            android:layout_marginTop="12dp"
             android:id="@+id/ivIcon"
-            android:layout_marginStart="23dp"
+            android:layout_width="130dp"
             android:layout_height="130dp"
-            android:layout_below="@+id/btnLogout"
             android:layout_alignParentStart="true"
-            android:scaleType="fitCenter" />
+            android:layout_below="@+id/btnLogout"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="12dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@mipmap/ic_launcher" />
 
         <Button
-            android:text="edit"
+            android:id="@+id/btnEdit"
             android:layout_width="55dp"
             android:layout_height="50dp"
-            android:id="@+id/btnEdit"
-            android:layout_marginEnd="13dp"
-            android:layout_below="@+id/ivIcon"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignBottom="@+id/ivIcon"
+            android:layout_toEndOf="@+id/tvEmail"
+            android:text="edit" />
 
         <TextView
-            android:text="email:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/textview3"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/textView1"
-            android:layout_alignStart="@+id/textView1" />
-
-        <TextView
-            android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView1"
+            android:layout_below="@+id/textView1"
+            android:layout_marginTop="20dp"
+            android:text="email:" />
+
+        <TextView
             android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textview3"
             android:layout_alignBottom="@+id/textview3"
-            android:layout_toEndOf="@+id/textView1" />
+            android:layout_toEndOf="@+id/textView1"
+            android:text="TextView" />
+
+        <RatingBar
+            android:id="@+id/rangeBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="27dp"
+            android:clickable="false"
+            android:isIndicator="true"
+            android:max="10"
+            android:numStars="0"
+            android:stepSize="1"
+            android:layout_above="@+id/linearLayout"
+            android:layout_toStartOf="@+id/btnEdit" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grade"
+            android:layout_above="@+id/rangeBar"
+            android:layout_alignStart="@+id/rangeBar" />
+
+        <TextView
+            android:id="@+id/tvGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/linearLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="14dp"
+            android:text="TextView" />
 
     </RelativeLayout>
 

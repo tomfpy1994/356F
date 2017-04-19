@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.bunnyfung.a356f.Object.Account;
@@ -25,10 +26,12 @@ import static android.app.Activity.RESULT_OK;
 
 public class FragProfile extends Fragment {
     private Account acc = null;
-    private Button btnLogout, btnEdit, btnMyPost, btnMyScore, btnHistory, btnWishList, btnSecurityCode, btnTransaction;
+    private Button btnLogout, btnEdit, btnMyPost, btnMyScore, btnHistory, btnWishList,
+            btnSecurityCode, btnTransaction;
     private boolean logout = false;
-    private TextView tvUserid, tvEmail;
+    private TextView tvUserid, tvEmail, tvGrade;
     private ImageView ivIcon;
+    private RatingBar rangeBar;
     Fragment frag;
     FragmentTransaction fragTransaction;
 
@@ -63,11 +66,18 @@ public class FragProfile extends Fragment {
         tvUserid = (TextView) rootView.findViewById(R.id.tvUserid);
         tvEmail = (TextView) rootView.findViewById(R.id.tvEmail);
         ivIcon = (ImageView) rootView.findViewById(R.id.ivIcon);
+        tvGrade = (TextView) rootView.findViewById(R.id.tvGrade);
+
+        rangeBar = (RatingBar) rootView.findViewById(R.id.rangeBar);
+        rangeBar.setMax(10);
+
 
         if (acc!=null){
             tvUserid.setText(acc.getUserid());
             tvEmail.setText(acc.getEmail());
             ivIcon.setImageBitmap(acc.getIcon());
+            rangeBar.setRating(acc.getGrade());
+            tvGrade.setText(acc.getGrade()+"/10");
         }
 
         //Demo Block

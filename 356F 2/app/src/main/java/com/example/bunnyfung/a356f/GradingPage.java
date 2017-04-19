@@ -48,6 +48,8 @@ public class GradingPage extends AppCompatActivity {
 
                 resultObject = conn.updateOffer(offer);
                 System.out.println(resultObject.toString());
+
+                finish();
             }
         });
 
@@ -69,6 +71,8 @@ public class GradingPage extends AppCompatActivity {
                 resultObject = conn.updateAcc(account);
                 //Testing Log
                 System.out.println(resultObject.toString());
+
+                finish();
             }
         });
 

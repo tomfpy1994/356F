@@ -144,7 +144,7 @@ public class FragOffer extends Fragment {
                             e.printStackTrace();
                         }
 
-                        if (temOffer.getStat()!=2) {
+                        if (temOffer.getStat()<2) {
                             if (temOffer.getOwnerID().equals(acc.getId())) {
                                 alOffer.add(temOffer);
                             }
@@ -174,7 +174,7 @@ public class FragOffer extends Fragment {
                         }
 
                         if (temOffer.getBuyerID().equals(acc.getId())){
-                            if (temOffer.getStat()!=2) {
+                            if (temOffer.getStat()<2) {
                                 alOffer.add(temOffer);
                             }
                         }

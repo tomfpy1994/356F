@@ -275,8 +275,8 @@ public class OfferDetailPage extends AppCompatActivity {
                                                                     }
                                                                     startActivity(intent);
 
-
                                                                     dialog.dismiss();
+                                                                    finish();
                                                                 }
                                                             })
                                                             .setNegativeButton("NO", new DialogInterface.OnClickListener() {

@@ -152,16 +152,17 @@
 
         <RatingBar
             android:id="@+id/rangeBar"
+            style="@style/Widget.AppCompat.RatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/linearLayout"
             android:layout_marginBottom="27dp"
+            android:layout_toStartOf="@+id/btnEdit"
             android:clickable="false"
-            android:isIndicator="true"
             android:max="10"
             android:numStars="0"
-            android:stepSize="1"
-            android:layout_above="@+id/linearLayout"
-            android:layout_toStartOf="@+id/btnEdit" />
+            android:rating="3"
+            android:stepSize="1" />
 
         <TextView
             android:id="@+id/textView28"

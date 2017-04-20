@@ -78,7 +78,7 @@ public class FragOffer extends Fragment {
                 System.out.println("Clicked_Offer:"+clickedOfferStr);
 
                 Intent intent = new Intent(getActivity(), OfferDetailPage.class);
-                intent.putExtra("offer", clickedOfferStr);
+                intent.putExtra("offerId", clickedOffer.get_id());
                 try {
                     intent.putExtra("acc", acc.passToJsonObjectStr());
                     intent.putExtra("isMyOffer", isMyOffer+"");

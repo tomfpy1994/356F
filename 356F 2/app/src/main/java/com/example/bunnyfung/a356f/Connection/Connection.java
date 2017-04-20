@@ -204,6 +204,26 @@ public class Connection {
         return resultObject;
     }
 
+    public JSONObject getOneOffer(String offerid){
+
+        String urlStr = "http://s356fproject.mybluemix.net/api/listoffer/offerid/"+offerid;
+        try {
+            url = new URL(urlStr);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        queryServer("GET","listOffer", null, null, null);
+
+        while (resultObject == null) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultObject;
+    }
+
     public JSONObject updateOffer(Offer offer){
         String urlStr = "http://s356fproject.mybluemix.net/api/updateoffer";
         try {

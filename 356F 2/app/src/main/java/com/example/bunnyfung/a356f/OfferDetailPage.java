@@ -10,6 +10,7 @@ import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,8 +74,17 @@ public class OfferDetailPage extends AppCompatActivity {
 
 
         try {
-            JSONObject jsonOffer = new JSONObject(getIntent().getStringExtra("offer"));
-            offer = new Offer(jsonOffer);
+//            JSONObject jsonOffer = new JSONObject(getIntent().getStringExtra("offer"));
+//            offer = new Offer(jsonOffer);
+
+            String offerId = getIntent().getStringExtra("offerId");
+            Connection conn = new Connection();
+
+            JSONObject jsonObjectOffer = conn.getOneOffer(offerId);
+            JSONArray jsonArrayOffer = jsonObjectOffer.getJSONArray("offers");
+            offer = new Offer(jsonArrayOffer.getJSONObject(0));
+
+            Log.i("Offer Detail",offer.toString());
 
             JSONObject jsonAcc = new JSONObject(getIntent().getStringExtra("acc"));
             acc = new Account(jsonAcc);
@@ -86,7 +96,7 @@ public class OfferDetailPage extends AppCompatActivity {
 
             if (isMyOffer.equals("1")){
                 btnAccept.setVisibility(View.INVISIBLE);
-                btnDecline.setText("Cencel");
+                btnDecline.setText("Cancel");
             }
 
             switch (offer.getStat()){
@@ -110,7 +120,7 @@ public class OfferDetailPage extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        tvBuyerID.setText(offer.getBuyerName());
+        //tvBuyerID.setText(offer.getBuyerName());
         tvOfferedPrice.setText("$"+offer.getPrice()+"");
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmm");

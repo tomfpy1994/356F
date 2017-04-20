@@ -26,7 +26,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class FragProfile extends Fragment {
     private Account acc = null;
-    private Button btnLogout, btnEdit, btnMyPost, btnMyScore, btnHistory, btnWishList,
+    private Button btnLogout, btnEdit, btnMyPost, btnHistory, btnWishList,
             btnSecurityCode, btnTransaction;
     private boolean logout = false;
     private TextView tvUserid, tvEmail, tvGrade;
@@ -55,7 +55,6 @@ public class FragProfile extends Fragment {
 
 
         btnMyPost = (Button) rootView.findViewById(R.id.btnMyPost);
-        btnMyScore = (Button) rootView.findViewById(R.id.btnMyScore);
         btnHistory = (Button) rootView.findViewById(R.id.btnHistory);
         btnWishList = (Button) rootView.findViewById(R.id.btnWishList);
         btnSecurityCode = (Button) rootView.findViewById(R.id.btnSecurityCode);
@@ -82,7 +81,6 @@ public class FragProfile extends Fragment {
         }
 
         //Demo Block
-        btnMyScore.setEnabled(false);
         btnWishList.setEnabled(false);
         //btnHistory.setEnabled(false);
 
@@ -131,19 +129,6 @@ public class FragProfile extends Fragment {
             }
         });
 
-        // go to my score page
-        btnMyScore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),MyScorePage.class);
-                try {
-                    intent.putExtra("acc",acc.passToJsonObjectStr());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                startActivity(intent);
-            }
-        });
 
         // go to my history page
         btnHistory.setOnClickListener(new View.OnClickListener() {

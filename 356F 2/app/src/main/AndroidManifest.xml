@@ -27,9 +27,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MyScorePage"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".ProfileEditPage"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

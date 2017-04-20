@@ -84,11 +84,11 @@
                     android:text="wish list" />
 
                 <Button
-                    android:id="@+id/btnMyScore"
+                    android:id="@+id/btnEdit"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="my score" />
+                    android:text="Profile Edit" />
             </LinearLayout>
 
             <LinearLayout
@@ -124,14 +124,6 @@
             android:scaleType="fitCenter"
             app:srcCompat="@mipmap/ic_launcher" />
 
-        <Button
-            android:id="@+id/btnEdit"
-            android:layout_width="55dp"
-            android:layout_height="50dp"
-            android:layout_alignBottom="@+id/ivIcon"
-            android:layout_toEndOf="@+id/tvEmail"
-            android:text="edit" />
-
         <TextView
             android:id="@+id/textview3"
             android:layout_width="wrap_content"
@@ -155,9 +147,6 @@
             style="@style/Widget.AppCompat.RatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/linearLayout"
-            android:layout_marginBottom="27dp"
-            android:layout_toStartOf="@+id/btnEdit"
             android:clickable="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -165,15 +154,17 @@
             android:max="10"
             android:numStars="0"
             android:rating="3"
-            android:stepSize="1" />
+            android:stepSize="1"
+            android:layout_above="@+id/tvGrade"
+            android:layout_alignEnd="@+id/tvEmail" />
 
         <TextView
             android:id="@+id/textView28"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Grade"
             android:layout_above="@+id/rangeBar"
-            android:layout_alignStart="@+id/rangeBar" />
+            android:layout_alignStart="@+id/rangeBar"
+            android:text="Grade" />
 
         <TextView
             android:id="@+id/tvGrade"

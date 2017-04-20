@@ -68,8 +68,9 @@ public class ResultOfSearch extends AppCompatActivity {
             if (jsonArray!=null) {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Post post = new Post(jsonArray.getJSONObject(i));
-                    if (!(post.getState().equals("3"))){
+                    if (!(post.getState().equals("2"))){
                         alPost.add(post);
+                        System.out.println("add  to post!!");
                     }
                 }
             }

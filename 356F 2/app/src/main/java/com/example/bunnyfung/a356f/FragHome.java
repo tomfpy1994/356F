@@ -23,7 +23,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -59,6 +64,7 @@ public class FragHome extends Fragment {
             //Testing Log
             System.out.println("allProductList resultObject: "+jsonArray.getJSONObject(0));
             if (jsonArray!=null) {
+
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Post post = new Post(jsonArray.getJSONObject(i));
                     if (!(post.getState().equals("3"))){
@@ -91,7 +97,10 @@ public class FragHome extends Fragment {
 
 
                     Intent intent = new Intent(getActivity(), ProductPage.class);
-                    intent.putExtra("post", clickedPostStr);
+
+//                    intent.putExtra("post", clickedPostStr);
+                    intent.putExtra("postId", clickedPost.getProductID());
+
                     intent.putExtra("acc", acc.passToJsonObjectStr());
 
                     if (clickedPost.getOwner().equals(acc.getId())){

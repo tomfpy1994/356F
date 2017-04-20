@@ -127,7 +127,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                 }else {
                     ivMsgIcon.setVisibility(View.VISIBLE);
                     ivMsgIcon.setImageResource(R.drawable.warning);
-                    tvStatu.setText("Registration Failed! \n please fill all the bland");
+                    tvStatu.setText("Registration Failed! \n please fill all the blank");
                     tvStatu.setTextColor(Color.RED);
                 }
                 break;

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.bunnyfung.a356f.Connection.Connection;
 import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Post;
 import com.google.android.gms.appindexing.Action;
@@ -18,6 +19,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -45,10 +47,19 @@ public class ProductPage extends AppCompatActivity {
 
         try {
             Intent intent = getIntent();
-            JSONObject jsonObject = new JSONObject(intent.getStringExtra("post"));
+//            JSONObject jsonObject = new JSONObject(intent.getStringExtra("post"));
+//            post = new Post(jsonObject);
+
+            String postId = intent.getStringExtra("postId");
+            Connection conn = new Connection();
+            JSONObject jsonObject = conn.getOneProduct(postId);
+            JSONArray jsonArray = jsonObject.getJSONArray("products");
+
+            post = new Post(jsonArray.getJSONObject(0));
+
             showType = intent.getStringExtra("showType");
             System.out.println(showType);
-            post = new Post(jsonObject);
+
 
             JSONObject accJsonObject = new JSONObject(intent.getStringExtra("acc"));
             acc = new Account(accJsonObject);

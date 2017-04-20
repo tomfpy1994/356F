@@ -17,6 +17,7 @@ import com.example.bunnyfung.a356f.Object.Post;
 import com.github.jjobes.slidedatetimepicker.SlideDateTimeListener;
 import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,7 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MakeOfferPage extends AppCompatActivity {
-    private Account acc;
+    private Account acc, ownerAcc;
     private Post post;
     private ImageView ivPhoto1;
     private TextView tvTitle, tvPrice, tvName, tvBrand, tvType, tvSize;
@@ -45,11 +46,19 @@ public class MakeOfferPage extends AppCompatActivity {
 
         Intent intent = getIntent();
         try {
-            JSONObject jsonObject = new JSONObject(intent.getStringExtra("post"));
-            post = new Post(jsonObject);
+            //JSONObject jsonObject = new JSONObject(intent.getStringExtra("post"));
+            //post = new Post(jsonObject);
+
+            String postId = intent.getStringExtra("postId");
+            Connection conn = new Connection();
+            JSONObject jsonObject = conn.getOneProduct(postId);
+            JSONArray jsonArray = jsonObject.getJSONArray("products");
+
+            post = new Post(jsonArray.getJSONObject(0));
 
             JSONObject accJsonObject = new JSONObject(intent.getStringExtra("acc"));
             acc = new Account(accJsonObject);
+
 
         } catch (JSONException e) {
             e.printStackTrace();

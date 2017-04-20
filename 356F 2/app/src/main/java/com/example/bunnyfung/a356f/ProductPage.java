@@ -24,12 +24,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ProductPage extends AppCompatActivity {
-    private Account acc;
+    private Account acc, ownerAcc;
     private Post post;
     private String showType;
     private ImageView ivPhoto1;
-    private TextView tvTitle, tvPrice, tvName, tvBrand, tvType, tvSize, tvDec, owner1, tvOwnerName,
-            tvOwnerPhone, tvOwnerCred;
+    private TextView tvTitle, tvPrice, tvName, tvBrand, tvType, tvSize, tvDec, owner1, tvOwnerName, tvOwnerCred;
     private LinearLayout owner2;
     private Button btnSubmit;
     private ImageButton ibShare;
@@ -64,6 +63,11 @@ public class ProductPage extends AppCompatActivity {
             JSONObject accJsonObject = new JSONObject(intent.getStringExtra("acc"));
             acc = new Account(accJsonObject);
 
+            JSONObject jsonObjectAcc = conn.getOneAccount(post.getOwner());
+            JSONArray jsonArrayAcc = jsonObjectAcc.getJSONArray("account");
+
+            ownerAcc = new Account(jsonArrayAcc.getJSONObject(0));
+
 
             //Testing Log
             System.out.println("ProductPage" + post.toString());
@@ -83,7 +87,6 @@ public class ProductPage extends AppCompatActivity {
         tvDec = (TextView) findViewById(R.id.tvDec);
         owner1 = (TextView) findViewById(R.id.owner1);
         tvOwnerName = (TextView) findViewById(R.id.tvOwnerName);
-        tvOwnerPhone = (TextView) findViewById(R.id.tvOwnerPhone);
         tvOwnerCred = (TextView) findViewById(R.id.tvOwnerCred);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
@@ -108,11 +111,9 @@ public class ProductPage extends AppCompatActivity {
         final String title = post.getBrand()+" "+post.getName()+" US"+post.getSize();
         tvTitle.setText(title);
 
-        //TODO: show the correct OwnerName, Not owner_id(Server new post need to add col "OwnerName")
-        tvOwnerName.setText(post.getOwner());
-        //TODO: set Owner phone and creadi
-        tvOwnerPhone.setText("");
-        tvOwnerCred.setText("");
+
+        tvOwnerName.setText(ownerAcc.getUserid()+"");
+        tvOwnerCred.setText(ownerAcc.getGrade()+"/10");
 
 
         if (showType.equals("edit")) {

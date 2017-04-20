@@ -135,6 +135,7 @@ public class FragNewPost extends Fragment {
                     case R.id.btnPostSubmit:
                         //get user input
                         sName = name.getText().toString();
+                        sName = sName.replaceAll("\\s",""); // delete space
                         sBand = brand.getText().toString();
                         sType = type.getText().toString();
                         sSize = size.getText().toString();

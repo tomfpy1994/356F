@@ -174,7 +174,7 @@ public class FragOffer extends Fragment {
                         }
 
                         if (temOffer.getBuyerID().equals(acc.getId())){
-                            if (temOffer.getStat()<2) {
+                            if (temOffer.getStat()<=1) {
                                 alOffer.add(temOffer);
                             }
                         }

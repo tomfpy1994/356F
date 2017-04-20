@@ -163,7 +163,7 @@ public class OfferDetailPage extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog dialog1 = new AlertDialog.Builder(OfferDetailPage.this)
                         .setTitle("Warning ")
-                        .setMessage("Are you comfirm to DECLINE the offer?")
+                        .setMessage("Are you comfirm to CANCEL the offer?")
                         .setCancelable(false)
                         .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                             @Override

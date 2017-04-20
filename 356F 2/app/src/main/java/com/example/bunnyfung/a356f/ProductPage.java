@@ -10,10 +10,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.util.Log;
 
 import com.example.bunnyfung.a356f.Connection.Connection;
 import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Post;
+import com.example.bunnyfung.a356f.Object.WishList;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -27,7 +30,7 @@ public class ProductPage extends AppCompatActivity {
     private Account acc, ownerAcc;
     private Post post;
     private String showType;
-    private ImageView ivPhoto1;
+    private ImageView ivPhoto1, ivWishList;
     private TextView tvTitle, tvPrice, tvName, tvBrand, tvType, tvSize, tvDec, owner1, tvOwnerName, tvOwnerCred;
     private LinearLayout owner2;
     private Button btnSubmit;
@@ -77,6 +80,8 @@ public class ProductPage extends AppCompatActivity {
         }
 
         ivPhoto1 = (ImageView) findViewById(R.id.ivPhoto1);
+        ivWishList = (ImageView) findViewById(R.id.ivWishList);
+
 
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         tvPrice = (TextView) findViewById(R.id.tvOfferedPrice);
@@ -168,6 +173,28 @@ public class ProductPage extends AppCompatActivity {
                 }
             }
         });
+
+        ivWishList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try {
+                    WishList wishList = new WishList(acc.getId(), post.getProductID());
+                    Log.i("WKW2", "WishListJSONString: " + wishList.passToJsonObjectStr());
+                    Connection conn = new Connection();
+                    JSONObject resultObject = conn.addWishList(wishList);
+                    //System.out.println(resultObject.getString("status"));
+                    //Log.i(null, "resultObject: " +resultObject.toString());
+                    if (resultObject.getString("status").equals("add success")) {
+                        finish();
+                        Toast.makeText(ProductPage.this, post.getProductID() + "," + acc.getId(), Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
 
 
 

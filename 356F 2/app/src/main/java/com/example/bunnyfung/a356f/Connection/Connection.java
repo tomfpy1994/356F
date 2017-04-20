@@ -1,8 +1,11 @@
 package com.example.bunnyfung.a356f.Connection;
 
+import android.util.Log;
+
 import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Offer;
 import com.example.bunnyfung.a356f.Object.Post;
+import com.example.bunnyfung.a356f.Object.WishList;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,7 +50,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("POST","Login",null, null, null);
+        queryServer("POST","Login",null, null, null, null);
 
         while (resultObject == null) {
             try {
@@ -67,7 +70,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("GET","ListAccount",null, null, null);
+        queryServer("GET","ListAccount",null, null, null, null);
 
         while (resultObject == null) {
             try {
@@ -86,7 +89,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("POST","updateAcc", null, null, acc);
+        queryServer("POST","updateAcc", null, null, acc, null);
 
         while (resultObject == null) {
             try {
@@ -109,7 +112,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("GET","getProduct",null, null, null);
+        queryServer("GET","getProduct",null, null, null, null);
 
         while (resultObject == null) {
             try {
@@ -129,7 +132,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("GET","getProduct", null, null, null);
+        queryServer("GET","getProduct", null, null, null, null);
 
         while (resultObject == null) {
             try {
@@ -148,7 +151,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("POST","updatePost", null, post, null);
+        queryServer("POST","updatePost", null, post, null, null);
 
         while (resultObject == null) {
             try {
@@ -170,7 +173,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("POST","addOffer", offer, null, null);
+        queryServer("POST","addOffer", offer, null, null, null);
 
         while (resultObject == null) {
             try {
@@ -192,7 +195,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("GET","listOffer", null, null, null);
+        queryServer("GET","listOffer", null, null, null, null);
 
         while (resultObject == null) {
             try {
@@ -212,7 +215,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("GET","listOffer", null, null, null);
+        queryServer("GET","listOffer", null, null, null, null);
 
         while (resultObject == null) {
             try {
@@ -231,7 +234,7 @@ public class Connection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        queryServer("POST","updateOffer", offer, null, null);
+        queryServer("POST","updateOffer", offer, null, null, null);
 
         while (resultObject == null) {
             try {
@@ -270,12 +273,79 @@ public class Connection {
     }
 
 
+    //WishList Method
+    public JSONObject addWishList(WishList wishList){
+        try{
+            url = new URL("http://s356fproject.mybluemix.net/api/addwishlist");
+        }catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        queryServer("POST","addWishList", null, null, null, wishList);
+
+        while (resultObject == null) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        return resultObject;
+    }
+
+    public JSONObject listWishList(){
+
+        String urlStr = "http://s356fproject.mybluemix.net/api/listwishlist";
+        //urlStr = urlStr+"/'_id'/"+acc.getId();
+        try {
+            url = new URL(urlStr);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        queryServer("GET","listWishList", null, null, null, null);
+
+        while (resultObject == null) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultObject;
+    }
+
+//    public JSONObject getWishList(WishList wishList){
+//
+//        String urlStr = "http://s356fproject.mybluemix.net/api/listwishlist/?";
+//        urlStr = urlStr+"/_id/58f8574735a2ed003b6dd7fd";
+//        Log.i("WKW2", "wishListgetProductId: " +wishList.getProductId());
+//        try {
+//            url = new URL(urlStr);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+//        queryServer("GET","getWishList", null, null, null, null);
+//
+//        while (resultObject == null) {
+//            try {
+//                Thread.sleep(50);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        Log.i(null, "resultObject:" +resultObject);
+//        return resultObject;
+//    }
 
 
 
 
 
-    public void queryServer(final String method, final String action, final Offer offer, final Post post, final Account tmpacc) {
+
+
+    public void queryServer(final String method, final String action, final Offer offer, final Post post, final Account tmpacc,final WishList wishList) {
         resultObject = null;
         Thread thread = new Thread() {
             public void run() {
@@ -312,6 +382,12 @@ public class Connection {
                                 os.write(offer.passToJsonObjectStr().getBytes("UTF-8"));
                                 break;
 
+                            case "addWishList":
+                                //Testing Log
+                                System.out.println("queryServer jsonObj: " + wishList.toString());
+                                os.write(wishList.passToJsonObjectStr().getBytes("UTF-8"));
+                                break;
+
                             case "Login":
                                 //Testing Log
                                 System.out.println("queryServer jsonObj: " + acc.toString());
@@ -335,6 +411,7 @@ public class Connection {
                                 System.out.println("queryServer jsonObj: " + tmpacc.toString());
                                 os.write(tmpacc.passToJsonObjectStr().getBytes("UTF-8"));
                                 break;
+
                         }
                         os.close();
                     }
@@ -404,6 +481,30 @@ public class Connection {
                                 System.out.println("responesStatud: "+resultObject.getString("status"));
                                 break;
 
+                            case "addWishList":
+                                resultObject = new JSONObject(sb.toString());
+                                System.out.println("responesStatud: "+resultObject.getString("status"));
+                                break;
+
+                            case "listWishList":
+                                System.out.println("sb Length: "+ sb.length());
+                                System.out.println("WishList: " + sb);
+
+                                String sbStr3 = "{wishLists:"+sb+"}";
+                                resultObject = new JSONObject(sbStr3);
+                                break;
+
+                            case "getWishList":
+                                System.out.println("sb Length: "+ sb.length());
+                                System.out.println("WishList: " + sb);
+
+                                Log.i("WKW2", "sbLength:" +sb.length());
+                                Log.i("WKW2", "sb: " +sb);
+
+
+                                String sbStr4 = "{wishList:"+sb+"}";
+                                resultObject = new JSONObject(sbStr4);
+                                break;
                         }
 
                     }

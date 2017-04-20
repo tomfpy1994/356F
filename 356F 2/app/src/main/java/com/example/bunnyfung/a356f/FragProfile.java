@@ -81,7 +81,7 @@ public class FragProfile extends Fragment {
         }
 
         //Demo Block
-        btnWishList.setEnabled(false);
+        btnWishList.setEnabled(true);
         //btnHistory.setEnabled(false);
 
         btnLogout.setOnClickListener(new View.OnClickListener() {

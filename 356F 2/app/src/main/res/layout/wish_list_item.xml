@@ -29,11 +29,19 @@
                 android:layout_height="100dp">
 
                 <TextView
-                    android:text="user"
+                    android:id="@+id/tvProductName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textuser"
+                    android:text="Product Name"
+                    android:textColor="#333" />
+
+                <TextView
+                    android:id="@+id/textUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="user"
                     android:textAlignment="textStart"
+                    android:textColor="#333"
                     android:textSize="24sp" />
 
                 <LinearLayout
@@ -42,27 +50,30 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:id="@+id/ivImg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@mipmap/ic_launcher"
-                        android:id="@+id/imageView3"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        app:srcCompat="@mipmap/ic_launcher" />
 
                     <TextView
-                        android:text="information"
+                        android:id="@+id/textInformation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textInformation"
                         android:layout_weight="1"
+                        android:text="information"
+                        android:textColor="#333"
                         android:textSize="16sp" />
 
                     <TextView
-                        android:text="price"
+                        android:id="@+id/textPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textPrice"
                         android:layout_weight="1"
-                        android:textSize="24sp" />
+                        android:text="price"
+                        android:textColor="#333"
+                        android:textSize="24sp"
+                        android:visibility="visible" />
 
                 </LinearLayout>
 

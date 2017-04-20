@@ -146,7 +146,8 @@ public class ProductPage extends AppCompatActivity {
                 if (showType.equals("edit")) {
                     intent1 = new Intent(getApplication(), ProductEditPage.class);
                     try {
-                        intent1.putExtra("post", post.passToJsonObjectStr());
+                        //intent1.putExtra("post", post.passToJsonObjectStr());
+                        intent1.putExtra("postId", post.getProductID());
                         intent1.putExtra("acc", acc.passToJsonObjectStr());
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -156,7 +157,8 @@ public class ProductPage extends AppCompatActivity {
                 }else if (showType.equals("show")){//go to make offer page
                     intent1 = new Intent(getApplication(), MakeOfferPage.class);
                     try {
-                        intent1.putExtra("post", post.passToJsonObjectStr());
+                        //intent1.putExtra("post", post.passToJsonObjectStr());
+                        intent1.putExtra("postId", post.getProductID());
                         intent1.putExtra("acc", acc.passToJsonObjectStr());
                     } catch (JSONException e) {
                         e.printStackTrace();

@@ -2,9 +2,11 @@ package com.example.bunnyfung.a356f;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.EditText;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.bunnyfung.a356f.Adapter.MyProductAdapter;
 import com.example.bunnyfung.a356f.Connection.Connection;
@@ -32,6 +35,7 @@ import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class FragHome extends Fragment {
     private ListView listView;
@@ -53,6 +57,7 @@ public class FragHome extends Fragment {
         listView = (ListView) rootView.findViewById(R.id.allProductList);
         searchButton = (Button) rootView.findViewById(R.id.btnSearch);
         getProduct();
+        //jsonArray = getPostFromRaw();
         while (jsonArray==null){
             try {
                 Thread.sleep(50);
@@ -64,13 +69,16 @@ public class FragHome extends Fragment {
             //Testing Log
             System.out.println("allProductList resultObject: "+jsonArray.getJSONObject(0));
             if (jsonArray!=null) {
-
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Post post = new Post(jsonArray.getJSONObject(i));
                     if (!(post.getState().equals("3"))){
                         alPost.add(post);
                     }
                 }
+            }else {
+                Toast.makeText(getActivity(), "null jsonArray",
+                        Toast.LENGTH_LONG).show();
+                Log.i("null jsonArray","null jsonArray");
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -139,6 +147,32 @@ public class FragHome extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public JSONArray getPostFromRaw(){
+        Resources res = getResources();
+        InputStream is = res.openRawResource(R.raw.posts);
+        Scanner scanner = new Scanner(is);
+        StringBuilder builder = new StringBuilder();
+
+        while (scanner.hasNextLine()){
+            builder.append(scanner.nextLine());
+        }
+
+        System.out.println("Scanner line: "+builder.toString());
+
+        JSONObject jObj = null;
+        JSONArray jArray = null;
+        try {
+            jObj = new JSONObject(builder.toString());
+            Log.i("jobj",jObj.toString());
+
+            jArray = new JSONArray(jObj.getJSONArray("products"));
+            Log.i("jArray",jsonArray.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jArray;
 
     }
 

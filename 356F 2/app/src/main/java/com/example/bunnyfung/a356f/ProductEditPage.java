@@ -18,10 +18,12 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.bunnyfung.a356f.Connection.Connection;
 import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Post;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -63,15 +65,27 @@ public class ProductEditPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_edit_page);
 
-        String str = getIntent().getStringExtra("post");
-        try {
-            JSONObject jsonObject = new JSONObject(str);
-            post = new Post(jsonObject);
+//        String str = getIntent().getStringExtra("post");
+//        try {
+//            JSONObject jsonObject = new JSONObject(str);
+//            post = new Post(jsonObject);
+//
+//            System.out.println("jsonObject value(in product edit page): "+post.passToJsonObjectStr());
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
-            System.out.println("jsonObject value(in product edit page): "+post.passToJsonObjectStr());
+        String postId = getIntent().getStringExtra("postId");
+        Connection conn = new Connection();
+        JSONObject jsonObject = conn.getOneProduct(postId);
+        JSONArray jsonArray = null;
+        try {
+            jsonArray = jsonObject.getJSONArray("products");
+            post = new Post(jsonArray.getJSONObject(0));
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
 
         // initialized the item in layout
         photo = (ImageView) findViewById(R.id.ivBigPhoto);

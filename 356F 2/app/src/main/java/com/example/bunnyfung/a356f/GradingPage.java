@@ -10,6 +10,7 @@ import com.example.bunnyfung.a356f.Connection.Connection;
 import com.example.bunnyfung.a356f.Object.Account;
 import com.example.bunnyfung.a356f.Object.Offer;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,8 +27,15 @@ public class GradingPage extends AppCompatActivity {
         setContentView(R.layout.activity_grading_page);
 
         try {
-            JSONObject jsonOffer = new JSONObject(getIntent().getStringExtra("offer"));
-            offer = new Offer(jsonOffer);
+//            JSONObject jsonOffer = new JSONObject(getIntent().getStringExtra("offer"));
+//            offer = new Offer(jsonOffer);
+
+            String offerId = getIntent().getStringExtra("offerId");
+            Connection conn = new Connection();
+
+            JSONObject jsonObjectOffer = conn.getOneOffer(offerId);
+            JSONArray jsonArrayOffer = jsonObjectOffer.getJSONArray("offers");
+            offer = new Offer(jsonArrayOffer.getJSONObject(0));
 
             JSONObject jsonAcc = new JSONObject(getIntent().getStringExtra("acc"));
             account = new Account(jsonAcc);

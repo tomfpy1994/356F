@@ -262,8 +262,8 @@ public class OfferDetailPage extends AppCompatActivity {
                                                         //Testing Log
                                                         System.out.println("ownerAcc:"+ ownerAcc.getBalance());
 
-                                                        resultObject = conn.getOneProduct(offer.getPostId());
-                                                        jsonArray = resultObject.getJSONArray("product");
+//                                                        resultObject = conn.getOneProduct(offer.getPostId());
+//                                                        jsonArray = resultObject.getJSONArray("products");
 
                                                         resultObject = conn.dealOffer(offer,post, acc, ownerAcc);
                                                         System.out.println(resultObject.toString());
@@ -282,7 +282,7 @@ public class OfferDetailPage extends AppCompatActivity {
                                                                     Intent intent = new Intent(getApplicationContext(), GradingPage.class);
                                                                     try {
                                                                         intent.putExtra("acc", ownerAcc.passToJsonObjectStr()+"");
-                                                                        intent.putExtra("offer", offer.passToJsonObjectStr()+"");
+                                                                        intent.putExtra("offerId", offer.get_id());
                                                                     } catch (JSONException e) {
                                                                         e.printStackTrace();
                                                                     }

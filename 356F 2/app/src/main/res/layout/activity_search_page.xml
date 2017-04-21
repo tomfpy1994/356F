@@ -24,11 +24,11 @@
             android:layout_height="wrap_content">
 
             <AutoCompleteTextView
-                android:text="enter"
+                android:id="@+id/tvSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvSearch"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:hint="Enter Keyword" />
 
             <Button
                 android:id="@+id/btnGoToSearch"

@@ -68,7 +68,7 @@ public class ResultOfSearch extends AppCompatActivity {
             if (jsonArray!=null) {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Post post = new Post(jsonArray.getJSONObject(i));
-                    if (!(post.getState().equals("2"))){
+                    if (!(post.getState().equals("3"))){
                         alPost.add(post);
                         System.out.println("add  to post!!");
                     }
@@ -90,10 +90,10 @@ public class ResultOfSearch extends AppCompatActivity {
                     String clickedPostStr = clickedPost.passToJsonObjectStr();
 
                     //Testing Log
-                    System.out.println("All_Post:"+clickedPostStr);
+                    System.out.println("clicked Post:"+clickedPostStr);
 
                     Intent intent = new Intent(getApplicationContext(), ProductPage.class);
-                    intent.putExtra("post", clickedPostStr);
+                    intent.putExtra("postId", clickedPost.getProductID());
                     intent.putExtra("acc", acc.passToJsonObjectStr());
 
                     if (clickedPost.getOwner().equals(acc.getId())){

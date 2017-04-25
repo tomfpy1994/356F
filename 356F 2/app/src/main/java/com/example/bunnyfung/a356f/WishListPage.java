@@ -94,53 +94,53 @@ public class WishListPage extends AppCompatActivity {
         WishListAdapter wishListAdapter = new WishListAdapter(getApplicationContext(), alWishLists);
         lvWishList.setAdapter(wishListAdapter);
         //lvWishList.invalidateViews();
-//
-//
-//        lvWishList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                try {
-//                    WishList clickedWishList = alWishLists.get(position);
-//                    String clickedWishListStr = clickedWishList.passToJsonObjectStr();
-//
-//                    //Testing Log
-//                    Log.i("WKW2", "clickedWishListStr: " +clickedWishList.passToJsonObjectStr());
-//
-//
-//                    JSONObject postObj = conn.getOneProduct(clickedWishList.getProductId());
-//                    Log.i("WKW2", "clickedWishListgetProductId: " +clickedWishList.getProductId());
-//                    Log.i("WKW2", "postObj: " +postObj.toString());
-//
-//                    JSONArray products = postObj.getJSONArray("products");
-//                    JSONObject product = products.getJSONObject(0);
-//
-//                    Post post = new Post(product);
-//
-//                    JSONObject accObj = conn.getOneAccount(clickedWishList.getId());
-//                    JSONArray accounts = accObj.getJSONArray("account");
-//                    JSONObject account = accounts.getJSONObject(0);
-//
-//                    acc = new Account(account);
-//
-//
-//
-//
-//                    Intent intent = new Intent(getApplication(), ProductPage.class);
-//                    intent.putExtra("post", product.toString());
-//                    intent.putExtra("acc", acc.passToJsonObjectStr());
-//
-//                    if (post.getOwner().equals(acc.getId())){
-//                        intent.putExtra("showType","edit");
-//                    }else {
-//                        intent.putExtra("showType","show");
-//                    }
-//
-//                    startActivity(intent);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
+
+
+        lvWishList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                try {
+                    WishList clickedWishList = alWishLists.get(position);
+                    String clickedWishListStr = clickedWishList.passToJsonObjectStr();
+
+                    //Testing Log
+                    Log.i("WKW2", "clickedWishListStr: " +clickedWishList.passToJsonObjectStr());
+
+
+                    JSONObject postObj = conn.getOneProduct(clickedWishList.getProductId());
+                    Log.i("WKW2", "clickedWishListgetProductId: " +clickedWishList.getProductId());
+                    Log.i("WKW2", "postObj: " +postObj.toString());
+
+                    JSONArray products = postObj.getJSONArray("products");
+                    JSONObject product = products.getJSONObject(0);
+
+                    Post post = new Post(product);
+
+                    JSONObject accObj = conn.getOneAccount(clickedWishList.getUid());
+                    JSONArray accounts = accObj.getJSONArray("account");
+                    JSONObject account = accounts.getJSONObject(0);
+
+                    acc = new Account(account);
+
+
+
+
+                    Intent intent = new Intent(getApplication(), ProductPage.class);
+                    intent.putExtra("post", product.toString());
+                    intent.putExtra("acc", acc.passToJsonObjectStr());
+
+                    if (post.getOwner().equals(acc.getId())){
+                        intent.putExtra("showType","edit");
+                    }else {
+                        intent.putExtra("showType","show");
+                    }
+
+                    startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

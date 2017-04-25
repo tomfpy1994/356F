@@ -101,20 +101,20 @@ public class OfferDetailPage extends AppCompatActivity {
 
             switch (offer.getStat()){
                 case 0: if (acc.getId().equals(offer.getBuyerID())){
-                            btnAccept.setText("DEAL");
-                        }else
-                            btnAccept.setText("ACCEPT");
-                        break;
+                    btnAccept.setText("DEAL");
+                }else
+                    btnAccept.setText("ACCEPT");
+                    break;
 
                 case 1: btnAccept.setText("DEAL");
-                        tvAgreeTitle.setVisibility(View.INVISIBLE);
-                        break;
+                    tvAgreeTitle.setVisibility(View.INVISIBLE);
+                    break;
 
                 case 2: btnDecline.setVisibility(View.INVISIBLE);
-                        btnAccept.setVisibility(View.INVISIBLE);
-                        tvAgreeTitle.setVisibility(View.INVISIBLE);
-                        cbAgreement.setVisibility(View.INVISIBLE);
-                        break;
+                    btnAccept.setVisibility(View.INVISIBLE);
+                    tvAgreeTitle.setVisibility(View.INVISIBLE);
+                    cbAgreement.setVisibility(View.INVISIBLE);
+                    break;
             }
         } catch (JSONException e) {
             e.printStackTrace();

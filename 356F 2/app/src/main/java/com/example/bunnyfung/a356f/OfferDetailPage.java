@@ -152,7 +152,7 @@ public class OfferDetailPage extends AppCompatActivity {
             tvBrand.setText(""+post.getBrand());
             tvSize.setText(""+post.getSize());
             tvDesc.setText(""+post.getDescription());
-            ivProductImg.setImageBitmap(offer.getPhoto());
+            ivProductImg.setImageBitmap(post.getPhoto());
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -385,8 +385,6 @@ public class OfferDetailPage extends AppCompatActivity {
                                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                        finish();
                                     }
                                 }).show();
 

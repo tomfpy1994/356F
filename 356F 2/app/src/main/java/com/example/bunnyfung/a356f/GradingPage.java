@@ -67,8 +67,9 @@ public class GradingPage extends AppCompatActivity {
                 offer.setStatBuyerCommed();
 
                 //Testing Log
-                System.out.println("Range :"+ratingBar2.getRating());
-                account.setGrade((int)(account.getGrade()+ratingBar2.getRating())/2);
+                float grade = ratingBar2.getRating()*2;
+                System.out.println("Range :"+grade);
+                account.setGrade((int)(account.getGrade()+grade)/2);
 
                 Connection conn = new Connection();
 

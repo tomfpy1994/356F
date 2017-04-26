@@ -31,8 +31,8 @@
 
         <ImageView
             android:id="@+id/ivProductImg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="320dp"
+            android:layout_height="150dp"
             android:layout_margin="5dp"
             android:layout_weight="1" />
 
@@ -94,7 +94,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
-                        android:text="UtrlBoot"
                         android:textColor="@android:color/black" />
 
                     <TextView
@@ -104,7 +103,6 @@
                         android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
                         android:layout_weight="1"
-                        android:text="Nike"
                         android:textColor="@android:color/black" />
 
                     <TextView
@@ -113,7 +111,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
-                        android:text="US 7"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -129,7 +126,6 @@
                 android:id="@+id/tvDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="fjaslkfjsdaklfjsdaklfjsdklfjsdklffjdsafjskalfjsalkfjsakfljsfskfjsakffksdkfsdjkfjewnfionasoivnwo"
                 android:textColor="@android:color/black" />
 
         </LinearLayout>

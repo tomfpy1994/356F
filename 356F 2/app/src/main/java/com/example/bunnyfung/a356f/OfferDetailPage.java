@@ -386,7 +386,8 @@ public class OfferDetailPage extends AppCompatActivity {
                                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        // Whatever...
+                                        dialog.dismiss();
+                                        finish();
                                     }
                                 }).show();
 

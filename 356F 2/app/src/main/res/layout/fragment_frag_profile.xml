@@ -156,7 +156,7 @@
             android:rating="3"
             android:stepSize="1"
             android:layout_above="@+id/tvGrade"
-            android:layout_alignEnd="@+id/tvEmail" />
+            android:layout_centerInParent="true"/>
 
         <TextView
             android:id="@+id/textView28"
@@ -164,7 +164,8 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/rangeBar"
             android:layout_alignStart="@+id/rangeBar"
-            android:text="Grade" />
+            android:text="Grade"
+            />
 
         <TextView
             android:id="@+id/tvGrade"

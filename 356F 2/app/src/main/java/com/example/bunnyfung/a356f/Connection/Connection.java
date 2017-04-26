@@ -362,10 +362,6 @@ public class Connection {
 
 
 
-
-
-
-
     public void queryServer(final String method, final String action, final Offer offer, final Post post, final Account tmpacc,final WishList wishList) {
         resultObject = null;
         Thread thread = new Thread() {

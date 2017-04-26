@@ -1,5 +1,6 @@
 package com.example.bunnyfung.a356f;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -44,8 +45,32 @@ public class FragOffer extends Fragment {
         lvOfferList = (ListView)rootView.findViewById(R.id.lvOfferList);
 
         ivReload = (ImageButton)rootView.findViewById(R.id.ivReload);
+        btnProcessing.setTextColor(Color.MAGENTA);
+        btnInvitation.setTextColor(Color.LTGRAY);
+        btnMyOffer.setTextColor(Color.LTGRAY);
 
-        getPost();
+
+        Connection conn = new Connection();
+        try {
+            jsonArray = conn.listOffer(acc, 0).getJSONArray("offers");
+
+            alOffer.clear();
+            if (jsonArray!=null) {
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    Offer temOffer = new Offer(jsonArray.getJSONObject(i));
+
+                    if (temOffer.getStat()==1){
+                        alOffer.add(temOffer);
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        isMyOffer = 0;
+
+        //Testing Log
+        System.out.println(alOffer.size());
 
         OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer, 0);
         lvOfferList.setAdapter(adapter);
@@ -102,6 +127,9 @@ public class FragOffer extends Fragment {
         btnProcessing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnProcessing.setTextColor(Color.MAGENTA);
+                btnInvitation.setTextColor(Color.LTGRAY);
+                btnMyOffer.setTextColor(Color.LTGRAY);
                 alOffer.clear();
                 if (jsonArray!=null) {
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -129,6 +157,10 @@ public class FragOffer extends Fragment {
         btnInvitation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnProcessing.setTextColor(Color.LTGRAY);
+                btnInvitation.setTextColor(Color.MAGENTA);
+                btnMyOffer.setTextColor(Color.LTGRAY);
+
                 alOffer.clear();
                 if (jsonArray!=null) {
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -158,6 +190,11 @@ public class FragOffer extends Fragment {
         btnMyOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                btnProcessing.setTextColor(Color.LTGRAY);
+                btnInvitation.setTextColor(Color.LTGRAY);
+                btnMyOffer.setTextColor(Color.MAGENTA);
+
                 alOffer.clear();
                 if (jsonArray!=null) {
                     for (int i = 0; i < jsonArray.length(); i++) {

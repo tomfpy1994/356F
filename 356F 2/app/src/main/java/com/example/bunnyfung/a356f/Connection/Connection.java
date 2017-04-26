@@ -316,28 +316,49 @@ public class Connection {
         return resultObject;
     }
 
-//    public JSONObject getWishList(WishList wishList){
-//
-//        String urlStr = "http://s356fproject.mybluemix.net/api/listwishlist/?";
-//        urlStr = urlStr+"/_id/58f8574735a2ed003b6dd7fd";
-//        Log.i("WKW2", "wishListgetProductId: " +wishList.getProductId());
-//        try {
-//            url = new URL(urlStr);
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
-//        queryServer("GET","getWishList", null, null, null, null);
-//
-//        while (resultObject == null) {
-//            try {
-//                Thread.sleep(50);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        Log.i(null, "resultObject:" +resultObject);
-//        return resultObject;
-//    }
+    public JSONObject deleteWishList(WishList wishList){
+        String urlStr = "http://s356fproject.mybluemix.net/api/delwishlist";
+        // urlStr = urlStr+"/'productID'/"+wishList.getProductId()+ "/'uid'/"+wishList.getId();
+        try {
+            url = new URL(urlStr);
+            System.out.println("the del wishlist");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        queryServer("POST","deleteWishList", null, null, null, wishList);
+
+        while (resultObject == null) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultObject;
+    }
+
+    public JSONObject getWishList(WishList wishList){
+
+        String urlStr = "http://s356fproject.mybluemix.net/api/listwishlist/?";
+        urlStr = urlStr+"/_id/" +wishList.getUid();
+        Log.i("WKW2", "wishListgetProductId: " +wishList.getUid());
+        try {
+            url = new URL(urlStr);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        queryServer("GET","getWishList", null, null, null, null);
+
+        while (resultObject == null) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        Log.i(null, "resultObject:" +resultObject);
+        return resultObject;
+    }
 
 
 
@@ -382,12 +403,6 @@ public class Connection {
                                 os.write(offer.passToJsonObjectStr().getBytes("UTF-8"));
                                 break;
 
-                            case "addWishList":
-                                //Testing Log
-                                System.out.println("queryServer jsonObj: " + wishList.toString());
-                                os.write(wishList.passToJsonObjectStr().getBytes("UTF-8"));
-                                break;
-
                             case "Login":
                                 //Testing Log
                                 System.out.println("queryServer jsonObj: " + acc.toString());
@@ -410,6 +425,23 @@ public class Connection {
                                 //Testing Log
                                 System.out.println("queryServer jsonObj: " + tmpacc.toString());
                                 os.write(tmpacc.passToJsonObjectStr().getBytes("UTF-8"));
+                                break;
+
+                            case "addWishList":
+                                //Testing Log
+                                System.out.println("queryServer jsonObj: " + wishList.toString());
+                                os.write(wishList.passToJsonObjectStr().getBytes("UTF-8"));
+                                break;
+
+                            case "deleteWishList":
+                                System.out.println("queryServer jsonObj: " + wishList.toString());
+                                Log.i("testWishList", "wishListgetId: "+wishList.getId());
+                                Log.i("testWishList", "wishListgetUid: "+wishList.getUid());
+                                Log.i("testWishList", "wishListgetProductId" +wishList.getProductId());
+                                Log.i("testWishList", "wishListpassJSONObjStr:" +wishList.passToJsonObjectStr());
+
+                                //String str = "{_id: \"" + wishList.getId() + "\"}";
+                                os.write(wishList.passToJsonObjectStr().getBytes("UTF-8"));
                                 break;
 
                         }
@@ -492,6 +524,11 @@ public class Connection {
 
                                 String sbStr3 = "{wishLists:"+sb+"}";
                                 resultObject = new JSONObject(sbStr3);
+                                break;
+
+                            case "deleteWishList":
+                                resultObject = new JSONObject(sb.toString());
+                                System.out.println("responesStatud: "+resultObject.getString("status"));
                                 break;
 
                             case "getWishList":

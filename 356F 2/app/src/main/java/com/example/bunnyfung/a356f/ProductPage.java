@@ -38,6 +38,7 @@ public class ProductPage extends AppCompatActivity {
     private final String doller = "$";
     private final String sizeUnit = "US ";
 
+    private boolean inWishList;
     private GoogleApiClient client;
 
     //constructor
@@ -46,6 +47,27 @@ public class ProductPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_page);
+
+        ivPhoto1 = (ImageView) findViewById(R.id.ivPhoto1);
+        ivWishList = (ImageView) findViewById(R.id.ivWishList);
+
+
+        tvTitle = (TextView) findViewById(R.id.tvTitle);
+        tvPrice = (TextView) findViewById(R.id.tvOfferedPrice);
+        tvName = (TextView) findViewById(R.id.tvName);
+        tvBrand = (TextView) findViewById(R.id.tvBrand);
+        tvType = (TextView) findViewById(R.id.tvType);
+        tvSize = (TextView) findViewById(R.id.tvSize);
+        tvDec = (TextView) findViewById(R.id.tvDec);
+        owner1 = (TextView) findViewById(R.id.owner1);
+        tvOwnerName = (TextView) findViewById(R.id.tvOwnerName);
+        tvOwnerCred = (TextView) findViewById(R.id.tvOwnerCred);
+        btnSubmit = (Button) findViewById(R.id.btnSubmit);
+
+        ibShare = (ImageButton) findViewById(R.id.ibShare);
+
+
+        owner2 = (LinearLayout) findViewById(R.id.owner2);
 
         try {
             Intent intent = getIntent();
@@ -71,6 +93,23 @@ public class ProductPage extends AppCompatActivity {
 
             ownerAcc = new Account(jsonArrayAcc.getJSONObject(0));
 
+            //WishList
+            String uid = new JSONObject(intent.getStringExtra("acc")).getString("_id");
+            JSONArray wishListArray = conn.listWishList().getJSONArray("wishLists");
+
+            for(int i = 0; i < wishListArray.length(); i++)
+            {
+                JSONObject obj = wishListArray.getJSONObject(i);
+                if(obj.getString("productID").equals(postId) && obj.getString("uid").equals(uid)){
+                    inWishList = true;
+                    break;
+                }
+            }
+
+            if(inWishList)
+            {
+                ivWishList.setImageResource(android.R.drawable.btn_star_big_on);
+            }
 
             //Testing Log
             System.out.println("ProductPage" + post.toString());
@@ -79,26 +118,7 @@ public class ProductPage extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ivPhoto1 = (ImageView) findViewById(R.id.ivPhoto1);
-        ivWishList = (ImageView) findViewById(R.id.ivWishList);
 
-
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
-        tvPrice = (TextView) findViewById(R.id.tvOfferedPrice);
-        tvName = (TextView) findViewById(R.id.tvName);
-        tvBrand = (TextView) findViewById(R.id.tvBrand);
-        tvType = (TextView) findViewById(R.id.tvType);
-        tvSize = (TextView) findViewById(R.id.tvSize);
-        tvDec = (TextView) findViewById(R.id.tvDec);
-        owner1 = (TextView) findViewById(R.id.owner1);
-        tvOwnerName = (TextView) findViewById(R.id.tvOwnerName);
-        tvOwnerCred = (TextView) findViewById(R.id.tvOwnerCred);
-        btnSubmit = (Button) findViewById(R.id.btnSubmit);
-
-        ibShare = (ImageButton) findViewById(R.id.ibShare);
-
-
-        owner2 = (LinearLayout) findViewById(R.id.owner2);
 
         ivPhoto1.setImageBitmap(post.getPhoto());
         final String price = doller + post.getPrice();
@@ -180,15 +200,54 @@ public class ProductPage extends AppCompatActivity {
 
                 try {
                     WishList wishList = new WishList(acc.getId(), post.getProductID());
-                    Log.i("WKW2", "WishListJSONString: " + wishList.passToJsonObjectStr());
                     Connection conn = new Connection();
-                    JSONObject resultObject = conn.addWishList(wishList);
-                    //System.out.println(resultObject.getString("status"));
-                    //Log.i(null, "resultObject: " +resultObject.toString());
-                    if (resultObject.getString("status").equals("add success")) {
-                        finish();
-                        Toast.makeText(ProductPage.this, post.getProductID() + "," + acc.getId(), Toast.LENGTH_LONG).show();
+
+
+                    JSONObject wishListObj = conn.getWishList(wishList);
+                    JSONArray wishListsArray = wishListObj.getJSONArray("wishList");
+
+                    JSONObject targetWishListObj = null;
+                    WishList targetWishList = null;
+                    for(int i = 0; i < wishListsArray.length(); i++)
+                    {
+                        JSONObject tempWishListObj = wishListsArray.getJSONObject(i);
+                        if(tempWishListObj.getString("uid").equals(acc.getId()) && tempWishListObj.getString("productID").equals(post.getProductID())) {
+                            targetWishListObj = tempWishListObj;
+                            break;
+                        }
                     }
+
+                    if(targetWishListObj != null)
+                    {
+                        targetWishList = new WishList(targetWishListObj);
+                    }
+
+                    Log.i("targetWishList", "targetWishList: " +targetWishList.toString());
+                    Log.i("targetWishList", "targetWishListgetId: " +targetWishList.getId().toString());
+
+                    if(inWishList){
+                        //disable  !work
+                        JSONObject resultObject = conn.deleteWishList(targetWishList);
+                        Log.i("CLicked delwishList", "resultObj: " +resultObject);
+                        if (resultObject.getString("status").equals("del success")) {
+                            finish();
+                            Toast.makeText(ProductPage.this, post.getProductID() + "," + acc.getId(), Toast.LENGTH_LONG).show();
+                        }
+                        ivWishList.setImageResource(android.R.drawable.btn_star_big_off);
+                        inWishList = false;
+
+
+                    }else{
+                        //enable
+                        JSONObject resultObject = conn.addWishList(wishList);
+                        Log.i("add wishList", "resultObject: " +resultObject.toString());
+                        if (resultObject.getString("status").equals("add success")) {
+                            Toast.makeText(ProductPage.this, "Added to the wish list", Toast.LENGTH_LONG).show();
+                        }
+                        ivWishList.setImageResource(android.R.drawable.btn_star_big_on);
+                        inWishList = true;
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

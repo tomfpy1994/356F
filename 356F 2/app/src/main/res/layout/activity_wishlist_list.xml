@@ -6,7 +6,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:weightSum="1">
 
         <TextView
             android:text="Wish List"
@@ -22,7 +23,8 @@
         <ListView
             android:id="@+id/lvWishList"
             android:layout_width="match_parent"
-            android:layout_height="402dp" />
+            android:layout_height="402dp"
+            android:layout_weight="0.95" />
 
         <Button
             android:id="@+id/btnBack"

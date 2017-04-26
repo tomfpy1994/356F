@@ -24,11 +24,12 @@ import com.example.bunnyfung.a356f.Object.Post;
  */
 
 public class WishList {
-    private String _id;
+    private String uid;
     private String productID;
 
     //for list wishlist
-    private String ownerName;
+    private String id;
+    private String ownerId;
     private String description;
     private int price;
     private Bitmap photo;
@@ -36,12 +37,15 @@ public class WishList {
 
     public WishList(JSONObject jsonObj){
         try {
-            this._id = jsonObj.getString("uid");
+            this.id = jsonObj.getString("_id");
+            this.uid = jsonObj.getString("uid");
             this.productID = jsonObj.getString("productID");
-            this.ownerName = jsonObj.getString("owner");
+            /*
+            this.ownerId = jsonObj.getString("owner");
             this.description = jsonObj.getString("description");
             this.price = jsonObj.getInt("price");
             this.photo = base64ToBitmap(jsonObj.getString("photo1data"));
+            */
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -50,19 +54,19 @@ public class WishList {
 
 
     public WishList(String uid, String productID){
-        this._id = uid;
+        this.uid = uid;
         this.productID = productID;
 
     }
 
-    public void setId(String _id){this._id = _id;}
+    public String getId(){return id;}
     public void setProductID(String productID){this.productID = productID;}
 
-    public String getId(){return _id;}
+    public String getUid(){return uid;}
     public String getProductId(){return productID;}
 
-    public void setOwnerName(String ownerID){this.ownerName = ownerID;}
-    public String getOwnerName(){return getOwnerName();}
+    public void setOwnerId(String ownerID){this.ownerId = ownerID;}
+    public String getOwnerId(){return ownerId;}
 
     public void setDescription(String description){this.description = description;}
     public String getDescription() {return description;}
@@ -77,9 +81,11 @@ public class WishList {
 
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
-        if (_id != null) {
-            jsonObj.put("uid", getId());
+
+        if (id != null) {
+            jsonObj.put("_id", getId());
         }
+        jsonObj.put("uid", getUid());
         jsonObj.put("productID", getProductId());
 
 

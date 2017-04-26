@@ -316,48 +316,28 @@ public class Connection {
         return resultObject;
     }
 
-    public JSONObject deleteWishList(WishList wishList){
-        String urlStr = "http://s356fproject.mybluemix.net/api/delwishlist";
-       // urlStr = urlStr+"/'productID'/"+wishList.getProductId()+ "/'uid'/"+wishList.getId();
-        try {
-            url = new URL(urlStr);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        queryServer("POST","deleteWishList", null, null, null, wishList);
-
-        while (resultObject == null) {
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        return resultObject;
-    }
-
-    public JSONObject getWishList(WishList wishList){
-
-        String urlStr = "http://s356fproject.mybluemix.net/api/listwishlist/?";
-        urlStr = urlStr+"/_id/58f8574735a2ed003b6dd7fd";
-        Log.i("WKW2", "wishListgetProductId: " +wishList.getProductId());
-        try {
-            url = new URL(urlStr);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        queryServer("GET","getWishList", null, null, null, null);
-
-        while (resultObject == null) {
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        Log.i(null, "resultObject:" +resultObject);
-        return resultObject;
-    }
+//    public JSONObject getWishList(WishList wishList){
+//
+//        String urlStr = "http://s356fproject.mybluemix.net/api/listwishlist/?";
+//        urlStr = urlStr+"/_id/58f8574735a2ed003b6dd7fd";
+//        Log.i("WKW2", "wishListgetProductId: " +wishList.getProductId());
+//        try {
+//            url = new URL(urlStr);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+//        queryServer("GET","getWishList", null, null, null, null);
+//
+//        while (resultObject == null) {
+//            try {
+//                Thread.sleep(50);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        Log.i(null, "resultObject:" +resultObject);
+//        return resultObject;
+//    }
 
 
 
@@ -512,11 +492,6 @@ public class Connection {
 
                                 String sbStr3 = "{wishLists:"+sb+"}";
                                 resultObject = new JSONObject(sbStr3);
-                                break;
-
-                            case "deleteWishList":
-                                resultObject = new JSONObject(sb.toString());
-                                System.out.println("responesStatud: "+resultObject.getString("status"));
                                 break;
 
                             case "getWishList":

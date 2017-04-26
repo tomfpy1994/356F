@@ -57,6 +57,7 @@ public class FragHome extends Fragment {
         listView = (ListView) rootView.findViewById(R.id.allProductList);
         searchButton = (Button) rootView.findViewById(R.id.btnSearch);
         getProduct();
+        //jsonArray = getPostFromRaw();
         while (jsonArray==null){
             try {
                 Thread.sleep(50);
@@ -96,18 +97,18 @@ public class FragHome extends Fragment {
                     Post clickedPost = alPost.get(position);
                     String clickedPostStr = clickedPost.passToJsonObjectStr();
 
-//                    //Testing Log
-
-//                    Log.i("ClickPost", "clickedPost: "+clickedPost.toString());
-//                    Log.i("ClickPost", "clickedPostStr: " +clickedPostStr);
-//                    Log.i("ClickPost", "Click_Post: " +clickedPostStr);
-//                    Log.i("ClickPost", "Acc:" +acc.toString());
-//                    Log.i("ClickPost", "Click_Post_OwnerID: " +clickedPost.getOwner());
-//                    Log.i("ClickPost", "AccID: " +acc.getId());
+                    //Testing Log
+                    System.out.println("Clicked_Post:"+clickedPostStr);
+                    System.out.println("Acc:"+acc.toString());
+                    System.out.println("Clicked_Post_OwnerID:"+ clickedPost.getOwner());
+                    System.out.println("AccID: "+acc.getId());
 
 
                     Intent intent = new Intent(getActivity(), ProductPage.class);
-                    intent.putExtra("post", clickedPostStr);
+
+//                    intent.putExtra("post", clickedPostStr);
+                    intent.putExtra("postId", clickedPost.getProductID());
+
                     intent.putExtra("acc", acc.passToJsonObjectStr());
 
                     if (clickedPost.getOwner().equals(acc.getId())){
@@ -146,7 +147,6 @@ public class FragHome extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     public JSONArray getPostFromRaw(){

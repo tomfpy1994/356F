@@ -24,11 +24,11 @@ import com.example.bunnyfung.a356f.Object.Post;
  */
 
 public class WishList {
-    private String uid;
+    private String _id;
     private String productID;
 
     //for list wishlist
-    private String ownerId;
+    private String ownerName;
     private String description;
     private int price;
     private Bitmap photo;
@@ -36,9 +36,9 @@ public class WishList {
 
     public WishList(JSONObject jsonObj){
         try {
-            this.uid = jsonObj.getString("uid");
+            this._id = jsonObj.getString("uid");
             this.productID = jsonObj.getString("productID");
-            this.ownerId = jsonObj.getString("owner");
+            this.ownerName = jsonObj.getString("owner");
             this.description = jsonObj.getString("description");
             this.price = jsonObj.getInt("price");
             this.photo = base64ToBitmap(jsonObj.getString("photo1data"));
@@ -50,19 +50,19 @@ public class WishList {
 
 
     public WishList(String uid, String productID){
-        this.uid = uid;
+        this._id = uid;
         this.productID = productID;
 
     }
 
-    public void setId(String _id){this.uid = _id;}
+    public void setId(String _id){this._id = _id;}
     public void setProductID(String productID){this.productID = productID;}
 
-    public String getUid(){return uid;}
+    public String getId(){return _id;}
     public String getProductId(){return productID;}
 
-    public void setOwnerId(String ownerID){this.ownerId = ownerID;}
-    public String getOwnerId(){return ownerId;}
+    public void setOwnerName(String ownerID){this.ownerName = ownerID;}
+    public String getOwnerName(){return getOwnerName();}
 
     public void setDescription(String description){this.description = description;}
     public String getDescription() {return description;}
@@ -77,8 +77,8 @@ public class WishList {
 
     public String passToJsonObjectStr() throws JSONException {
         JSONObject jsonObj = new JSONObject();
-        if (uid != null) {
-            jsonObj.put("uid", getUid());
+        if (_id != null) {
+            jsonObj.put("uid", getId());
         }
         jsonObj.put("productID", getProductId());
 

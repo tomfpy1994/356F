@@ -202,7 +202,6 @@ public class ProductPage extends AppCompatActivity {
                     WishList wishList = new WishList(acc.getId(), post.getProductID());
                     Connection conn = new Connection();
 
-
                     JSONObject wishListObj = conn.getWishList(wishList);
                     JSONArray wishListsArray = wishListObj.getJSONArray("wishList");
 
@@ -216,22 +215,18 @@ public class ProductPage extends AppCompatActivity {
                             break;
                         }
                     }
-
                     if(targetWishListObj != null)
                     {
                         targetWishList = new WishList(targetWishListObj);
                     }
 
-                    Log.i("targetWishList", "targetWishList: " +targetWishList.toString());
-                    Log.i("targetWishList", "targetWishListgetId: " +targetWishList.getId().toString());
 
                     if(inWishList){
                         //disable  !work
                         JSONObject resultObject = conn.deleteWishList(targetWishList);
-                        Log.i("CLicked delwishList", "resultObj: " +resultObject);
                         if (resultObject.getString("status").equals("del success")) {
                             finish();
-                            Toast.makeText(ProductPage.this, post.getProductID() + "," + acc.getId(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(ProductPage.this, "Delete your wish list", Toast.LENGTH_LONG).show();
                         }
                         ivWishList.setImageResource(android.R.drawable.btn_star_big_off);
                         inWishList = false;
@@ -240,7 +235,6 @@ public class ProductPage extends AppCompatActivity {
                     }else{
                         //enable
                         JSONObject resultObject = conn.addWishList(wishList);
-                        Log.i("add wishList", "resultObject: " +resultObject.toString());
                         if (resultObject.getString("status").equals("add success")) {
                             Toast.makeText(ProductPage.this, "Added to the wish list", Toast.LENGTH_LONG).show();
                         }

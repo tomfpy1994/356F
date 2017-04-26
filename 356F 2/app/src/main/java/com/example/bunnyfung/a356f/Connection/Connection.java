@@ -321,12 +321,10 @@ public class Connection {
         // urlStr = urlStr+"/'productID'/"+wishList.getProductId()+ "/'uid'/"+wishList.getId();
         try {
             url = new URL(urlStr);
-            System.out.println("the del wishlist");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         queryServer("POST","deleteWishList", null, null, null, wishList);
-
         while (resultObject == null) {
             try {
                 Thread.sleep(50);
@@ -340,8 +338,7 @@ public class Connection {
     public JSONObject getWishList(WishList wishList){
 
         String urlStr = "http://s356fproject.mybluemix.net/api/listwishlist/?";
-        urlStr = urlStr+"/_id/" +wishList.getUid();
-        Log.i("WKW2", "wishListgetProductId: " +wishList.getUid());
+        urlStr = urlStr+"/uid/" +wishList.getUid();
         try {
             url = new URL(urlStr);
         } catch (MalformedURLException e) {
@@ -356,7 +353,6 @@ public class Connection {
                 e.printStackTrace();
             }
         }
-        Log.i(null, "resultObject:" +resultObject);
         return resultObject;
     }
 
@@ -431,12 +427,6 @@ public class Connection {
 
                             case "deleteWishList":
                                 System.out.println("queryServer jsonObj: " + wishList.toString());
-                                Log.i("testWishList", "wishListgetId: "+wishList.getId());
-                                Log.i("testWishList", "wishListgetUid: "+wishList.getUid());
-                                Log.i("testWishList", "wishListgetProductId" +wishList.getProductId());
-                                Log.i("testWishList", "wishListpassJSONObjStr:" +wishList.passToJsonObjectStr());
-
-                                //String str = "{_id: \"" + wishList.getId() + "\"}";
                                 os.write(wishList.passToJsonObjectStr().getBytes("UTF-8"));
                                 break;
 
@@ -530,11 +520,6 @@ public class Connection {
                             case "getWishList":
                                 System.out.println("sb Length: "+ sb.length());
                                 System.out.println("WishList: " + sb);
-
-                                Log.i("WKW2", "sbLength:" +sb.length());
-                                Log.i("WKW2", "sb: " +sb);
-
-
                                 String sbStr4 = "{wishList:"+sb+"}";
                                 resultObject = new JSONObject(sbStr4);
                                 break;

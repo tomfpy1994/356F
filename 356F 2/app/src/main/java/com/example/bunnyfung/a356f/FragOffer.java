@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import com.example.bunnyfung.a356f.Adapter.OfferAdapter;
 import com.example.bunnyfung.a356f.Connection.Connection;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class FragOffer extends Fragment {
     private Account acc;
     private Button btnProcessing,btnInvitation,btnMyOffer, btnHistory;
+    private ImageButton ivReload;
     private ListView lvOfferList;
     private JSONArray jsonArray = null;
     private ArrayList<Offer> alOffer = new ArrayList<Offer>();
@@ -41,29 +43,9 @@ public class FragOffer extends Fragment {
         btnHistory = (Button)rootView.findViewById(R.id.btnHistory);
         lvOfferList = (ListView)rootView.findViewById(R.id.lvOfferList);
 
+        ivReload = (ImageButton)rootView.findViewById(R.id.ivReload);
 
-
-        Connection conn = new Connection();
-        try {
-            jsonArray = conn.listOffer(acc, 0).getJSONArray("offers");
-
-            alOffer.clear();
-            if (jsonArray!=null) {
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    Offer temOffer = new Offer(jsonArray.getJSONObject(i));
-
-                    if (temOffer.getStat()==1){
-                        alOffer.add(temOffer);
-                    }
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        isMyOffer = 0;
-
-        //Testing Log
-        System.out.println(alOffer.size());
+        getPost();
 
         OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer, 0);
         lvOfferList.setAdapter(adapter);
@@ -87,6 +69,19 @@ public class FragOffer extends Fragment {
                 }
 
                 startActivity(intent);
+            }
+        });
+
+        ivReload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alOffer.clear();
+
+                getPost();
+
+                OfferAdapter adapter = new OfferAdapter(getActivity(), R.layout.offer_list_item, alOffer, 0);
+                lvOfferList.setAdapter(adapter);
+
             }
         });
 
@@ -188,8 +183,31 @@ public class FragOffer extends Fragment {
             }
         });
 
-
         return rootView;
+    }
+
+    public void getPost(){
+        Connection conn = new Connection();
+        try {
+            jsonArray = conn.listOffer(acc, 0).getJSONArray("offers");
+
+            alOffer.clear();
+            if (jsonArray!=null) {
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    Offer temOffer = new Offer(jsonArray.getJSONObject(i));
+
+                    if (temOffer.getStat()==1){
+                        alOffer.add(temOffer);
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        isMyOffer = 0;
+
+        //Testing Log
+        System.out.println(alOffer.size());
     }
 
 }

@@ -96,7 +96,6 @@ public class OfferDetailPage extends AppCompatActivity {
 
             if (isMyOffer.equals("1")){
                 btnAccept.setVisibility(View.INVISIBLE);
-                cbAgreement.setVisibility(View.INVISIBLE);
                 btnDecline.setText("Cancel");
             }
 

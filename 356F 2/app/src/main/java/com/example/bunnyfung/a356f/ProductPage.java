@@ -222,11 +222,10 @@ public class ProductPage extends AppCompatActivity {
 
 
                     if(inWishList){
-                        //disable  !work
+                        //disable
                         JSONObject resultObject = conn.deleteWishList(targetWishList);
                         if (resultObject.getString("status").equals("del success")) {
-                            finish();
-                            Toast.makeText(ProductPage.this, "Delete your wish list", Toast.LENGTH_LONG).show();
+                            Toast.makeText(ProductPage.this, "Removed your wish list", Toast.LENGTH_LONG).show();
                         }
                         ivWishList.setImageResource(android.R.drawable.btn_star_big_off);
                         inWishList = false;

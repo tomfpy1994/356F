@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class WishListPage extends AppCompatActivity {
     public Account acc;
-    public Post post;
+    public Post post, tempPost;
     private JSONArray jsonArray = null;
     private ListView lvWishList;
     private Button btnBack;
@@ -77,10 +77,25 @@ public class WishListPage extends AppCompatActivity {
             if (jsonArray != null) {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     WishList tempWishList = new WishList(jsonArray.getJSONObject(i));
+
+                    String productId = tempWishList.getProductId();
+
+                    JSONObject jsonObject = conn.getOneProduct(productId);
+                    JSONArray jsonArray = null;
+                    try {
+                        jsonArray = jsonObject.getJSONArray("products");
+                        tempPost = new Post(jsonArray.getJSONObject(0));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
                     Log.i(null, "List " + i + ": " + tempWishList.toString());
                     if (tempWishList.getUid().equals(acc.getId())) {
-                        alWishLists.add(tempWishList);
-                        Log.i(null, "ALList " + i + ": " + alWishLists.toString());
+                        if(!(tempPost.getState().equals("3"))) {
+                            alWishLists.add(tempWishList);
+                            Log.i(null, "ALList " + i + ": " + alWishLists.toString());
+                        }
                     }
                 }
             }
@@ -94,7 +109,7 @@ public class WishListPage extends AppCompatActivity {
 
         WishListAdapter wishListAdapter = new WishListAdapter(getApplicationContext(), alWishLists);
         lvWishList.setAdapter(wishListAdapter);
-        //lvWishList.invalidateViews();
+        lvWishList.invalidateViews();
 
 
         lvWishList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
